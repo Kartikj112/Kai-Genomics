@@ -102,7 +102,8 @@
   .workshop-card:hover .tag { border-color:rgba(184,245,200,.25);color:var(--accent); }
 
   /* ABOUT */
-  #about { display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start; }
+  #about { display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;row-gap:60px; }
+  #about .about-institution-imgs { grid-column:1/-1; }
   .about-headline { font-family:var(--display);font-size:clamp(36px,5vw,70px);font-weight:300;line-height:1.05;letter-spacing:-.02em;margin-bottom:40px; }
   .about-headline em { font-style:italic;color:var(--accent); }
   .about-bio { font-family:var(--mono);font-size:13.7px;line-height:2;color:var(--muted);margin-bottom:24px; }
@@ -112,6 +113,16 @@
   .stat-label { font-family:var(--mono);font-size:11.6px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted); }
   .stat-value { font-family:var(--display);font-size:33.6px;font-weight:300;letter-spacing:-.02em;color:var(--accent); }
   .stat-unit { font-family:var(--mono);font-size:11.6px;color:var(--muted);margin-left:8px; }
+
+  /* PROFILE IMAGE */
+  .about-profile-img { width:100%;max-width:320px;border-radius:50%;display:block;margin-bottom:48px;border:1px solid var(--border);aspect-ratio:1/1;object-fit:cover; }
+
+  /* INSTITUTION IMAGES */
+  .about-institution-imgs { display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:60px; }
+  .institution-img-wrap { overflow:hidden;position:relative;background:#000; }
+  .institution-img-wrap img { width:100%;height:200px;object-fit:cover;display:block;opacity:.85;transition:opacity .4s,transform .4s; }
+  .institution-img-wrap:hover img { opacity:1;transform:scale(1.04); }
+  .institution-img-caption { position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 100%);font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(184,245,200,.8); }
 
   /* PUBLICATIONS */
   #publications { background:var(--surface); }
@@ -316,6 +327,7 @@
   <section id="about">
     <div class="about-left">
       <div class="section-label reveal">Instructor</div>
+      <img src="cropped_circle_image.png" alt="Kartik" class="about-profile-img reveal reveal-delay-1" />
       <h2 class="about-headline reveal reveal-delay-1">Science from the<br />ocean floor to<br />the <em>algorithm.</em></h2>
       <p class="about-bio reveal reveal-delay-2">Kartik is a computational biologist and bioinformatics researcher based in Goa, India. Currently a Project Associate II and PhD candidate at the CSIR–National Institute of Oceanography, he leads research on marine sponge-associated microbial communities for drug discovery.</p>
       <p class="about-bio reveal reveal-delay-3">A self-taught computational biologist, Kartik bridges wet-lab microbiology with data-driven genomic analysis. His work spans genome mining, metagenomics, and the identification of novel antimicrobial compounds — with published results in peer-reviewed journals.</p>
@@ -327,6 +339,16 @@
       <div class="stat-row reveal reveal-delay-2"><span class="stat-label">Specialisation</span><div style="text-align:right"><span class="stat-value" style="font-size:18.9px;letter-spacing:0">Marine<br/>Microbiomes</span></div></div>
       <div class="stat-row reveal reveal-delay-3"><span class="stat-label">Institution</span><div style="text-align:right"><span class="stat-value" style="font-size:14.7px;letter-spacing:0;line-height:1.4">CSIR–NIO<br/>Goa, India</span></div></div>
       <div class="stat-row reveal reveal-delay-4"><span class="stat-label">Timezone overlap</span><div><span class="stat-value">4h</span><span class="stat-unit">PST / EST</span></div></div>
+    </div>
+    <div class="about-institution-imgs reveal">
+      <div class="institution-img-wrap">
+        <img src="Gemini_Generated_Image_im28feim28feim28.png" alt="CSIR-NIO Goa" />
+        <div class="institution-img-caption">CSIR–NIO · Goa, India</div>
+      </div>
+      <div class="institution-img-wrap">
+        <img src="Gemini_Generated_Image_onuny1onuny1onun.png" alt="RV Sindhu Sadhana" />
+        <div class="institution-img-caption">RV Sindhu Sadhana · Research Vessel</div>
+      </div>
     </div>
   </section>
 
@@ -356,7 +378,7 @@
     <h2 class="contact-headline reveal">Ready to<br /><em>begin?</em></h2>
     <p class="contact-sub reveal reveal-delay-1">Workshops available for academic institutions, research groups,<br />and early-stage laboratories. Remote and in-person formats.</p>
     <div class="contact-cta reveal reveal-delay-2">
-      <a href="mailto:hello@kaigenomics.com" class="btn-primary">Get in Touch</a>
+      <a href="/cdn-cgi/l/email-protection#bed6dbd2d2d1fed5dfd7d9dbd0d1d3d7ddcd90ddd1d3" class="btn-primary">Get in Touch</a>
       <a href="#workshops" class="btn-ghost">View Workshops →</a>
     </div>
     <div class="contact-links reveal reveal-delay-3">
@@ -446,7 +468,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ════════════════════════════════════════════════════
    STEP 1 — Paste your Google Form embed URL here
    e.g. "https://docs.google.com/forms/d/e/XXXXX/viewform?embedded=true"
@@ -658,9 +680,4 @@ window.addEventListener('resize',resize); resize();
 /* ════ SCROLL REVEALS ════ */
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-initThemeToggle();
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
-</body>
-</html>
+},{thresho
