@@ -103,6 +103,10 @@
 
   /* ABOUT */
   #about { display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start; }
+  .instructor-photo-wrap { margin-bottom:48px;position:relative;display:inline-block; }
+  .instructor-photo { width:120px;height:120px;border-radius:50%;object-fit:cover;display:block;border:1px solid var(--border);transition:border-color .35s ease; }
+  .instructor-photo-wrap::after { content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(184,245,200,.18);pointer-events:none;transition:border-color .35s ease; }
+  .instructor-photo-wrap:hover::after { border-color:rgba(184,245,200,.45); }
   .about-headline { font-family:var(--display);font-size:clamp(36px,5vw,70px);font-weight:300;line-height:1.05;letter-spacing:-.02em;margin-bottom:40px; }
   .about-headline em { font-style:italic;color:var(--accent); }
   .about-bio { font-family:var(--mono);font-size:13.7px;line-height:2;color:var(--muted);margin-bottom:24px; }
@@ -274,47 +278,45 @@
     <div class="section-label reveal">Curriculum</div>
     <h2 class="workshops-headline reveal reveal-delay-1">Hands-on training<br />for the <em>next generation</em><br />of microbial researchers.</h2>
     <div class="workshops-grid">
-      <div class="workshop-card reveal reveal-delay-1" onclick="openDetail('amplicon')">
+      <div class="workshop-card reveal reveal-delay-1" onclick="openDetail('intro_bio')">
         <p class="card-number">01</p>
+        <h3 class="card-title">Introduction to Bioinformatics</h3>
+        <p class="card-desc">A foundation in biological data analysis.<br />Linux essentials, sequence formats, databases,<br />and core bioinformatics thinking.</p>
+        <div class="card-tags"><span class="tag">Linux</span><span class="tag">NCBI</span><span class="tag">BLAST</span><span class="tag">Python</span></div>
+      </div>
+      <div class="workshop-card reveal reveal-delay-2" onclick="openDetail('sanger')">
+        <p class="card-number">02</p>
+        <h3 class="card-title">Sanger Sequencing Analysis</h3>
+        <p class="card-desc">From chromatogram to confident sequence.<br />Trace file interpretation, quality assessment,<br />and BLAST-based identification workflows.</p>
+        <div class="card-tags"><span class="tag">Sanger</span><span class="tag">Chromas</span><span class="tag">BLAST</span><span class="tag">MUSCLE</span></div>
+      </div>
+      <div class="workshop-card reveal reveal-delay-3" onclick="openDetail('bacterial_wgs')">
+        <span class="workshop-badge">LIVE</span>
+        <p class="card-number">03</p>
+        <h3 class="card-title">Introduction to Bacterial WGS and Mining</h3>
+        <p class="card-desc">End-to-end bacterial whole-genome sequencing —<br />assembly, annotation, and biosynthetic gene<br />cluster discovery from real genomes.</p>
+        <div class="card-tags"><span class="tag">SPAdes</span><span class="tag">Prokka</span><span class="tag">antiSMASH</span><span class="tag">QUAST</span></div>
+      </div>
+      <div class="workshop-card reveal reveal-delay-1" onclick="openDetail('amplicon')">
+        <p class="card-number">04</p>
         <h3 class="card-title">Amplicon Metagenomics</h3>
         <p class="card-desc">From raw 16S rRNA reads to community profiles.<br />OTU/ASV pipelines, diversity metrics, and<br />ecological interpretation in real datasets.</p>
         <div class="card-tags"><span class="tag">QIIME2</span><span class="tag">16S rRNA</span><span class="tag">R</span><span class="tag">Diversity</span></div>
       </div>
-      <div class="workshop-card reveal reveal-delay-2" onclick="openDetail('shotgun')">
-        <p class="card-number">02</p>
-        <h3 class="card-title">Shotgun Metagenomics</h3>
-        <p class="card-desc">Whole-community sequencing, assembly, binning,<br />and metabolic pathway reconstruction across<br />complex environmental samples.</p>
-        <div class="card-tags"><span class="tag">Assembly</span><span class="tag">Binning</span><span class="tag">HUMAnN</span><span class="tag">Python</span></div>
-      </div>
-      <div class="workshop-card reveal reveal-delay-3" onclick="openDetail('bgc')">
-        <p class="card-number">03</p>
-        <h3 class="card-title">Genome Mining &amp; BGC Analysis</h3>
-        <p class="card-desc">Discover biosynthetic gene clusters. Predict<br />natural products, antibiotic candidates,<br />and novel bioactive metabolites.</p>
-        <div class="card-tags"><span class="tag">antiSMASH</span><span class="tag">GNPS</span><span class="tag">BGC</span><span class="tag">LC-MS/MS</span></div>
-      </div>
-      <div class="workshop-card reveal reveal-delay-1" onclick="openDetail('ngs')">
-        <p class="card-number">04</p>
-        <h3 class="card-title">NGS Data Analysis</h3>
-        <p class="card-desc">Quality control, trimming, alignment, and<br />variant calling — end-to-end reproducible<br />NGS workflows from scratch.</p>
-        <div class="card-tags"><span class="tag">FastQC</span><span class="tag">Trimmomatic</span><span class="tag">Linux</span><span class="tag">BWA</span></div>
-      </div>
-      <div class="workshop-card reveal reveal-delay-2" onclick="openDetail('assembly')">
+      <div class="workshop-card reveal reveal-delay-2" onclick="openDetail('functional_meta')">
         <p class="card-number">05</p>
-        <h3 class="card-title">Genome Assembly &amp; Annotation</h3><span class="workshop-badge">LIVE</span>
-        <p class="card-desc">Bacterial de novo assembly, functional<br />annotation, and pan-genome analysis using<br />real published research genomes.</p>
-        <div class="card-tags"><span class="tag">SPAdes</span><span class="tag">Prokka</span><span class="tag">Roary</span><span class="tag">Pan-genome</span></div>
-      </div>
-      <div class="workshop-card reveal reveal-delay-3" onclick="openDetail('drug')">
-        <p class="card-number">06</p>
-        <h3 class="card-title">Computational Drug Discovery</h3>
-        <p class="card-desc">In silico identification of bioactive peptides<br />and therapeutic candidates through<br />screening and structural prediction.</p>
-        <div class="card-tags"><span class="tag">Peptide Prediction</span><span class="tag">Biopython</span><span class="tag">AlphaFold2</span></div>
+        <h3 class="card-title">Functional Metagenomics</h3>
+        <p class="card-desc">Uncover what microbial communities do —<br />gene prediction, pathway reconstruction,<br />and metabolic profiling from metagenomic data.</p>
+        <div class="card-tags"><span class="tag">HUMAnN3</span><span class="tag">Prokka</span><span class="tag">KEGG</span><span class="tag">Python</span></div>
       </div>
     </div>
   </section>
 
   <section id="about">
     <div class="about-left">
+      <div class="instructor-photo-wrap reveal">
+        <img src="cropped_circle_image.png" alt="Kartik Juyal" class="instructor-photo" />
+      </div>
       <div class="section-label reveal">Instructor</div>
       <h2 class="about-headline reveal reveal-delay-1">Science from the<br />ocean floor to<br />the <em>algorithm.</em></h2>
       <p class="about-bio reveal reveal-delay-2">Kartik is a computational biologist and bioinformatics researcher based in Goa, India. Currently a Project Associate II and PhD candidate at the CSIR–National Institute of Oceanography, he leads research on marine sponge-associated microbial communities for drug discovery.</p>
@@ -481,8 +483,50 @@ function initThemeToggle() {
    WORKSHOP DATA
 ════════════════════════════════════════════════════ */
 const workshops = {
+  intro_bio: {
+    number:"01", title:"Introduction to\n<em>Bioinformatics</em>",
+    duration:"2 Days", level:"Beginner", format:"Remote / In-person",
+    overview:"A gentle but thorough entry point into the world of bioinformatics. This workshop equips complete beginners with the conceptual foundations and practical skills needed to navigate biological databases, work in the Linux command line, and run fundamental sequence analysis tasks — no prior coding experience required.",
+    modules:[
+      {name:"What is Bioinformatics?",desc:"The role of computation in modern biology. Overview of sequencing technologies, data types, and the bioinformatics workflow from raw data to discovery."},
+      {name:"Linux & Command Line Basics",desc:"Navigating the file system, writing and running shell commands, managing files, and setting up conda environments for reproducible analysis."},
+      {name:"Biological Databases & File Formats",desc:"Exploring NCBI, UniProt, and Ensembl. Understanding FASTA, FASTQ, GFF, and GenBank file formats and how to retrieve and parse them."},
+      {name:"Sequence Similarity & BLAST",desc:"Principles of pairwise alignment, BLAST algorithms, interpreting E-values and bit scores, and running local BLAST searches."},
+      {name:"Introduction to Python for Biology",desc:"Writing simple Python scripts to parse sequences, automate repetitive tasks, and interact with Biopython for sequence manipulation."},
+    ],
+    tools:["Linux","Bash","NCBI","BLAST","Biopython","Python","conda","FastQC"],
+    registerDesc:"No prior bioinformatics or programming experience required. All tools are free and open-source. Suitable for undergraduates, postgraduates, and wet-lab researchers."
+  },
+  sanger: {
+    number:"02", title:"Sanger Sequencing\n<em>Analysis</em>",
+    duration:"1 Day", level:"Beginner", format:"Remote / In-person",
+    overview:"Despite the rise of next-generation sequencing, Sanger sequencing remains the gold standard for targeted sequence verification, colony screening, and 16S-based microbial identification. This focused workshop takes you from raw chromatogram files to confident, publication-ready sequence interpretations using free desktop and web tools.",
+    modules:[
+      {name:"Principles of Sanger Sequencing",desc:"Chain-termination chemistry, capillary electrophoresis, and how raw fluorescent signal becomes a chromatogram trace."},
+      {name:"Trace File Inspection & Quality",desc:"Opening and interpreting .ab1 files in Chromas and FinchTV. Identifying low-quality regions, mixed bases, and sequencing artefacts."},
+      {name:"Sequence Trimming & Editing",desc:"Manual and automated trimming of primer and low-quality ends. Using BioEdit for sequence alignment and editing."},
+      {name:"BLAST-Based Identification",desc:"Submitting sequences to NCBI BLAST, interpreting identity and coverage metrics, and selecting correct reference sequences."},
+      {name:"Multiple Sequence Alignment & Trees",desc:"Aligning multiple Sanger sequences with MUSCLE/Clustal. Building simple neighbour-joining trees for 16S-based microbial identification."},
+    ],
+    tools:["Chromas","FinchTV","BioEdit","NCBI BLAST","MUSCLE","Clustal","MEGA","Linux"],
+    registerDesc:"Ideal for microbiology students and lab researchers who receive Sanger data and want to confidently interpret and report their results."
+  },
+  bacterial_wgs: {
+    number:"03", title:"Introduction to Bacterial\n<em>WGS and Mining</em>",
+    duration:"3 Days", level:"Beginner–Intermediate", format:"Remote / In-person",
+    overview:"This hands-on workshop walks you through the complete journey of bacterial whole-genome sequencing — from quality-controlled raw reads to an annotated, mined genome ready for publication. Using real bacterial genomes from published CSIR-NIO research, you will assemble, annotate, and screen for biosynthetic gene clusters and secondary metabolite potential.",
+    modules:[
+      {name:"NGS Read QC & Preprocessing",desc:"Assessing Illumina read quality with FastQC and MultiQC. Adapter trimming and quality filtering with Trimmomatic and fastp."},
+      {name:"De Novo Genome Assembly",desc:"Assembly with SPAdes. Understanding assembly graphs, evaluating N50 and completeness metrics using QUAST and CheckM."},
+      {name:"Genome Annotation",desc:"Structural and functional annotation using Prokka. Interpreting GFF and GenBank output files for downstream analysis."},
+      {name:"Biosynthetic Gene Cluster Mining",desc:"Running antiSMASH to detect BGCs. Interpreting cluster predictions, NRPS/PKS domain architecture, and known compound homologs."},
+      {name:"Case Study: Kocuria flava NIO_001",desc:"Walkthrough of published genome mining from a marine sponge-associated bacterium leading to thiopeptide antibiotic identification."},
+    ],
+    tools:["FastQC","Trimmomatic","SPAdes","QUAST","CheckM","Prokka","antiSMASH","Linux","Bash","Biopython"],
+    registerDesc:"Uses real bacterial genomes from published CSIR-NIO research. Draws directly on the instructor's own peer-reviewed work — hands-on from day one."
+  },
   amplicon: {
-    number:"01", title:"Amplicon\n<em>Metagenomics</em>",
+    number:"04", title:"Amplicon\n<em>Metagenomics</em>",
     duration:"3 Days", level:"Beginner–Intermediate", format:"Remote / In-person",
     overview:"This workshop takes you from raw 16S rRNA amplicon sequencing reads to fully interpreted microbial community profiles. You will work hands-on with real environmental datasets — covering quality filtering, denoising, taxonomic classification, diversity analysis, and ecological visualisation using industry-standard tools.",
     modules:[
@@ -495,75 +539,19 @@ const workshops = {
     tools:["QIIME2","DADA2","phyloseq","ggplot2","R","SILVA","Linux","Bash","FastQC"],
     registerDesc:"Fill out the form to secure your spot. Includes course materials, real datasets, and post-workshop Q&A access."
   },
-  shotgun: {
-    number:"02", title:"Shotgun\n<em>Metagenomics</em>",
+  functional_meta: {
+    number:"05", title:"Functional\n<em>Metagenomics</em>",
     duration:"4 Days", level:"Intermediate", format:"Remote",
-    overview:"Whole-metagenome shotgun sequencing unlocks the full functional potential of complex microbial communities. This workshop guides you through assembly, taxonomic profiling, binning, and metabolic reconstruction — giving you the skills to mine any environmental sample for biological insight.",
+    overview:"Go beyond who is there and discover what microbial communities are doing. This workshop focuses on the functional dimension of metagenomics — from gene prediction and annotation through to metabolic pathway reconstruction and community-level functional profiling — using whole-metagenome shotgun sequencing data from complex environmental samples.",
     modules:[
-      {name:"Library Prep & Read QC",desc:"Shotgun library concepts, host depletion strategies, quality control, and adapter trimming pipelines."},
-      {name:"Taxonomic Profiling",desc:"K-mer and alignment-based classification using Kraken2, Bracken, and MetaPhlAn for species-level profiling."},
-      {name:"Assembly & Contig Analysis",desc:"Co-assembly and individual assembly with MEGAHIT and metaSPAdes. Contig statistics and quality assessment."},
-      {name:"Metagenomic Binning",desc:"Recovering metagenome-assembled genomes (MAGs) using MetaBAT2 and CheckM quality evaluation."},
-      {name:"Functional & Pathway Analysis",desc:"Gene prediction, annotation, and metabolic pathway reconstruction using HUMAnN3, Prokka, and KEGG mapping."},
+      {name:"Shotgun Library Concepts & QC",desc:"Whole-metagenome shotgun sequencing principles, host depletion strategies, read quality control, and preprocessing pipelines."},
+      {name:"Taxonomic & Functional Profiling",desc:"Community composition with Kraken2 and MetaPhlAn. Functional gene abundance profiling using HUMAnN3 and UniRef databases."},
+      {name:"Assembly & Gene Prediction",desc:"Co-assembly with MEGAHIT. Open reading frame prediction, gene catalogue construction, and functional annotation with Prokka."},
+      {name:"Metabolic Pathway Reconstruction",desc:"Mapping annotated genes to KEGG, COG, and MetaCyc databases. Identifying enriched pathways and community metabolic potential."},
+      {name:"Comparative Functional Analysis",desc:"Statistical comparison of functional profiles across samples. Visualising functional differences with R and Python."},
     ],
-    tools:["MEGAHIT","MetaSPAdes","Kraken2","MetaBAT2","CheckM","HUMAnN3","Prokka","Python","R","Linux"],
-    registerDesc:"Ideal for graduate students and researchers working with environmental or clinical metagenomic data."
-  },
-  bgc: {
-    number:"03", title:"Genome Mining\n& <em>BGC Analysis</em>",
-    duration:"2 Days", level:"Intermediate–Advanced", format:"Remote / In-person",
-    overview:"Biosynthetic gene clusters (BGCs) encode the machinery for producing antibiotics, antifungals, and other bioactive compounds. This workshop — directly informed by published research at CSIR-NIO — teaches you to identify, annotate, and prioritise BGCs in microbial genomes and link them to detected metabolites.",
-    modules:[
-      {name:"BGC Biology & Significance",desc:"Overview of natural product classes: polyketides, NRPs, terpenes, RiPPs. BGC architecture and regulatory logic."},
-      {name:"antiSMASH-Based BGC Detection",desc:"Running antiSMASH locally and via web. Interpreting cluster predictions, NRPS/PKS domain architecture, and known homologs."},
-      {name:"Comparative Genomics of BGCs",desc:"BiG-SCAPE network analysis for BGC family clustering. Identifying novel versus known cluster families."},
-      {name:"Metabolomics Integration",desc:"Connecting genomic BGC predictions to LC-MS/MS metabolite data using GNPS molecular networking."},
-      {name:"Case Study: Kocurin Discovery",desc:"Walkthrough of published Kocuria flava NIO_001 genome mining leading to thiopeptide antibiotic identification."},
-    ],
-    tools:["antiSMASH","BiG-SCAPE","GNPS","DIAMOND","MASH","Python","Biopython","Linux","R"],
-    registerDesc:"Draws directly on published research from CSIR-NIO. Includes a detailed case study with real genomic and metabolomics data."
-  },
-  ngs: {
-    number:"04", title:"NGS Data\n<em>Analysis</em>",
-    duration:"2 Days", level:"Beginner", format:"Remote / In-person",
-    overview:"This foundational workshop builds your confidence working with next-generation sequencing data from scratch. Ideal for students and early-career researchers, it establishes reproducible command-line skills for QC, alignment, and downstream biological interpretation across a variety of sequencing applications.",
-    modules:[
-      {name:"Linux & Command Line Essentials",desc:"File navigation, shell scripting basics, conda environments, and organising reproducible bioinformatics projects."},
-      {name:"Raw Read Quality Control",desc:"Assessing FASTQ files with FastQC and MultiQC, understanding quality scores, and trimming with Trimmomatic."},
-      {name:"Read Alignment & Mapping",desc:"Aligning reads to reference genomes using BWA and Bowtie2. SAM/BAM handling with SAMtools."},
-      {name:"Variant Calling Basics",desc:"SNP and indel detection using GATK HaplotypeCaller. Understanding VCF format and filtering variants."},
-      {name:"Reproducibility & Reporting",desc:"Organising pipelines, writing analysis reports, and intro to workflow managers like Snakemake."},
-    ],
-    tools:["FastQC","MultiQC","Trimmomatic","BWA","Bowtie2","SAMtools","GATK","Snakemake","Linux","Bash"],
-    registerDesc:"No prior bioinformatics experience required. All software is open-source and free. Just bring a laptop with internet access."
-  },
-  assembly: {
-    number:"05", title:"Genome Assembly\n& <em>Annotation</em>",
-    duration:"3 Days", level:"Intermediate", format:"Remote / In-person",
-    overview:"Master the complete pipeline for turning raw bacterial sequencing reads into annotated, publication-ready genomes. From de novo assembly and quality assessment through to functional annotation and pan-genome analysis, this workshop uses datasets directly from published CSIR-NIO research.",
-    modules:[
-      {name:"Sequencing Platforms & Read Types",desc:"Comparing Illumina short reads vs Oxford Nanopore long reads. Hybrid assembly strategies and when to use them."},
-      {name:"De Novo Assembly",desc:"Assembly with SPAdes and Flye. Understanding assembly graphs, N50 statistics, and evaluating completeness with QUAST."},
-      {name:"Genome Annotation",desc:"Structural and functional annotation using Prokka and PGAP. Interpreting annotated GFF and GenBank files."},
-      {name:"Pan-Genome Analysis",desc:"Constructing core and accessory genomes with Roary and Panaroo. Visualising genomic flexibility across strains."},
-      {name:"Phylogenomics",desc:"Building multi-locus phylogenetic trees, ANI-based species delineation, and interpreting evolutionary relationships."},
-    ],
-    tools:["SPAdes","Flye","Prokka","PGAP","Roary","Panaroo","QUAST","FastANI","IQ-TREE","Linux"],
-    registerDesc:"Uses real bacterial genomes from published CSIR-NIO research as training datasets. Hands-on from day one."
-  },
-  drug: {
-    number:"06", title:"Computational\n<em>Drug Discovery</em>",
-    duration:"3 Days", level:"Advanced", format:"Remote",
-    overview:"An advanced workshop at the intersection of genomics and pharmacology. Learn to computationally identify and characterise bioactive peptides — including venom-derived and antimicrobial candidates — using sequence-based screening, structural prediction, and activity modelling grounded in real drug discovery projects.",
-    modules:[
-      {name:"Bioactive Peptide Biology",desc:"Classes of therapeutic peptides: AMPs, venomics, RiPPs. Mechanisms of action and current clinical relevance."},
-      {name:"Sequence Mining & Prediction",desc:"Mining genomes and metagenomes for peptide-encoding genes. Tools: DeepAMP, AMPscanner, and custom BLAST pipelines."},
-      {name:"Structural Prediction",desc:"Predicting 3D structures of peptide candidates using AlphaFold2 and ESMFold. Interpreting confidence scores."},
-      {name:"In Silico Screening & Filtering",desc:"Physicochemical property filtering, toxicity prediction, and candidate prioritisation workflows."},
-      {name:"From Sequence to Manuscript",desc:"Documenting in silico findings, preparing supplementary data, and structuring methods sections for publication."},
-    ],
-    tools:["Biopython","AlphaFold2","ESMFold","AMPscanner","BLAST","Python","pandas","R","Linux"],
-    registerDesc:"Designed for researchers with a background in genomics or biochemistry looking to integrate computational approaches into drug discovery."
+    tools:["MEGAHIT","Kraken2","MetaPhlAn","HUMAnN3","Prokka","KEGG","Python","R","Linux","Bash"],
+    registerDesc:"Ideal for researchers working with environmental or clinical metagenomic data who want to move from taxonomic to functional insights."
   }
 };
 
