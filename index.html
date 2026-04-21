@@ -221,7 +221,70 @@
     .detail-content{padding:48px 28px}
     .detail-register{position:static;padding:48px 28px}
     .detail-meta{flex-wrap:wrap;gap:32px}
+    #glyph-matrix{display:none}
   }
+
+  /* ═══ NOTHING-INSPIRED GLYPH MATRIX ═══ */
+  #glyph-matrix {
+    position:fixed; top:86px; right:52px; z-index:150;
+    display:flex; flex-direction:column; align-items:flex-end; gap:6px;
+    pointer-events:none;
+  }
+  #glyph-matrix * { pointer-events:auto; }
+  .glyph-topbar {
+    display:flex; align-items:center; gap:10px;
+    justify-content:flex-end;
+  }
+  .glyph-status-label {
+    font-family:var(--mono); font-size:9px; letter-spacing:.22em;
+    text-transform:uppercase; color:rgba(184,245,200,0.28);
+    transition:color .3s;
+  }
+  .glyph-toggle-btn {
+    width:22px; height:22px; background:none; border:none;
+    display:flex; align-items:center; justify-content:center;
+    cursor:none; padding:0; transition:opacity .3s;
+    opacity:0.35;
+  }
+  .glyph-toggle-btn:hover { opacity:1; }
+  .glyph-toggle-btn svg { width:14px; height:14px; }
+  .glyph-panel {
+    position:relative; width:190px; height:190px;
+    transition:opacity .5s cubic-bezier(.23,1,.32,1),
+               transform .5s cubic-bezier(.23,1,.32,1);
+    transform-origin:top right;
+  }
+  #glyph-matrix.glyph-collapsed .glyph-panel {
+    opacity:0; transform:scale(0.72) translateY(-8px); pointer-events:none;
+  }
+  #glyph-matrix.glyph-collapsed .glyph-status-label { color:rgba(184,245,200,0.12); }
+  #glyphSvg {
+    width:100%; height:100%;
+    filter:drop-shadow(0 0 18px rgba(184,245,200,0.05));
+    overflow:visible;
+  }
+  .glyph-tooltip {
+    position:absolute;
+    right:calc(100% + 14px);
+    top:50%; transform:translateY(-50%);
+    background:rgba(5,5,7,0.97);
+    border:1px solid rgba(184,245,200,0.18);
+    padding:7px 14px;
+    font-family:var(--mono); font-size:10px;
+    letter-spacing:.12em; text-transform:uppercase;
+    color:var(--accent); white-space:nowrap;
+    opacity:0; pointer-events:none;
+    transition:opacity .18s, transform .18s;
+    transform:translateY(-50%) translateX(4px);
+  }
+  .glyph-tooltip.visible {
+    opacity:1; transform:translateY(-50%) translateX(0);
+  }
+  .glyph-tooltip-sub {
+    display:block; font-size:8.5px; color:var(--muted);
+    margin-top:3px; letter-spacing:.1em;
+  }
+  html.theme-light #glyphSvg { filter:drop-shadow(0 0 18px rgba(31,138,91,0.08)); }
 </style>
 <script>
 (function () {
@@ -240,6 +303,26 @@
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ══ NOTHING-INSPIRED GLYPH MATRIX ══ -->
+<div id="glyph-matrix">
+  <div class="glyph-topbar">
+    <span class="glyph-status-label" id="glyphStatusLabel">6 Workshops</span>
+    <button class="glyph-toggle-btn" id="glyphToggle" aria-label="Toggle glyph">
+      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="7" cy="7" r="6" stroke="rgba(184,245,200,0.6)" stroke-width="1"/>
+        <circle cx="7" cy="7" r="2.5" fill="rgba(184,245,200,0.6)"/>
+      </svg>
+    </button>
+  </div>
+  <div class="glyph-panel" id="glyphPanel">
+    <svg id="glyphSvg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="glyphTooltip" class="glyph-tooltip">
+      <span id="glyphTooltipTitle"></span>
+      <span class="glyph-tooltip-sub" id="glyphTooltipSub"></span>
+    </div>
+  </div>
+</div>
 
 <nav>
   <a href="#" class="nav-logo" id="navLogo">KAI<span>.</span>GENOMICS</a>
@@ -308,6 +391,12 @@
         <h3 class="card-title">Functional Metagenomics</h3>
         <p class="card-desc">Uncover what microbial communities do —<br />gene prediction, pathway reconstruction,<br />and metabolic profiling from metagenomic data.</p>
         <div class="card-tags"><span class="tag">HUMAnN3</span><span class="tag">Prokka</span><span class="tag">KEGG</span><span class="tag">Python</span></div>
+      </div>
+      <div class="workshop-card reveal reveal-delay-3" onclick="openDetail('pangenomics')">
+        <p class="card-number">06</p>
+        <h3 class="card-title">Pan-genomics and Meta-Pangenomics</h3>
+        <p class="card-desc">Compare genomes across strains and communities.<br />Core vs. accessory genome dynamics,<br />and pangenome-scale metagenomic analysis.</p>
+        <div class="card-tags"><span class="tag">Roary</span><span class="tag">PGGB</span><span class="tag">Panaroo</span><span class="tag">R</span></div>
       </div>
     </div>
   </section>
@@ -552,6 +641,20 @@ const workshops = {
     ],
     tools:["MEGAHIT","Kraken2","MetaPhlAn","HUMAnN3","Prokka","KEGG","Python","R","Linux","Bash"],
     registerDesc:"Ideal for researchers working with environmental or clinical metagenomic data who want to move from taxonomic to functional insights."
+  },
+  pangenomics: {
+    number:"06", title:"Pan-genomics &\n<em>Meta-Pangenomics</em>",
+    duration:"3 Days", level:"Intermediate–Advanced", format:"Remote / In-person",
+    overview:"Unlock the full genetic repertoire of bacterial species and microbial communities. This workshop moves beyond single-genome analysis to explore the collective gene pool of multiple strains (pangenomics) and extends these principles to metagenomic datasets (meta-pangenomics) — revealing the evolutionary flexibility, accessory functions, and ecological adaptations encoded across populations.",
+    modules:[
+      {name:"Pangenomics Fundamentals",desc:"Core, accessory, and unique genome fractions. The Heap's law model of open vs. closed pangenomes. Ecological and evolutionary implications."},
+      {name:"Pangenome Construction",desc:"Building pangenomes from multiple assembled genomes using Roary, Panaroo, and PGGB. Handling fragmented assemblies and contamination."},
+      {name:"Core & Accessory Genome Analysis",desc:"Identifying conserved housekeeping genes vs. niche-adaptive accessory genes. Functional annotation of the accessory genome with eggNOG-mapper."},
+      {name:"Phylogenomics from Pangenomes",desc:"Building phylogenetic trees from core gene alignments. ANI-based species delineation and population structure analysis with IQ-TREE and FastANI."},
+      {name:"Introduction to Meta-Pangenomics",desc:"Mapping metagenomic reads to pangenome graphs. Strain-level resolution in complex communities using PanPhlAn and MIDAS. Case study from marine microbiome data."},
+    ],
+    tools:["Roary","Panaroo","PGGB","eggNOG-mapper","IQ-TREE","FastANI","PanPhlAn","MIDAS","Python","R","Linux"],
+    registerDesc:"Builds on genome assembly and metagenomics skills. Ideal for researchers studying microbial population genomics, evolution, or complex environmental communities."
   }
 };
 
@@ -648,6 +751,228 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 initThemeToggle();
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ════ NOTHING-INSPIRED GLYPH MATRIX ════ */
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const CX = 110, CY = 110;
+  const R_ARC = 92;
+
+  const SEG_DATA = [
+    { id:'intro_bio',      num:'01', label:'Intro to Bioinformatics',    sub:'Beginner · 2 Days',   startA:-88, endA:-38 },
+    { id:'sanger',         num:'02', label:'Sanger Sequencing',           sub:'Beginner · 1 Day',    startA:-28, endA:22  },
+    { id:'bacterial_wgs',  num:'03', label:'Bacterial WGS & Mining',      sub:'LIVE · 3 Days',       startA:32,  endA:82, live:true },
+    { id:'amplicon',       num:'04', label:'Amplicon Metagenomics',        sub:'Intermediate · 3 Days', startA:92, endA:142 },
+    { id:'functional_meta',num:'05', label:'Functional Metagenomics',     sub:'Intermediate · 4 Days', startA:152, endA:202 },
+    { id:'pangenomics',    num:'06', label:'Pan-genomics',                sub:'Advanced · 3 Days',   startA:212, endA:262 },
+  ];
+
+  function polar(cx, cy, r, deg) {
+    const rad = (deg - 90) * Math.PI / 180;
+    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+  }
+
+  function arcD(cx, cy, r, a1, a2) {
+    const s = polar(cx, cy, r, a1), e = polar(cx, cy, r, a2);
+    const large = (a2 - a1) > 180 ? 1 : 0;
+    return `M${s.x.toFixed(2)} ${s.y.toFixed(2)} A${r} ${r} 0 ${large} 1 ${e.x.toFixed(2)} ${e.y.toFixed(2)}`;
+  }
+
+  function svgEl(tag, attrs) {
+    const el = document.createElementNS(NS, tag);
+    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+    return el;
+  }
+
+  const svg = document.getElementById('glyphSvg');
+
+  /* ── background disc ── */
+  svg.appendChild(svgEl('circle', { cx:CX, cy:CY, r:108, fill:'rgba(5,5,7,0.94)', stroke:'rgba(184,245,200,0.07)', 'stroke-width':'0.6' }));
+
+  /* ── outer faint guide ring ── */
+  svg.appendChild(svgEl('circle', { cx:CX, cy:CY, r:R_ARC, fill:'none', stroke:'rgba(184,245,200,0.04)', 'stroke-width':'7' }));
+
+  /* ── inner structural arcs (Nothing glyph inspired geometry) ── */
+  // Camera-module arc: large partial arc, bottom-left portion
+  const camArc = svgEl('path', { d:arcD(CX,CY,66,115,310), fill:'none', stroke:'rgba(184,245,200,0.1)', 'stroke-width':'1.4', 'stroke-linecap':'round' });
+  svg.appendChild(camArc);
+
+  // Second tighter inner arc: top-right quarter (like Essential glyph strip)
+  const innerArc2 = svgEl('path', { d:arcD(CX,CY,50,-72,-12), fill:'none', stroke:'rgba(184,245,200,0.09)', 'stroke-width':'2.5', 'stroke-linecap':'round' });
+  svg.appendChild(innerArc2);
+
+  // Vertical strip, right side (Nothing strip glyph)
+  const vStrip = svgEl('line', { x1:152, y1:48, x2:152, y2:90, stroke:'rgba(184,245,200,0.13)', 'stroke-width':'2.2', 'stroke-linecap':'round' });
+  svg.appendChild(vStrip);
+
+  // 3-bar cluster (left side, like USB indicator bars)
+  const barDefs = [{x1:24,y1:82,x2:58,y2:82},{x1:24,y1:91,x2:70,y2:91},{x1:24,y1:100,x2:46,y2:100}];
+  const bars = barDefs.map(b => {
+    const bar = svgEl('line', { ...b, stroke:'rgba(184,245,200,0.1)', 'stroke-width':'1.6', 'stroke-linecap':'round' });
+    svg.appendChild(bar); return bar;
+  });
+
+  // Diagonal accent (diagonal strip)
+  const diagStrip = svgEl('line', { x1:82,y1:58,x2:108,y2:84, stroke:'rgba(184,245,200,0.08)', 'stroke-width':'1.4', 'stroke-linecap':'round' });
+  svg.appendChild(diagStrip);
+
+  // Small horizontal strip bottom
+  const botStrip = svgEl('line', { x1:78,y1:168,x2:140,y2:168, stroke:'rgba(184,245,200,0.08)', 'stroke-width':'1.2', 'stroke-linecap':'round' });
+  svg.appendChild(botStrip);
+
+  /* ── center node ── */
+  const cRingOuter = svgEl('circle', { cx:CX, cy:CY, r:18, fill:'none', stroke:'rgba(184,245,200,0.1)', 'stroke-width':'0.7' });
+  const cRingInner = svgEl('circle', { cx:CX, cy:CY, r:10, fill:'none', stroke:'rgba(184,245,200,0.14)', 'stroke-width':'0.7' });
+  const cDot       = svgEl('circle', { cx:CX, cy:CY, r:3.5, fill:'rgba(184,245,200,0.55)' });
+  svg.appendChild(cRingOuter); svg.appendChild(cRingInner); svg.appendChild(cDot);
+
+  /* ── workshop arc segments ── */
+  const segPaths = [], numLabels = [];
+
+  SEG_DATA.forEach(seg => {
+    // Segment arc
+    const dimColor  = seg.live ? 'rgba(255,106,42,0.35)'  : 'rgba(184,245,200,0.22)';
+    const hotColor  = seg.live ? 'rgba(255,106,42,1)'     : 'rgba(184,245,200,1)';
+    const path = svgEl('path', {
+      d: arcD(CX, CY, R_ARC, seg.startA, seg.endA),
+      fill:'none', stroke:dimColor, 'stroke-width':'4.5', 'stroke-linecap':'round',
+      style:'cursor:none',
+      'data-id':seg.id, 'data-live':seg.live?'1':'0',
+      'data-dim':dimColor, 'data-hot':hotColor,
+    });
+    svg.appendChild(path);
+    segPaths.push(path);
+
+    // Number label at arc midpoint (slightly outside arc)
+    const mid = polar(CX, CY, R_ARC + 15, (seg.startA + seg.endA) / 2);
+    const txt = svgEl('text', {
+      x:mid.x.toFixed(2), y:mid.y.toFixed(2),
+      'text-anchor':'middle', 'dominant-baseline':'middle',
+      fill: seg.live ? 'rgba(255,106,42,0.45)' : 'rgba(184,245,200,0.28)',
+      'font-family':'"DM Mono",monospace', 'font-size':'7.5',
+      'letter-spacing':'0.08em', style:'cursor:none',
+      'data-id':seg.id, 'data-live':seg.live?'1':'0',
+      'data-dim': seg.live ? 'rgba(255,106,42,0.45)' : 'rgba(184,245,200,0.28)',
+      'data-hot': seg.live ? 'rgba(255,106,42,1)'    : 'rgba(184,245,200,1)',
+    });
+    txt.textContent = seg.num;
+    svg.appendChild(txt);
+    numLabels.push(txt);
+
+    // LIVE dot for segment 3
+    if (seg.live) {
+      const dotP = polar(CX, CY, R_ARC, seg.endA + 2);
+      const liveDot = svgEl('circle', { cx:dotP.x.toFixed(2), cy:dotP.y.toFixed(2), r:'3', fill:'rgba(255,106,42,0.9)', class:'live-dot' });
+      svg.appendChild(liveDot);
+    }
+  });
+
+  /* ── tooltip ── */
+  const tooltip = document.getElementById('glyphTooltip');
+  const ttTitle  = document.getElementById('glyphTooltipTitle');
+  const ttSub    = document.getElementById('glyphTooltipSub');
+
+  function segHover(path, on) {
+    const id = path.dataset.id;
+    path.setAttribute('stroke', on ? path.dataset.hot : path.dataset.dim);
+    path.setAttribute('stroke-width', on ? '6' : '4.5');
+    // matching number label
+    numLabels.forEach(n => { if(n.dataset.id===id) n.setAttribute('fill', on ? n.dataset.hot : n.dataset.dim); });
+    // inner bars pulse on hover
+    bars.forEach((b,i) => b.setAttribute('stroke', on ? `rgba(184,245,200,${0.35+i*0.08})` : 'rgba(184,245,200,0.1)'));
+    // tooltip
+    const seg = SEG_DATA.find(s=>s.id===id);
+    if (on && seg) {
+      ttTitle.textContent = seg.label;
+      ttSub.textContent   = seg.sub;
+      tooltip.classList.add('visible');
+    } else {
+      tooltip.classList.remove('visible');
+    }
+  }
+
+  segPaths.forEach(path => {
+    path.addEventListener('mouseenter', () => segHover(path, true));
+    path.addEventListener('mouseleave', () => segHover(path, false));
+    path.addEventListener('click', () => { if(typeof openDetail==='function') openDetail(path.dataset.id); });
+  });
+
+  /* ── ambient animation loop ── */
+  let gt = 0;
+  const liveDotEl = svg.querySelector('.live-dot');
+  (function glyphTick() {
+    gt += 0.014;
+
+    // Breathe each workshop segment independently
+    segPaths.forEach((p, i) => {
+      if (p.matches(':hover')) return;
+      if (p.dataset.live === '1') {
+        // LIVE segment: orange pulse
+        const lv = 0.28 + 0.22 * Math.abs(Math.sin(gt * 2.2));
+        p.setAttribute('stroke', `rgba(255,106,42,${lv})`);
+      } else {
+        // Normal: gentle staggered sine
+        const v = 0.14 + 0.1 * Math.sin(gt * 1.1 + i * 1.05);
+        p.setAttribute('stroke', `rgba(184,245,200,${v})`);
+      }
+    });
+
+    // LIVE dot blink
+    if (liveDotEl) {
+      const lv2 = 0.5 + 0.5 * Math.abs(Math.sin(gt * 2.6));
+      liveDotEl.setAttribute('fill', `rgba(255,106,42,${lv2})`);
+      liveDotEl.setAttribute('r', (2.5 + 0.8 * Math.abs(Math.sin(gt * 2.6))).toFixed(2));
+    }
+
+    // Center dot breathe
+    const cv = 0.38 + 0.28 * Math.sin(gt * 1.8);
+    cDot.setAttribute('fill', `rgba(184,245,200,${cv})`);
+    cRingOuter.setAttribute('stroke', `rgba(184,245,200,${0.07 + 0.05 * Math.sin(gt * 0.9)})`);
+    cRingInner.setAttribute('stroke', `rgba(184,245,200,${0.1 + 0.06 * Math.sin(gt * 1.4)})`);
+
+    // Inner arc slow pulse
+    camArc.setAttribute('stroke', `rgba(184,245,200,${0.07 + 0.04 * Math.sin(gt * 0.5)})`);
+    innerArc2.setAttribute('stroke', `rgba(184,245,200,${0.06 + 0.04 * Math.sin(gt * 0.7 + 1)})`);
+
+    // Vertical strip scan
+    const vv = 0.08 + 0.1 * Math.abs(Math.sin(gt * 1.3));
+    vStrip.setAttribute('stroke', `rgba(184,245,200,${vv})`);
+
+    // Diagonal strip flicker
+    const dv = 0.05 + 0.04 * Math.abs(Math.sin(gt * 2.1 + 0.5));
+    diagStrip.setAttribute('stroke', `rgba(184,245,200,${dv})`);
+
+    requestAnimationFrame(glyphTick);
+  })();
+
+  /* ── scroll section tracker ── */
+  const sections = ['#hero','#workshops','#about','#publications','#contact'];
+  const sectionEls = sections.map(s => document.querySelector(s)).filter(Boolean);
+  const statusLabel = document.getElementById('glyphStatusLabel');
+  const sectionNames = ['Home','Workshops','About','Research','Contact'];
+  const scrollSpy = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = sectionEls.indexOf(e.target);
+        if (idx > -1) {
+          statusLabel.textContent = sectionNames[idx];
+          // Light up bars corresponding to section position
+          bars.forEach((b,i) => {
+            const on = i <= (idx % 3);
+            b.setAttribute('stroke', on ? 'rgba(184,245,200,0.22)' : 'rgba(184,245,200,0.08)');
+          });
+        }
+      }
+    });
+  }, { threshold: 0.4 });
+  sectionEls.forEach(el => scrollSpy.observe(el));
+
+  /* ── toggle collapse ── */
+  document.getElementById('glyphToggle').addEventListener('click', () => {
+    document.getElementById('glyph-matrix').classList.toggle('glyph-collapsed');
+  });
+
+})();
 </script>
 </body>
 </html>
