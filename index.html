@@ -1213,35 +1213,39 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     }, { threshold: 0.4 }).observe(el);
   });
 
-  /* ── toggle collapse ── */
-  document.getElementById('glyphToggle').addEventListener('click', () => {
-    document.getElementById('glyph-matrix').classList.toggle('glyph-collapsed');
-  });
-
-  /* ── automatic scroll-based minimize/maximize ── */
-  let scrollTimeout;
-  let lastScrollTop = 0;
+  /* ── toggle collapse & auto-minimize on scroll ── */
   const glyphMatrix = document.getElementById('glyph-matrix');
-  const scrollThreshold = 100; // pixels scrolled before minimizing
+  const glyphToggleBtn = document.getElementById('glyphToggle');
+  
+  // Manual toggle button
+  if (glyphToggleBtn && glyphMatrix) {
+    glyphToggleBtn.addEventListener('click', () => {
+      glyphMatrix.classList.toggle('glyph-collapsed');
+    });
+  }
 
-  window.addEventListener('scroll', () => {
-    clearTimeout(scrollTimeout);
-    
-    scrollTimeout = setTimeout(() => {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  // Automatic scroll-based minimize/maximize
+  if (glyphMatrix) {
+    let scrollTimeout;
+    const scrollThreshold = 100; // pixels scrolled before minimizing
+
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
       
-      // If scrolled down past threshold, minimize
-      if (currentScroll > scrollThreshold) {
-        glyphMatrix.classList.add('glyph-collapsed');
-      } 
-      // If back at top, maximize
-      else {
-        glyphMatrix.classList.remove('glyph-collapsed');
-      }
-      
-      lastScrollTop = currentScroll;
-    }, 50); // Small delay to improve performance
-  }, { passive: true });
+      scrollTimeout = setTimeout(() => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // If scrolled down past threshold, minimize
+        if (currentScroll > scrollThreshold) {
+          glyphMatrix.classList.add('glyph-collapsed');
+        } 
+        // If back at top, maximize
+        else {
+          glyphMatrix.classList.remove('glyph-collapsed');
+        }
+      }, 50); // Small delay for smooth performance
+    }, { passive: true });
+  }
 
 })();
 </script>
