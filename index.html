@@ -1218,6 +1218,31 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     document.getElementById('glyph-matrix').classList.toggle('glyph-collapsed');
   });
 
+  /* ── automatic scroll-based minimize/maximize ── */
+  let scrollTimeout;
+  let lastScrollTop = 0;
+  const glyphMatrix = document.getElementById('glyph-matrix');
+  const scrollThreshold = 100; // pixels scrolled before minimizing
+
+  window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    
+    scrollTimeout = setTimeout(() => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // If scrolled down past threshold, minimize
+      if (currentScroll > scrollThreshold) {
+        glyphMatrix.classList.add('glyph-collapsed');
+      } 
+      // If back at top, maximize
+      else {
+        glyphMatrix.classList.remove('glyph-collapsed');
+      }
+      
+      lastScrollTop = currentScroll;
+    }, 50); // Small delay to improve performance
+  }, { passive: true });
+
 })();
 </script>
 </body>
