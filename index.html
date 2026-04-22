@@ -306,29 +306,29 @@
   /* ═══ NOTHING-INSPIRED GLYPH MATRIX ═══ */
   #glyph-matrix {
     position:fixed; top:86px; right:52px; z-index:150;
-    display:flex; flex-direction:column; align-items:flex-end; gap:6px;
+    display:flex; flex-direction:column; align-items:flex-end; gap:5px;
     pointer-events:none;
   }
   #glyph-matrix * { pointer-events:auto; }
   .glyph-topbar {
-    display:flex; align-items:center; gap:10px;
+    display:flex; align-items:center; gap:8px;
     justify-content:flex-end;
   }
   .glyph-status-label {
-    font-family:var(--mono); font-size:9px; letter-spacing:.22em;
+    font-family:var(--mono); font-size:8px; letter-spacing:.22em;
     text-transform:uppercase; color:rgba(184,245,200,0.28);
     transition:color .3s;
   }
   .glyph-toggle-btn {
-    width:22px; height:22px; background:none; border:none;
+    width:18px; height:18px; background:none; border:none;
     display:flex; align-items:center; justify-content:center;
     cursor:none; padding:0; transition:opacity .3s;
     opacity:0.35;
   }
   .glyph-toggle-btn:hover { opacity:1; }
-  .glyph-toggle-btn svg { width:14px; height:14px; }
+  .glyph-toggle-btn svg { width:12px; height:12px; }
   .glyph-panel {
-    position:relative; width:190px; height:190px;
+    position:relative; width:130px; height:130px;
     transition:opacity .5s cubic-bezier(.23,1,.32,1),
                transform .5s cubic-bezier(.23,1,.32,1);
     transform-origin:top right;
@@ -344,12 +344,12 @@
   }
   .glyph-tooltip {
     position:absolute;
-    right:calc(100% + 14px);
+    right:calc(100% + 12px);
     top:50%; transform:translateY(-50%);
     background:rgba(5,5,7,0.97);
     border:1px solid rgba(184,245,200,0.18);
-    padding:7px 14px;
-    font-family:var(--mono); font-size:10px;
+    padding:6px 12px;
+    font-family:var(--mono); font-size:9px;
     letter-spacing:.12em; text-transform:uppercase;
     color:var(--accent); white-space:nowrap;
     opacity:0; pointer-events:none;
@@ -360,7 +360,7 @@
     opacity:1; transform:translateY(-50%) translateX(0);
   }
   .glyph-tooltip-sub {
-    display:block; font-size:8.5px; color:var(--muted);
+    display:block; font-size:7.5px; color:var(--muted);
     margin-top:3px; letter-spacing:.1em;
   }
   html.theme-light #glyphSvg { filter:drop-shadow(0 0 18px rgba(31,138,91,0.08)); }
