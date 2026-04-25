@@ -190,8 +190,6 @@
   .form-placeholder-text strong { display:block;color:var(--accent);font-size:12.6px;letter-spacing:.1em;margin-bottom:12px; }
   .form-placeholder-text code { color:var(--accent);background:rgba(184,245,200,.08);padding:2px 6px; }
 
-  .google-form-embed { width:100%;border:none;min-height:520px;display:none; }
-
   .register-note { font-family:var(--mono);font-size:10.5px;color:var(--muted);line-height:1.8;letter-spacing:.04em; }
 
   /* ── Interest Vote Widget ── */
@@ -318,70 +316,8 @@
     .detail-content{padding:48px 28px}
     .detail-register{position:static;padding:48px 28px}
     .detail-meta{flex-wrap:wrap;gap:32px}
-    #glyph-matrix{display:none}
+    .satellite-grid{grid-template-columns:1fr;gap:24px}
   }
-
-  /* ═══ NOTHING-INSPIRED GLYPH MATRIX ═══ */
-  #glyph-matrix {
-    position:fixed; top:86px; right:52px; z-index:150;
-    display:flex; flex-direction:column; align-items:flex-end; gap:5px;
-    pointer-events:none;
-  }
-  #glyph-matrix * { pointer-events:auto; }
-  .glyph-topbar {
-    display:flex; align-items:center; gap:8px;
-    justify-content:flex-end;
-  }
-  .glyph-status-label {
-    font-family:var(--mono); font-size:8px; letter-spacing:.22em;
-    text-transform:uppercase; color:rgba(184,245,200,0.28);
-    transition:color .3s;
-  }
-  .glyph-toggle-btn {
-    width:18px; height:18px; background:none; border:none;
-    display:flex; align-items:center; justify-content:center;
-    cursor:none; padding:0; transition:opacity .3s;
-    opacity:0.35;
-  }
-  .glyph-toggle-btn:hover { opacity:1; }
-  .glyph-toggle-btn svg { width:12px; height:12px; }
-  .glyph-panel {
-    position:relative; width:130px; height:130px;
-    transition:opacity .5s cubic-bezier(.23,1,.32,1),
-               transform .5s cubic-bezier(.23,1,.32,1);
-    transform-origin:top right;
-  }
-  #glyph-matrix.glyph-collapsed .glyph-panel {
-    opacity:0; transform:scale(0.72) translateY(-8px); pointer-events:none;
-  }
-  #glyph-matrix.glyph-collapsed .glyph-status-label { color:rgba(184,245,200,0.12); }
-  #glyphSvg {
-    width:100%; height:100%;
-    filter:drop-shadow(0 0 18px rgba(184,245,200,0.05));
-    overflow:visible;
-  }
-  .glyph-tooltip {
-    position:absolute;
-    right:calc(100% + 12px);
-    top:50%; transform:translateY(-50%);
-    background:rgba(5,5,7,0.97);
-    border:1px solid rgba(184,245,200,0.18);
-    padding:6px 12px;
-    font-family:var(--mono); font-size:9px;
-    letter-spacing:.12em; text-transform:uppercase;
-    color:var(--accent); white-space:nowrap;
-    opacity:0; pointer-events:none;
-    transition:opacity .18s, transform .18s;
-    transform:translateY(-50%) translateX(4px);
-  }
-  .glyph-tooltip.visible {
-    opacity:1; transform:translateY(-50%) translateX(0);
-  }
-  .glyph-tooltip-sub {
-    display:block; font-size:7.5px; color:var(--muted);
-    margin-top:3px; letter-spacing:.1em;
-  }
-  html.theme-light #glyphSvg { filter:drop-shadow(0 0 18px rgba(31,138,91,0.08)); }
 </style>
 <script>
 (function () {
@@ -401,25 +337,7 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- ══ NOTHING-INSPIRED GLYPH MATRIX ══ -->
-<div id="glyph-matrix">
-  <div class="glyph-topbar">
-    <span class="glyph-status-label" id="glyphStatusLabel">6 Workshops</span>
-    <button class="glyph-toggle-btn" id="glyphToggle" aria-label="Toggle glyph">
-      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="7" cy="7" r="6" stroke="rgba(184,245,200,0.6)" stroke-width="1"/>
-        <circle cx="7" cy="7" r="2.5" fill="rgba(184,245,200,0.6)"/>
-      </svg>
-    </button>
-  </div>
-  <div class="glyph-panel" id="glyphPanel">
-    <svg id="glyphSvg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg"></svg>
-    <div id="glyphTooltip" class="glyph-tooltip">
-      <span id="glyphTooltipTitle"></span>
-      <span class="glyph-tooltip-sub" id="glyphTooltipSub"></span>
-    </div>
-  </div>
-</div>
+
 
 <nav>
   <a href="#" class="nav-logo" id="navLogo">KAI<span>.</span>GENOMICS</a>
@@ -546,16 +464,10 @@
       <!-- Instructor 1: Shlok Chitre -->
       <div class="satellite-card reveal reveal-delay-1">
         <div class="satellite-photo-wrap">
-          <div class="satellite-photo-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-              <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
-            <span>Photo</span>
-          </div>
+          <img src="shlok.png" alt="Shlok Chitre" class="satellite-photo" />
         </div>
         <p class="satellite-name">Shlok Chitre</p>
-        <p class="satellite-expertise">Experienced in invertebrate transcriptomics, eukaryotic metabarcoding & biostatistics </p>
+        <p class="satellite-expertise">Expertise in invertebrate transcriptomics and eukaryotic metagenomics</p>
       </div>
 
       <!-- Instructor 2: TBD -->
@@ -645,21 +557,7 @@
       <h2 class="register-title">Join this<br />Workshop</h2>
       <p class="register-desc" id="d-register-desc"></p>
 
-      <!-- ══ PANEL A: Google Form (Workshop 03 only) ══ -->
-      <div id="panel-google-form" style="display:none">
-        <iframe
-          id="googleFormEmbed"
-          class="google-form-embed"
-          src=""
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0">Loading…</iframe>
-        <p class="register-note" style="margin-top:16px">
-          Seats are limited per cohort. You will receive a confirmation email within 48 hours of submitting your registration.
-        </p>
-      </div>
-
-      <!-- ══ PANEL B: Interest vote (all other workshops) ══ -->
+      <!-- ══ Interest vote (all workshops) ══ -->
       <div id="panel-interest" class="interest-panel" style="display:none">
 
         <!-- Question state (before vote) -->
@@ -702,7 +600,7 @@
    e.g. "https://docs.google.com/forms/d/e/XXXXX/viewform?embedded=true"
    Leave as "" to keep the placeholder visible.
 ════════════════════════════════════════════════════ */
-const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScJbt1O9hQzKwYAUIhMcWYZK0bhxsNG4w20OggnDPdTQWisgg/viewform?embedded=true";const THEME_KEY = 'kai-theme';
+const THEME_KEY = 'kai-theme';
 
 function applyTheme(theme) {
   const isLight = theme === 'light';
@@ -835,25 +733,10 @@ function openDetail(id) {
   document.getElementById('d-tools').innerHTML = w.tools.map(t => `<span class="tool-chip">${t}</span>`).join('');
   document.getElementById('d-register-desc').textContent = w.registerDesc;
 
-  // ── Show the right sidebar panel ──
-  const panelForm     = document.getElementById('panel-google-form');
+  // All workshops use the interest vote widget
   const panelInterest = document.getElementById('panel-interest');
-  const iframe        = document.getElementById('googleFormEmbed');
-
-  if (id === 'bacterial_wgs') {
-    // Workshop 03 only: Google Form
-    panelForm.style.display     = 'block';
-    panelInterest.style.display = 'none';
-    iframe.style.display = 'block';
-    iframe.src = GOOGLE_FORM_URL;
-  } else {
-    // All other workshops: interest vote widget
-    panelForm.style.display     = 'none';
-    panelInterest.style.display = 'block';
-    iframe.style.display = 'none';
-    iframe.src = '';
-    renderInterestPanel(id);
-  }
+  panelInterest.style.display = 'block';
+  renderInterestPanel(id);
 
   // Transition
   document.body.classList.add('detail-open');
@@ -1018,307 +901,7 @@ const obs=new IntersectionObserver(entries=>{
 initThemeToggle();
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-/* ════ NOTHING-INSPIRED GLYPH MATRIX ════ */
-(function () {
-  const NS = 'http://www.w3.org/2000/svg';
-  const CX = 110, CY = 110;
-  const R_ARC = 92;
 
-  /* ── theme-aware colour helpers ── */
-  // Returns the accent rgba string for the current theme
-  function ac(alpha) {
-    return document.documentElement.classList.contains('theme-light')
-      ? `rgba(31,138,91,${alpha})`
-      : `rgba(184,245,200,${alpha})`;
-  }
-  // Disc background fill
-  function discBg() {
-    return document.documentElement.classList.contains('theme-light')
-      ? 'rgba(245,242,235,0.97)'
-      : 'rgba(5,5,7,0.94)';
-  }
-  // Disc border stroke
-  function discBorder() {
-    return document.documentElement.classList.contains('theme-light')
-      ? 'rgba(15,23,42,0.10)'
-      : 'rgba(184,245,200,0.07)';
-  }
-  // Dim color for normal segments
-  function segDim() { return ac(0.22); }
-  // Hot color for normal segments
-  function segHot() { return ac(1); }
-  // Number label dim
-  function numDim() { return ac(0.28); }
-  // Number label hot
-  function numHot() { return ac(1); }
-
-  const SEG_DATA = [
-    { id:'intro_bio',      num:'01', label:'Intro to Bioinformatics',      sub:'Beginner · 2 Days',     startA:-88, endA:-38 },
-    { id:'sanger',         num:'02', label:'Sanger Sequencing',             sub:'Beginner · 1 Day',      startA:-28, endA:22  },
-    { id:'bacterial_wgs',  num:'03', label:'Bacterial WGS & Mining',        sub:'LIVE · 3 Days',         startA:32,  endA:82, live:true },
-    { id:'amplicon',       num:'04', label:'Amplicon Metagenomics',          sub:'Intermediate · 3 Days', startA:92,  endA:142 },
-    { id:'functional_meta',num:'05', label:'Functional Metagenomics',       sub:'Intermediate · 4 Days', startA:152, endA:202 },
-    { id:'pangenomics',    num:'06', label:'Pan-genomics',                  sub:'Advanced · 3 Days',     startA:212, endA:262 },
-  ];
-
-  function polar(cx, cy, r, deg) {
-    const rad = (deg - 90) * Math.PI / 180;
-    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-  }
-  function arcD(cx, cy, r, a1, a2) {
-    const s = polar(cx, cy, r, a1), e = polar(cx, cy, r, a2);
-    const large = (a2 - a1) > 180 ? 1 : 0;
-    return `M${s.x.toFixed(2)} ${s.y.toFixed(2)} A${r} ${r} 0 ${large} 1 ${e.x.toFixed(2)} ${e.y.toFixed(2)}`;
-  }
-  function svgEl(tag, attrs) {
-    const el = document.createElementNS(NS, tag);
-    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
-    return el;
-  }
-
-  const svg = document.getElementById('glyphSvg');
-
-  /* ── background disc ── */
-  const bgDisc = svgEl('circle', { cx:CX, cy:CY, r:108, fill:discBg(), stroke:discBorder(), 'stroke-width':'0.6' });
-  svg.appendChild(bgDisc);
-
-  /* ── outer faint guide ring ── */
-  const guideRing = svgEl('circle', { cx:CX, cy:CY, r:R_ARC, fill:'none', stroke:ac(0.04), 'stroke-width':'7' });
-  svg.appendChild(guideRing);
-
-  /* ── inner structural geometry ── */
-  const camArc   = svgEl('path', { d:arcD(CX,CY,66,115,310), fill:'none', stroke:ac(0.10), 'stroke-width':'1.4', 'stroke-linecap':'round' });
-  svg.appendChild(camArc);
-
-  const innerArc2 = svgEl('path', { d:arcD(CX,CY,50,-72,-12), fill:'none', stroke:ac(0.09), 'stroke-width':'2.5', 'stroke-linecap':'round' });
-  svg.appendChild(innerArc2);
-
-  const vStrip   = svgEl('line', { x1:152, y1:48, x2:152, y2:90, stroke:ac(0.13), 'stroke-width':'2.2', 'stroke-linecap':'round' });
-  svg.appendChild(vStrip);
-
-  const barDefs  = [{x1:24,y1:82,x2:58,y2:82},{x1:24,y1:91,x2:70,y2:91},{x1:24,y1:100,x2:46,y2:100}];
-  const bars     = barDefs.map(b => {
-    const bar = svgEl('line', { ...b, stroke:ac(0.10), 'stroke-width':'1.6', 'stroke-linecap':'round' });
-    svg.appendChild(bar); return bar;
-  });
-
-  const diagStrip = svgEl('line', { x1:82, y1:58, x2:108, y2:84, stroke:ac(0.08), 'stroke-width':'1.4', 'stroke-linecap':'round' });
-  svg.appendChild(diagStrip);
-
-  const botStrip  = svgEl('line', { x1:78, y1:168, x2:140, y2:168, stroke:ac(0.08), 'stroke-width':'1.2', 'stroke-linecap':'round' });
-  svg.appendChild(botStrip);
-
-  /* ── center node ── */
-  const cRingOuter = svgEl('circle', { cx:CX, cy:CY, r:18, fill:'none', stroke:ac(0.10), 'stroke-width':'0.7' });
-  const cRingInner = svgEl('circle', { cx:CX, cy:CY, r:10, fill:'none', stroke:ac(0.14), 'stroke-width':'0.7' });
-  const cDot       = svgEl('circle', { cx:CX, cy:CY, r:3.5, fill:ac(0.55) });
-  svg.appendChild(cRingOuter); svg.appendChild(cRingInner); svg.appendChild(cDot);
-
-  /* ── workshop arc segments ── */
-  const segPaths = [], numLabels = [];
-
-  SEG_DATA.forEach(seg => {
-    const dim = seg.live ? 'rgba(255,106,42,0.35)' : segDim();
-    const hot = seg.live ? 'rgba(255,106,42,1)'    : segHot();
-    const path = svgEl('path', {
-      d: arcD(CX, CY, R_ARC, seg.startA, seg.endA),
-      fill:'none', stroke:dim, 'stroke-width':'4.5', 'stroke-linecap':'round',
-      style:'cursor:none',
-      'data-id':seg.id, 'data-live':seg.live?'1':'0',
-      'data-dim':dim, 'data-hot':hot,
-    });
-    svg.appendChild(path);
-    segPaths.push(path);
-
-    const mid = polar(CX, CY, R_ARC + 15, (seg.startA + seg.endA) / 2);
-    const txt = svgEl('text', {
-      x:mid.x.toFixed(2), y:mid.y.toFixed(2),
-      'text-anchor':'middle', 'dominant-baseline':'middle',
-      fill: seg.live ? 'rgba(255,106,42,0.45)' : numDim(),
-      'font-family':'"DM Mono",monospace', 'font-size':'7.5',
-      'letter-spacing':'0.08em', style:'cursor:none',
-      'data-id':seg.id, 'data-live':seg.live?'1':'0',
-      'data-dim': seg.live ? 'rgba(255,106,42,0.45)' : numDim(),
-      'data-hot': seg.live ? 'rgba(255,106,42,1)'    : numHot(),
-    });
-    txt.textContent = seg.num;
-    svg.appendChild(txt);
-    numLabels.push(txt);
-
-    if (seg.live) {
-      const dotP = polar(CX, CY, R_ARC, seg.endA + 2);
-      svg.appendChild(svgEl('circle', { cx:dotP.x.toFixed(2), cy:dotP.y.toFixed(2), r:'3', fill:'rgba(255,106,42,0.9)', class:'live-dot' }));
-    }
-  });
-
-  /* ── tooltip ── */
-  const tooltip = document.getElementById('glyphTooltip');
-  const ttTitle  = document.getElementById('glyphTooltipTitle');
-  const ttSub    = document.getElementById('glyphTooltipSub');
-
-  function segHover(path, on) {
-    const id = path.dataset.id;
-    path.setAttribute('stroke', on ? path.dataset.hot : path.dataset.dim);
-    path.setAttribute('stroke-width', on ? '6' : '4.5');
-    numLabels.forEach(n => { if(n.dataset.id===id) n.setAttribute('fill', on ? n.dataset.hot : n.dataset.dim); });
-    bars.forEach((b,i) => b.setAttribute('stroke', on ? ac(0.35 + i * 0.08) : ac(0.10)));
-    const seg = SEG_DATA.find(s => s.id === id);
-    if (on && seg) { ttTitle.textContent = seg.label; ttSub.textContent = seg.sub; tooltip.classList.add('visible'); }
-    else { tooltip.classList.remove('visible'); }
-  }
-
-  segPaths.forEach(path => {
-    path.addEventListener('mouseenter', () => segHover(path, true));
-    path.addEventListener('mouseleave', () => segHover(path, false));
-    path.addEventListener('click', () => { if(typeof openDetail==='function') openDetail(path.dataset.id); });
-  });
-
-  /* ── glyphApplyTheme — recolours every element on theme switch ── */
-  function glyphApplyTheme() {
-    // Background disc & border
-    bgDisc.setAttribute('fill', discBg());
-    bgDisc.setAttribute('stroke', discBorder());
-
-    // Guide ring
-    guideRing.setAttribute('stroke', ac(0.04));
-
-    // Structural geometry (base/idle values; animation loop overrides each frame)
-    camArc.setAttribute('stroke',    ac(0.10));
-    innerArc2.setAttribute('stroke', ac(0.09));
-    vStrip.setAttribute('stroke',    ac(0.13));
-    diagStrip.setAttribute('stroke', ac(0.08));
-    botStrip.setAttribute('stroke',  ac(0.08));
-    bars.forEach(b => b.setAttribute('stroke', ac(0.10)));
-
-    // Center node
-    cRingOuter.setAttribute('stroke', ac(0.10));
-    cRingInner.setAttribute('stroke', ac(0.14));
-    cDot.setAttribute('fill', ac(0.55));
-
-    // Workshop segments — update dim/hot data attributes and current stroke
-    segPaths.forEach(p => {
-      if (p.dataset.live === '1') return; // keep orange live segment unchanged
-      const newDim = segDim(), newHot = segHot();
-      p.dataset.dim = newDim;
-      p.dataset.hot = newHot;
-      if (!p.matches(':hover')) p.setAttribute('stroke', newDim);
-    });
-
-    // Number labels
-    numLabels.forEach(n => {
-      if (n.dataset.live === '1') return;
-      const newDim = numDim(), newHot = numHot();
-      n.dataset.dim = newDim;
-      n.dataset.hot = newHot;
-      if (!n.matches(':hover')) n.setAttribute('fill', newDim);
-    });
-  }
-
-  /* ── Watch <html> class changes and sync glyph colours automatically ── */
-  new MutationObserver(() => glyphApplyTheme())
-    .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-  // Also apply on first load in case page opens in light mode
-  glyphApplyTheme();
-
-  /* ── ambient animation loop ── */
-  let gt = 0;
-  const liveDotEl = svg.querySelector('.live-dot');
-  (function glyphTick() {
-    gt += 0.014;
-
-    segPaths.forEach((p, i) => {
-      if (p.matches(':hover')) return;
-      if (p.dataset.live === '1') {
-        p.setAttribute('stroke', `rgba(255,106,42,${0.28 + 0.22 * Math.abs(Math.sin(gt * 2.2))})`);
-      } else {
-        const v = 0.14 + 0.1 * Math.sin(gt * 1.1 + i * 1.05);
-        p.setAttribute('stroke', ac(v));
-      }
-    });
-
-    if (liveDotEl) {
-      const lv2 = 0.5 + 0.5 * Math.abs(Math.sin(gt * 2.6));
-      liveDotEl.setAttribute('fill', `rgba(255,106,42,${lv2})`);
-      liveDotEl.setAttribute('r', (2.5 + 0.8 * Math.abs(Math.sin(gt * 2.6))).toFixed(2));
-    }
-
-    cDot.setAttribute('fill',         ac(0.38 + 0.28 * Math.sin(gt * 1.8)));
-    cRingOuter.setAttribute('stroke', ac(0.07 + 0.05 * Math.sin(gt * 0.9)));
-    cRingInner.setAttribute('stroke', ac(0.10 + 0.06 * Math.sin(gt * 1.4)));
-    camArc.setAttribute('stroke',     ac(0.07 + 0.04 * Math.sin(gt * 0.5)));
-    innerArc2.setAttribute('stroke',  ac(0.06 + 0.04 * Math.sin(gt * 0.7 + 1)));
-    vStrip.setAttribute('stroke',     ac(0.08 + 0.10 * Math.abs(Math.sin(gt * 1.3))));
-    diagStrip.setAttribute('stroke',  ac(0.05 + 0.04 * Math.abs(Math.sin(gt * 2.1 + 0.5))));
-
-    requestAnimationFrame(glyphTick);
-  })();
-
-  /* ── scroll section tracker ── */
-  const sections    = ['#hero','#workshops','#about','#publications','#contact'];
-  const sectionEls  = sections.map(s => document.querySelector(s)).filter(Boolean);
-  const statusLabel = document.getElementById('glyphStatusLabel');
-  const sectionNames = ['Home','Workshops','About','Research','Contact'];
-  new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const idx = sectionEls.indexOf(e.target);
-        if (idx > -1) {
-          statusLabel.textContent = sectionNames[idx];
-          bars.forEach((b, i) => b.setAttribute('stroke', i <= (idx % 3) ? ac(0.22) : ac(0.08)));
-        }
-      }
-    });
-  }, { threshold: 0.4 }).observe.apply(null, sectionEls.map ? [sectionEls] : []);
-  sectionEls.forEach(el => {
-    new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const idx = sectionEls.indexOf(e.target);
-          if (idx > -1) {
-            statusLabel.textContent = sectionNames[idx];
-            bars.forEach((b, i) => b.setAttribute('stroke', i <= (idx % 3) ? ac(0.22) : ac(0.08)));
-          }
-        }
-      });
-    }, { threshold: 0.4 }).observe(el);
-  });
-
-  /* ── toggle collapse & auto-minimize on scroll ── */
-  const glyphMatrix = document.getElementById('glyph-matrix');
-  const glyphToggleBtn = document.getElementById('glyphToggle');
-  
-  // Manual toggle button
-  if (glyphToggleBtn && glyphMatrix) {
-    glyphToggleBtn.addEventListener('click', () => {
-      glyphMatrix.classList.toggle('glyph-collapsed');
-    });
-  }
-
-  // Automatic scroll-based minimize/maximize
-  if (glyphMatrix) {
-    let scrollTimeout;
-    const scrollThreshold = 100; // pixels scrolled before minimizing
-
-    window.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      
-      scrollTimeout = setTimeout(() => {
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // If scrolled down past threshold, minimize
-        if (currentScroll > scrollThreshold) {
-          glyphMatrix.classList.add('glyph-collapsed');
-        } 
-        // If back at top, maximize
-        else {
-          glyphMatrix.classList.remove('glyph-collapsed');
-        }
-      }, 50); // Small delay for smooth performance
-    }, { passive: true });
-  }
-
-})();
 </script>
 </body>
 </html>
