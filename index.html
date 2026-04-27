@@ -7,24 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
-
-<!-- Google Analytics 4 - Replace GA_MEASUREMENT_ID with your actual ID -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'GA_MEASUREMENT_ID');
-  
-  // Custom event tracking function
-  function trackEvent(category, action, label) {
-    gtag('event', action, {
-      'event_category': category,
-      'event_label': label
-    });
-  }
-</script>
-
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -98,35 +80,11 @@
   .btn-primary:hover { background:var(--accent2);transform:translateY(-2px); }
   .btn-ghost { font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);transition:color .3s,border-color .3s;display:inline-block;cursor:pointer; }
   .btn-ghost:hover { color:var(--text);border-color:rgba(255,255,255,.3); }
-  .btn-secondary { background:transparent;color:var(--accent);font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:10px 20px;border:1px solid var(--accent);cursor:pointer;text-decoration:none;transition:all .3s;display:inline-block; }
-  .btn-secondary:hover { background:var(--accent);color:#050507; }
-  .btn-small { font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .3s; }
-  .btn-small:hover { border-color:var(--accent);color:var(--accent); }
 
   /* Sections */
   section { padding:100px 40px;position:relative; }
   .section-label { font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:48px;display:flex;align-items:center;gap:14px; }
   .section-label::before { content:'';width:20px;height:1px;background:var(--accent); }
-
-  /* LEAD MAGNET SECTION */
-  #lead-magnet { background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
-  .lead-magnet-content { max-width:800px;margin:0 auto;text-align:center; }
-  .lead-magnet-headline { font-family:var(--display);font-size:clamp(32px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.02em;margin-bottom:24px; }
-  .lead-magnet-headline em { font-style:italic;color:var(--accent); }
-  .lead-magnet-desc { font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto; }
-  .lead-magnet-form { max-width:500px;margin:0 auto;padding:32px;border:1px solid var(--border);background:rgba(255,255,255,.01); }
-  .form-group { margin-bottom:20px;text-align:left; }
-  .form-label { font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px; }
-  .form-input { width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:12px;padding:12px 16px;transition:border-color .3s; }
-  .form-input:focus { outline:none;border-color:var(--accent); }
-  .form-select { width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:12px;padding:12px 16px;cursor:pointer;transition:border-color .3s; }
-  .form-select:focus { outline:none;border-color:var(--accent); }
-  .checkbox-group { display:flex;flex-direction:column;gap:12px;margin-top:12px; }
-  .checkbox-item { display:flex;align-items:center;gap:10px; }
-  .checkbox-item input[type="checkbox"] { width:16px;height:16px;cursor:pointer; }
-  .checkbox-item label { font-family:var(--mono);font-size:11px;color:var(--muted);cursor:pointer; }
-  .form-success { display:none;background:rgba(184,245,200,.1);border:1px solid var(--accent);padding:20px;margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--accent);text-align:center; }
-  .form-success.visible { display:block; }
 
   /* WORKSHOPS */
   #workshops { background:var(--surface); }
@@ -142,59 +100,10 @@
   .workshop-card:hover::after { opacity:1; }
   .card-number { font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--muted);margin-bottom:32px; }
   .card-title { font-family:var(--display);font-size:24px;font-weight:400;line-height:1.2;letter-spacing:-.01em;margin-bottom:16px; }
-  .card-desc { font-family:var(--mono);font-size:12px;line-height:1.9;color:var(--muted);margin-bottom:24px; }
-  .card-tags { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px; }
+  .card-desc { font-family:var(--mono);font-size:12px;line-height:1.9;color:var(--muted);margin-bottom:48px; }
+  .card-tags { display:flex;flex-wrap:wrap;gap:8px; }
   .tag { font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);padding:4px 10px;color:var(--muted);transition:border-color .3s,color .3s; }
   .workshop-card:hover .tag { border-color:rgba(184,245,200,.25);color:var(--accent); }
-  .notify-btn { font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .3s;margin-top:10px;width:100%;position:relative;z-index:10; }
-  .notify-btn:hover { border-color:var(--accent);color:var(--accent);background:rgba(184,245,200,.05); }
-  .notify-btn.notified { border-color:var(--accent);color:var(--accent);background:rgba(184,245,200,.1); }
-  .interest-count { font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:8px;text-align:center; }
-
-  /* QUIZ SECTION */
-  #quiz { background:var(--bg); }
-  .quiz-container { max-width:700px;margin:0 auto; }
-  .quiz-headline { font-family:var(--display);font-size:clamp(32px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.02em;margin-bottom:24px;text-align:center; }
-  .quiz-headline em { font-style:italic;color:var(--accent); }
-  .quiz-intro { font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:40px;text-align:center; }
-  .quiz-question { display:none;margin-bottom:40px;padding:32px;border:1px solid var(--border);background:var(--surface); }
-  .quiz-question.active { display:block; }
-  .question-text { font-family:var(--sans);font-size:18px;margin-bottom:24px;color:var(--text); }
-  .quiz-options { display:flex;flex-direction:column;gap:12px; }
-  .quiz-option { font-family:var(--mono);font-size:12px;padding:16px 20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .3s;text-align:left; }
-  .quiz-option:hover { border-color:var(--accent);color:var(--text);background:rgba(184,245,200,.05); }
-  .quiz-result { display:none;text-align:center;padding:40px;border:1px solid var(--accent);background:rgba(184,245,200,.05); }
-  .quiz-result.visible { display:block; }
-  .result-title { font-family:var(--display);font-size:32px;color:var(--accent);margin-bottom:16px; }
-  .result-desc { font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:24px; }
-  .result-recommendation { font-family:var(--sans);font-size:14px;color:var(--text);margin-bottom:20px; }
-
-  /* FUTURE TOPICS POLL */
-  #future-topics { background:var(--surface);border-top:1px solid var(--border); }
-  .poll-container { max-width:700px;margin:0 auto; }
-  .poll-headline { font-family:var(--display);font-size:clamp(32px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.02em;margin-bottom:24px;text-align:center; }
-  .poll-headline em { font-style:italic;color:var(--accent); }
-  .poll-intro { font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:40px;text-align:center; }
-  .poll-options { display:grid;gap:16px; }
-  .poll-option { padding:20px 24px;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:all .3s;position:relative; }
-  .poll-option:hover { border-color:var(--accent);background:rgba(184,245,200,.03); }
-  .poll-option.selected { border-color:var(--accent);background:rgba(184,245,200,.08); }
-  .poll-option-title { font-family:var(--sans);font-size:16px;margin-bottom:8px;color:var(--text); }
-  .poll-option-desc { font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.6; }
-  .poll-results { margin-top:40px;display:none; }
-  .poll-results.visible { display:block; }
-  .poll-bar-container { margin-bottom:20px; }
-  .poll-bar-label { font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between; }
-  .poll-bar-bg { height:8px;background:var(--border);border-radius:4px;overflow:hidden; }
-  .poll-bar-fill { height:100%;background:var(--accent);transition:width .5s ease; }
-
-  /* NEWSLETTER */
-  #newsletter { background:var(--bg);border-top:1px solid var(--border); }
-  .newsletter-content { max-width:600px;margin:0 auto;text-align:center; }
-  .newsletter-headline { font-family:var(--display);font-size:clamp(32px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-.02em;margin-bottom:24px; }
-  .newsletter-headline em { font-style:italic;color:var(--accent); }
-  .newsletter-desc { font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:40px; }
-  .newsletter-form { max-width:500px;margin:0 auto; }
 
   /* ABOUT */
   #about { display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start; }
@@ -209,1139 +118,857 @@
   .stat-row { border-top:1px solid var(--border);padding:24px 0;display:flex;justify-content:space-between;align-items:baseline; }
   .stat-row:last-child { border-bottom:1px solid var(--border); }
   .stat-label { font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted); }
-  .stat-value { font-family:var(--display);font-size:32px;color:var(--text);font-weight:300; }
+  .stat-value { font-family:var(--display);font-size:32px;font-weight:300;letter-spacing:-.02em;color:var(--accent); }
+  .stat-unit { font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:8px; }
 
-  /* RESEARCH */
-  .research-grid { display:grid;gap:1px;background:var(--border);border:1px solid var(--border); }
-  .pub-item { background:var(--bg);padding:32px;display:flex;gap:24px;transition:background .4s,color .35s ease,border-color .35s ease;cursor:pointer; }
+  /* PUBLICATIONS */
+  #publications { background:var(--surface); }
+  .pub-headline { font-family:var(--display);font-size:clamp(32px,5vw,64px);font-weight:300;letter-spacing:-.02em;line-height:1.05;margin-bottom:56px;max-width:600px; }
+  .pub-headline em { font-style:italic;color:var(--accent); }
+  .pub-list { display:flex;flex-direction:column;gap:1px;background:var(--border); }
+  .pub-item { background:var(--surface);padding:28px 32px;display:grid;grid-template-columns:70px 1fr auto;gap:32px;align-items:center;transition:background .3s,color .35s ease,border-color .35s ease; text-decoration:none;color:inherit;cursor:pointer; }
   .pub-item:hover { background:var(--hover); }
-  .pub-year { font-family:var(--display);font-size:42px;color:var(--accent);font-weight:300;min-width:90px;line-height:1; }
-  .pub-content { flex:1; }
-  .pub-title { font-family:var(--sans);font-size:16px;margin-bottom:12px;line-height:1.4; }
-  .pub-authors { font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:8px; }
-  .pub-journal { font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.08em; }
+  .pub-year { font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em; }
+  .pub-title { font-family:var(--display);font-size:19px;font-weight:400;line-height:1.3;letter-spacing:-.01em; }
+  .pub-arrow { font-family:var(--mono);font-size:16px;color:var(--muted);transition:color .3s,transform .3s;display:inline-block; }
+  .pub-item:hover .pub-arrow { color:var(--accent);transform:translate(4px,-4px); }
 
-  /* SATELLITES */
-  .satellites-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px; }
-  .satellite-card { border:1px solid var(--border);padding:32px 24px;background:var(--surface);transition:border-color .4s,background .4s,color .35s ease;cursor:pointer;position:relative; }
-  .satellite-card:hover { border-color:rgba(184,245,200,.3);background:var(--hover); }
-  .satellite-card.satellite-tbd { opacity:.5;cursor:default; }
-  .satellite-card.satellite-tbd:hover { border-color:var(--border);background:var(--surface); }
-  .satellite-icon { width:40px;height:40px;border-radius:8px;background:rgba(184,245,200,.1);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px; }
-  .satellite-name { font-family:var(--sans);font-size:16px;margin-bottom:8px; }
-  .satellite-desc { font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:16px; }
-  .tool-chips { display:flex;flex-wrap:wrap;gap:6px; }
-  .tool-chip { font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:border-color .3s,color .3s; }
-  .satellite-card:hover .tool-chip { border-color:rgba(184,245,200,.2);color:var(--accent); }
+  /* SATELLITE INSTRUCTORS */
+  .satellite-label { font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin:80px 0 40px;display:flex;align-items:center;gap:14px; }
+  .satellite-label::before { content:'';width:20px;height:1px;background:var(--accent); }
+  .satellite-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px; }
+  .satellite-card { background:var(--bg);padding:32px 28px;border:1px solid var(--border);position:relative;transition:background .3s,border-color .3s,box-shadow .3s;cursor:pointer; }
+  .satellite-card:hover { background:var(--hover);border-color:rgba(184,245,200,.2);box-shadow:0 8px 24px rgba(0,0,0,.12); }
+  .satellite-photo-wrap { width:90px;height:90px;margin-bottom:24px;border-radius:50%;overflow:hidden;position:relative;border:1px solid var(--border); }
+  .satellite-photo-placeholder { width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(184,245,200,.03);gap:8px;color:var(--muted); }
+  .satellite-photo-placeholder svg { opacity:.35; }
+  .satellite-photo-placeholder span { font-family:var(--mono);font-size:8px;letter-spacing:.15em;text-transform:uppercase;opacity:.4; }
+  .satellite-photo { width:100%;height:100%;object-fit:cover;display:block; }
+  .satellite-name { font-family:var(--display);font-size:20px;font-weight:400;letter-spacing:-.01em;margin-bottom:10px; }
+  .satellite-expertise { font-family:var(--mono);font-size:11px;line-height:1.8;color:var(--muted);letter-spacing:.04em; }
+  .satellite-badge { position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(184,245,200,.2);padding:4px 8px; }
+  .satellite-tbd { opacity:.45;cursor:default; }
+  .satellite-tbd:hover { background:var(--bg);border-color:var(--border);box-shadow:none; }
+
+  /* Satellite Instructor Dropdown */
+  .satellite-dropdown { max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.23,1,.32,1),opacity .3s,margin-top .4s;opacity:0;margin-top:0; }
+  .satellite-card.open .satellite-dropdown { max-height:600px;opacity:1;margin-top:24px; }
+  .satellite-intro { font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--muted);margin-bottom:20px;padding-top:16px;border-top:1px solid var(--border); }
+  .satellite-skills { display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px; }
+  .satellite-skill { font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);padding:4px 8px;color:var(--accent);background:rgba(184,245,200,.03); }
+  .satellite-links { display:flex;flex-direction:column;gap:10px; }
+  .satellite-link { display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);text-decoration:none;transition:color .3s; }
+  .satellite-link:hover { color:var(--accent); }
+  .satellite-link svg { width:14px;height:14px;flex:none; }
 
   /* CONTACT */
-  #contact { background:var(--surface);border-top:1px solid var(--border); }
-  .contact-grid { display:grid;grid-template-columns:1fr 1fr;gap:80px; }
-  .contact-info p { font-family:var(--mono);font-size:13px;color:var(--muted);line-height:2;margin-bottom:12px; }
-  .contact-info a { color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s; }
-  .contact-info a:hover { border-color:var(--accent); }
-  .visitor-badge { display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);padding:8px 16px;margin-top:32px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted); }
-  .visitor-num { color:var(--accent);font-weight:500; }
+  #contact { text-align:center;padding:120px 40px;position:relative;overflow:hidden; }
+  .contact-links { margin-top:36px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;position:relative;z-index:1; }
+  .contact-link { display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--text);font-family:var(--mono);font-size:11px;letter-spacing:.08em;transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .2s ease;cursor:pointer; }
+  .contact-link:hover { transform:translateY(-1px);border-color:rgba(184,245,200,.25);background:var(--hover); }
+  .contact-link svg { width:14px;height:14px;flex:none; }
+  #contact::before { content:'KAI';position:absolute;font-family:var(--display);font-size:28vw;font-weight:300;color:rgba(255,255,255,.018);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;letter-spacing:-.05em;white-space:nowrap; }
+  .contact-headline { font-family:var(--display);font-size:clamp(42px,8vw,96px);font-weight:300;letter-spacing:-.03em;line-height:.95;margin-bottom:40px;position:relative;z-index:1; }
+  .contact-headline em { font-style:italic;color:var(--accent); }
+  .contact-sub { font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.05em;line-height:1.8;margin-bottom:48px;position:relative;z-index:1; }
+  .contact-cta { display:inline-flex;flex-wrap:wrap;gap:16px;position:relative;z-index:1; }
 
-  /* INTEREST WIDGET */
-  #interest-widget { padding:32px;border:1px solid var(--border);background:var(--bg); }
-  .interest-question { margin-bottom:24px; }
-  .interest-q-text { font-family:var(--sans);font-size:16px;margin-bottom:20px;color:var(--text); }
-  .interest-actions { display:flex;gap:12px; }
-  .interest-result { display:none;margin-top:20px; }
+  /* FOOTER */
+  footer { border-top:1px solid var(--border);padding:32px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px; }
+  .footer-logo { font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.15em;text-transform:uppercase; }
+  .footer-logo span { color:var(--accent); }
+  .footer-copy,.footer-location { font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em; }
+
+  /* Visitor Counter */
+  .visitor-counter { display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted); }
+  .visitor-count { color:var(--accent);font-weight:500; }
+  .counter-icon { width:16px;height:16px;color:var(--accent);opacity:.6; }
+
+  /* ═══ DETAIL PAGE ═══ */
+  #detail-page { background:var(--bg); }
+
+  .detail-hero { min-height:50vh;display:flex;flex-direction:column;justify-content:flex-end;padding:140px 40px 64px;position:relative;overflow:hidden;border-bottom:1px solid var(--border); }
+  .detail-hero-bg { position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 70% 40%,rgba(184,245,200,.04) 0%,transparent 60%); }
+  .detail-eyebrow { font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;position:relative;z-index:1; }
+  .detail-title { font-family:var(--display);font-size:clamp(40px,7vw,88px);font-weight:300;line-height:.95;letter-spacing:-.02em;max-width:800px;position:relative;z-index:1; }
+  .detail-title em { font-style:italic;color:var(--accent); }
+  .detail-meta { display:flex;flex-wrap:wrap;gap:48px;margin-top:40px;position:relative;z-index:1; }
+  .meta-key { font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px; }
+  .meta-val { font-family:var(--display);font-size:22px;font-weight:400;letter-spacing:-.01em; }
+
+  .detail-body { display:grid;grid-template-columns:1fr 380px;gap:1px;background:var(--border); }
+
+  .detail-content { padding:64px 40px;background:var(--bg); }
+  .detail-section-title { font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;align-items:center;gap:14px; }
+  .detail-section-title::before { content:'';width:20px;height:1px;background:var(--accent); }
+  .detail-overview { font-family:var(--mono);font-size:13px;line-height:2;color:var(--muted);margin-bottom:56px; }
+
+  /* Prerequisites Section */
+  .prerequisites-section { margin-bottom:56px; }
+  .prereq-list { display:flex;flex-direction:column;gap:1px;background:var(--border);margin-top:20px; }
+  .prereq-item { background:var(--bg);padding:20px 24px;display:flex;align-items:start;gap:16px; }
+  .prereq-icon { width:18px;height:18px;flex-shrink:0;margin-top:2px;color:var(--accent); }
+  .prereq-text { font-family:var(--mono);font-size:12px;line-height:1.8;color:var(--muted); }
+
+  .module-list { display:flex;flex-direction:column;gap:1px;background:var(--border);margin-bottom:56px; }
+  .module-item { background:var(--bg);padding:24px 28px;display:flex;gap:20px;align-items:flex-start;transition:background .3s; }
+  .module-item:hover { background:var(--hover); }
+  .module-num { font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.15em;padding-top:4px;min-width:24px; }
+  .module-name { font-family:var(--display);font-size:18px;font-weight:400;margin-bottom:8px;letter-spacing:-.01em; }
+  .module-desc { font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.8; }
+
+  .tools-grid { display:flex;flex-wrap:wrap;gap:8px; }
+  .tool-chip { font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);padding:7px 14px;color:var(--muted);transition:border-color .3s,color .3s; }
+  .tool-chip:hover { border-color:rgba(184,245,200,.3);color:var(--accent); }
+
+  /* REGISTER SIDEBAR */
+  .detail-register { background:var(--surface);padding:48px 36px;position:sticky;top:88px;align-self:start; }
+  .register-label { font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;align-items:center;gap:12px; }
+  .register-label::before { content:'';width:16px;height:1px;background:var(--accent); }
+  .register-title { font-family:var(--display);font-size:32px;font-weight:300;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px; }
+  .register-desc { font-family:var(--mono);font-size:12px;line-height:1.9;color:var(--muted);margin-bottom:32px; }
+
+  .form-placeholder { border:1px dashed rgba(184,245,200,.2);background:rgba(184,245,200,.02);padding:40px 28px;text-align:center;margin-bottom:20px; }
+  .form-placeholder-icon { font-size:28px;margin-bottom:14px;opacity:.4; }
+  .form-placeholder-text { font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.9; }
+  .form-placeholder-text strong { display:block;color:var(--accent);font-size:12px;letter-spacing:.1em;margin-bottom:10px; }
+  .form-placeholder-text code { color:var(--accent);background:rgba(184,245,200,.08);padding:2px 6px; }
+
+  .register-note { font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.8;letter-spacing:.04em; }
+
+  /* ── Interest Vote Widget ── */
+  .interest-panel { margin-bottom:20px; }
+  .interest-prompt {
+    font-family:var(--display); font-size:26px; font-weight:300;
+    line-height:1.15; letter-spacing:-.01em; margin-bottom:8px;
+  }
+  .interest-subprompt {
+    font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:28px;
+  }
+  .interest-buttons { display:flex; gap:10px; margin-bottom:0; }
+  .interest-btn {
+    flex:1; font-family:var(--mono); font-size:11px; letter-spacing:.2em;
+    text-transform:uppercase; padding:14px 0; border:1px solid var(--border);
+    background:none; color:var(--muted); cursor:pointer;
+    transition:background .25s, color .25s, border-color .25s, transform .2s;
+    position:relative; overflow:hidden;
+  }
+  .interest-btn::after {
+    content:''; position:absolute; inset:0;
+    background:var(--accent); opacity:0;
+    transition:opacity .25s;
+  }
+  .interest-btn:hover { color:var(--text); border-color:var(--accent); transform:translateY(-2px); }
+  .interest-btn.btn-yes:hover { border-color:var(--accent); }
+  .interest-btn.btn-no:hover  { border-color:rgba(255,100,100,.5); color:rgba(255,100,100,.8); }
+
+  /* Result state */
+  .interest-result { display:none; }
   .interest-result.visible { display:block; }
-  .interest-feedback { font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:16px; }
+  .interest-feedback {
+    font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:20px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .interest-feedback::before { content:''; width:14px; height:1px; background:var(--accent); flex:none; }
   .interest-feedback.voted-no { color:var(--muted); }
-  .interest-bar { height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;margin-bottom:16px; }
-  .interest-bar-fill { height:100%;background:var(--accent);transition:width .6s ease;border-radius:4px; }
+  .interest-feedback.voted-no::before { background:var(--muted); }
+  .interest-bar-wrap {
+    background:var(--border); height:2px; width:100%;
+    margin-bottom:14px; position:relative; overflow:hidden;
+  }
+  .interest-bar-fill {
+    height:100%; background:var(--accent);
+    transition:width .9s cubic-bezier(.23,1,.32,1);
+    width:0;
+  }
   .interest-bar-fill.voted-no { background:var(--muted); }
-  .interest-count { font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:8px; }
-  .interest-count-num { color:var(--accent);font-weight:500; }
+  .interest-count {
+    font-family:var(--mono); font-size:10px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:12px;
+    display:flex; align-items:baseline; gap:6px;
+  }
+  .interest-count-num {
+    font-family:var(--display); font-size:26px; color:var(--accent); font-weight:400;
+  }
   .interest-count-num.voted-no { color:var(--muted); }
-  .interest-goal { font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:16px; }
+  .interest-goal {
+    font-family:var(--mono); font-size:11px; line-height:1.8;
+    color:var(--muted); letter-spacing:.04em; margin-bottom:16px;
+  }
+  .interest-goal strong { color:var(--accent); }
+  .interest-reset {
+    font-family:var(--mono); font-size:10px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted);
+    background:none; border:none; cursor:pointer;
+    transition:color .3s; padding:0; text-decoration:underline;
+    text-decoration-color:var(--border);
+  }
+  .interest-reset:hover { color:var(--accent); text-decoration-color:var(--accent); }
 
-  /* DETAIL PAGE */
-  #detail-page { padding:120px 40px 80px; }
-  .detail-hero { max-width:900px;margin:0 auto 80px; }
-  .detail-badge { display:inline-flex;align-items:center;border-radius:999px;background:#ff6a2a;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;box-shadow:0 10px 24px rgba(255,106,42,.25);margin-bottom:32px; }
-  .detail-title { font-family:var(--display);font-size:clamp(40px,7vw,80px);font-weight:300;line-height:1;letter-spacing:-.02em;margin-bottom:24px; }
-  .detail-subtitle { font-family:var(--mono);font-size:14px;color:var(--muted);letter-spacing:.05em;line-height:1.8;margin-bottom:40px; }
-  .detail-meta { display:flex;gap:40px;flex-wrap:wrap;padding:24px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:60px; }
-  .meta-item { display:flex;flex-direction:column;gap:6px; }
-  .meta-label { font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted); }
-  .meta-value { font-family:var(--sans);font-size:14px;color:var(--text); }
-  .detail-content { max-width:800px;margin:0 auto; }
-  .detail-section { margin-bottom:60px; }
-  .detail-section-title { font-family:var(--display);font-size:32px;font-weight:400;margin-bottom:24px;letter-spacing:-.01em; }
-  .detail-section-title em { font-style:italic;color:var(--accent); }
-  .detail-list { list-style:none;padding-left:0; }
-  .detail-list li { font-family:var(--mono);font-size:13px;color:var(--muted);line-height:2;padding-left:20px;position:relative;margin-bottom:12px; }
-  .detail-list li::before { content:'→';position:absolute;left:0;color:var(--accent); }
-  .detail-section p { font-family:var(--mono);font-size:13px;color:var(--muted);line-height:2;margin-bottom:16px; }
+  /* THEME & MOTION */
+  @keyframes scrollMove { 0%{transform:translateY(0);opacity:.9} 50%{transform:translateY(10px);opacity:1} 100%{transform:translateY(0);opacity:.9} }
+  body, nav, section, footer, .workshop-card, .pub-item, .detail-hero, .detail-content, .detail-register, .btn-primary, .btn-ghost, .theme-toggle, .contact-link, .tag, .tool-chip { transition-property:background-color,color,border-color,box-shadow,transform; transition-duration:.35s; transition-timing-function:ease; }
 
-  /* Animations */
-  @keyframes fadeUp { from { opacity:0;transform:translateY(20px); } to { opacity:1;transform:translateY(0); } }
-  @keyframes scrollMove { 0%,100% { transform:translateY(0); } 50% { transform:translateY(12px); } }
-  .reveal { opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s; }
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes lineSlide { 0%{left:-100%} 50%{left:100%} 100%{left:100%} }
+  .reveal { opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.23,1,.32,1),transform .9s cubic-bezier(.23,1,.32,1); }
   .reveal.visible { opacity:1;transform:translateY(0); }
+  .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}
+  .reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}
 
-  /* Mobile */
-  @media (max-width: 768px) {
-    nav { padding:16px 20px; }
-    .nav-links { display:none; }
-    #hero { padding:0 20px 60px; }
-    section { padding:60px 20px; }
-    #about { grid-template-columns:1fr;gap:40px; }
-    .about-right { padding-top:0; }
-    .contact-grid { grid-template-columns:1fr;gap:40px; }
-    .workshops-grid { grid-template-columns:1fr; }
-    .satellites-grid { grid-template-columns:1fr; }
-    .hero-scroll-hint { display:none; }
+  /* ═══ MOBILE RESPONSIVE ═══ */
+  @media(max-width:900px){
+    nav{padding:16px 24px}
+    .nav-links{display:none}
+    .theme-toggle{padding:6px 10px;gap:6px}
+    .theme-toggle-label{display:none}
+    #hero{padding:0 24px 60px}
+    section{padding:80px 24px}
+    .hero-title{font-size:clamp(36px,8vw,60px)}
+    .hero-cta{flex-direction:column;align-items:stretch}
+    .hero-cta .btn-primary, .hero-cta .btn-ghost{text-align:center}
+    .hero-scroll-hint{right:24px;bottom:24px;font-size:9px}
+    #about{grid-template-columns:1fr;gap:48px}
+    .about-right{padding-top:40px}
+    .workshops-grid{grid-template-columns:1fr}
+    .pub-item{grid-template-columns:60px 1fr auto;gap:16px;padding:24px 20px}
+    .contact-links{flex-direction:column;align-items:stretch}
+    footer{flex-direction:column;text-align:center;padding:28px 24px}
+    .visitor-counter{justify-content:center}
+    .detail-hero{padding:100px 24px 48px}
+    .detail-body{grid-template-columns:1fr}
+    .detail-content{padding:40px 24px}
+    .detail-register{position:static;padding:40px 24px}
+    .detail-meta{gap:32px}
+    .satellite-grid{grid-template-columns:1fr;gap:16px}
+  }
+
+  @media(max-width:600px){
+    .workshops-headline{font-size:clamp(28px,7vw,44px)}
+    .about-headline{font-size:clamp(28px,7vw,44px)}
+    .pub-headline{font-size:clamp(28px,7vw,44px)}
+    .contact-headline{font-size:clamp(32px,9vw,60px)}
+    .detail-title{font-size:clamp(32px,8vw,56px)}
+    .card-title{font-size:20px}
+    .pub-item{grid-template-columns:1fr;gap:12px}
+    .pub-arrow{text-align:right}
   }
 </style>
+<script>
+(function () {
+  try {
+    const saved = localStorage.getItem('kai-theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    const theme = saved || (prefersLight ? 'light' : 'dark');
+    document.documentElement.classList.toggle('theme-light', theme === 'light');
+  } catch (e) {
+    document.documentElement.classList.remove('theme-light');
+  }
+})();
+</script>
 </head>
 <body>
 
-<!-- Cursor -->
-<div id="cursor" class="cursor"></div>
-<div id="cursorRing" class="cursor-ring"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
+
+
 <nav>
-  <a href="#" id="navLogo" class="nav-logo">Kai <span>Genomics</span></a>
-  <div class="nav-main-links">
-    <ul class="nav-links">
-      <li><a href="#workshops">Workshops</a></li>
-      <li><a href="#quiz">Quiz</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#newsletter">Newsletter</a></li>
-    </ul>
-  </div>
-  <button class="nav-back" onclick="closeDetail()">← Back</button>
-  <button class="theme-toggle" id="themeToggle">
+  <a href="#" class="nav-logo" id="navLogo">KAI<span>.</span>GENOMICS</a>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Toggle theme">
     <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
-    <span class="theme-toggle-label">Light</span>
+    <span class="theme-toggle-label" id="themeToggleLabel">Dark</span>
+  </button>
+  <ul class="nav-links nav-main-links">
+    <li><a href="#workshops">Workshops</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-back" id="navBack" onclick="closeDetail()">
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M5 1L1 5L5 9M1 5H13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+    All Workshops
   </button>
 </nav>
 
-<!-- MAIN PAGE -->
+<!-- ══ MAIN PAGE ══ -->
 <div id="main-page">
 
-  <!-- HERO -->
   <section id="hero">
-    <canvas id="dnaCanvas" class="dna-canvas"></canvas>
-    <div class="hero-eyebrow">Precision Training in Bioinformatics</div>
-    <h1 class="hero-title">Hands-on workshops for <em>microbiologists</em> and genomics researchers.</h1>
-    <p class="hero-sub">Learn industry-standard tools, pipelines, and data analysis techniques. From basic BLAST to advanced metagenomics. Small cohorts. Real datasets. Zero fluff.</p>
+    <canvas class="dna-canvas" id="dnaCanvas"></canvas>
+    <p class="hero-eyebrow">Microbial Genomics &amp; Metagenomics</p>
+    <h1 class="hero-title">Decode the<br /><em>invisible</em><br />microbiome.</h1>
+    <p class="hero-sub">Expert-led workshops in microbial genomics, metagenomics,<br />and bioinformatics — from sequencing to discovery.</p>
     <div class="hero-cta">
-      <a href="#lead-magnet" class="btn-primary" onclick="trackEvent('CTA', 'click', 'Hero Free Resource')">Get Free Resource</a>
-      <a href="#workshops" class="btn-ghost">Browse Workshops</a>
+      <a href="#workshops" class="btn-primary">Explore Workshops</a>
+      <a href="#about" class="btn-ghost">Meet the Instructor →</a>
     </div>
-    <div class="hero-scroll-hint">
-      Scroll to explore
-      <span class="scroll-icon"></span>
-    </div>
+    <div class="hero-scroll-hint"><div class="scroll-icon"></div>Scroll</div>
   </section>
 
-  <!-- LEAD MAGNET -->
-  <section id="lead-magnet" class="reveal">
-    <div class="section-label">Free Resource</div>
-    <div class="lead-magnet-content">
-      <h2 class="lead-magnet-headline">Download the <em>Bioinformatics Command Line</em> Cheat Sheet</h2>
-      <p class="lead-magnet-desc">Essential Linux commands, BLAST basics, and sequence format conversions. Perfect for wet-lab researchers transitioning to computational work.</p>
-      
-      <form id="leadMagnetForm" class="lead-magnet-form">
-        <div class="form-group">
-          <label class="form-label">Email Address</label>
-          <input type="email" id="leadEmail" class="form-input" placeholder="your.email@institution.edu" required>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label">Current Role</label>
-          <select id="leadRole" class="form-select" required>
-            <option value="">Select your role</option>
-            <option value="masters">Master's Student</option>
-            <option value="phd">PhD Scholar</option>
-            <option value="postdoc">Postdoctoral Researcher</option>
-            <option value="faculty">Faculty / PI</option>
-            <option value="industry">Industry Professional</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label">Primary Goal</label>
-          <select id="leadGoal" class="form-select" required>
-            <option value="">Select your primary goal</option>
-            <option value="analyze-own">I want to analyze my own data</option>
-            <option value="learn-general">I want to learn general bioinformatics skills</option>
-            <option value="career-transition">I'm transitioning to computational biology</option>
-            <option value="stay-updated">I want to stay updated with tools</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label">Technical Background</label>
-          <select id="leadBackground" class="form-select" required>
-            <option value="">Select your background</option>
-            <option value="wetlab">Wet-lab focused, minimal coding</option>
-            <option value="some-coding">Some R/Python experience</option>
-            <option value="experienced">Experienced in Linux/scripting</option>
-            <option value="advanced">Advanced computational background</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label">Research Areas of Interest (select all that apply)</label>
-          <div class="checkbox-group">
-            <div class="checkbox-item">
-              <input type="checkbox" id="interest-marine" value="marine">
-              <label for="interest-marine">Marine Genomics</label>
-            </div>
-            <div class="checkbox-item">
-              <input type="checkbox" id="interest-clinical" value="clinical">
-              <label for="interest-clinical">Clinical Bioinformatics</label>
-            </div>
-            <div class="checkbox-item">
-              <input type="checkbox" id="interest-drug" value="drug">
-              <label for="interest-drug">Drug Discovery / AMPs</label>
-            </div>
-            <div class="checkbox-item">
-              <input type="checkbox" id="interest-metagenomics" value="metagenomics">
-              <label for="interest-metagenomics">Metagenomics / Microbiome</label>
-            </div>
-            <div class="checkbox-item">
-              <input type="checkbox" id="interest-structural" value="structural">
-              <label for="interest-structural">Structural Biology</label>
-            </div>
-          </div>
-        </div>
-        
-        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Download Cheat Sheet</button>
-      </form>
-      
-      <div id="leadMagnetSuccess" class="form-success">
-        <strong>Success!</strong> Your download link has been sent to your email. Check your inbox (and spam folder) in a few minutes.
-      </div>
-    </div>
-  </section>
-
-  <!-- WORKSHOPS -->
-  <section id="workshops" class="reveal">
-    <div class="section-label">Current Curriculum</div>
-    <h2 class="workshops-headline">Modules designed around <em>real research scenarios</em></h2>
-    
+  <section id="workshops">
+    <div class="section-label reveal">Curriculum</div>
+    <h2 class="workshops-headline reveal reveal-delay-1">Hands-on training<br />for the <em>next generation</em><br />of microbial researchers.</h2>
     <div class="workshops-grid">
-      <!-- Workshop 1 -->
-      <div class="workshop-card" onclick="openDetail('w1'); trackEvent('Workshop', 'view_details', 'Command Line Basics')">
-        <div class="workshop-badge">Live</div>
-        <div class="card-number">Module 01</div>
-        <h3 class="card-title">Command Line Basics for Microbiologists</h3>
-        <p class="card-desc">Master Unix commands, file navigation, text processing with grep/awk/sed, and scripting fundamentals.</p>
-        <div class="card-tags">
-          <span class="tag">Linux</span>
-          <span class="tag">Bash</span>
-          <span class="tag">Beginner</span>
-        </div>
-        <button class="notify-btn" onclick="event.stopPropagation(); notifyMe('w1', 'Command Line Basics')" id="notify-w1">Notify Me When Live</button>
-        <div class="interest-count" id="count-w1">12 people interested</div>
+      <div class="workshop-card reveal reveal-delay-1" onclick="openDetail('intro_bio')">
+        <p class="card-number">01</p>
+        <h3 class="card-title">Introduction to Bioinformatics</h3>
+        <p class="card-desc">A foundation in biological data analysis.<br />Linux essentials, sequence formats, databases,<br />and core bioinformatics thinking.</p>
+        <div class="card-tags"><span class="tag">Linux</span><span class="tag">NCBI</span><span class="tag">BLAST</span><span class="tag">Python</span></div>
       </div>
-
-      <!-- Workshop 2 -->
-      <div class="workshop-card" onclick="openDetail('w2'); trackEvent('Workshop', 'view_details', 'Sequence Analysis')">
-        <div class="card-number">Module 02</div>
-        <h3 class="card-title">Sequence Analysis & Database Searching</h3>
-        <p class="card-desc">BLAST, sequence formats (FASTA, GenBank), local database setup, and interpreting alignment results.</p>
-        <div class="card-tags">
-          <span class="tag">BLAST</span>
-          <span class="tag">NCBI</span>
-          <span class="tag">Beginner</span>
-        </div>
-        <button class="notify-btn" onclick="event.stopPropagation(); notifyMe('w2', 'Sequence Analysis')" id="notify-w2">Notify Me When Live</button>
-        <div class="interest-count" id="count-w2">8 people interested</div>
+      <div class="workshop-card reveal reveal-delay-2" onclick="openDetail('sanger')">
+        <p class="card-number">02</p>
+        <h3 class="card-title">Sanger Sequencing Analysis</h3>
+        <p class="card-desc">From chromatogram to confident sequence.<br />Trace file interpretation, quality assessment,<br />and BLAST-based identification workflows.</p>
+        <div class="card-tags"><span class="tag">Sanger</span><span class="tag">Chromas</span><span class="tag">BLAST</span><span class="tag">MUSCLE</span></div>
       </div>
-
-      <!-- Workshop 3 -->
-      <div class="workshop-card" onclick="openDetail('w3'); trackEvent('Workshop', 'view_details', 'RNA-Seq Analysis')">
-        <div class="card-number">Module 03</div>
-        <h3 class="card-title">RNA-Seq Analysis Pipeline</h3>
-        <p class="card-desc">Quality control, read alignment, differential expression analysis using DESeq2, and pathway enrichment.</p>
-        <div class="card-tags">
-          <span class="tag">RNA-Seq</span>
-          <span class="tag">R</span>
-          <span class="tag">Intermediate</span>
-        </div>
-        <button class="notify-btn" onclick="event.stopPropagation(); notifyMe('w3', 'RNA-Seq')" id="notify-w3">Notify Me When Live</button>
-        <div class="interest-count" id="count-w3">15 people interested</div>
+      <div class="workshop-card reveal reveal-delay-3" onclick="openDetail('bacterial_wgs')">
+        <span class="workshop-badge">LIVE</span>
+        <p class="card-number">03</p>
+        <h3 class="card-title">Introduction to Bacterial WGS and Mining</h3>
+        <p class="card-desc">End-to-end bacterial whole-genome sequencing —<br />assembly, annotation, and biosynthetic gene<br />cluster discovery from real genomes.</p>
+        <div class="card-tags"><span class="tag">SPAdes</span><span class="tag">Prokka</span><span class="tag">antiSMASH</span><span class="tag">QUAST</span></div>
       </div>
-
-      <!-- Workshop 4 -->
-      <div class="workshop-card" onclick="openDetail('w4'); trackEvent('Workshop', 'view_details', 'Metagenomics')">
-        <div class="card-number">Module 04</div>
-        <h3 class="card-title">Shotgun Metagenomics & MAG Assembly</h3>
-        <p class="card-desc">Taxonomic profiling with Kraken2, metagenome assembly, binning, and quality assessment of MAGs.</p>
-        <div class="card-tags">
-          <span class="tag">Metagenomics</span>
-          <span class="tag">MAGs</span>
-          <span class="tag">Advanced</span>
-        </div>
-        <button class="notify-btn" onclick="event.stopPropagation(); notifyMe('w4', 'Metagenomics')" id="notify-w4">Notify Me When Live</button>
-        <div class="interest-count" id="count-w4">22 people interested</div>
+      <div class="workshop-card reveal reveal-delay-1" onclick="openDetail('amplicon')">
+        <p class="card-number">04</p>
+        <h3 class="card-title">Amplicon Metagenomics</h3>
+        <p class="card-desc">From raw 16S rRNA reads to community profiles.<br />OTU/ASV pipelines, diversity metrics, and<br />ecological interpretation in real datasets.</p>
+        <div class="card-tags"><span class="tag">QIIME2</span><span class="tag">16S rRNA</span><span class="tag">R</span><span class="tag">Diversity</span></div>
       </div>
-
-      <!-- Workshop 5 -->
-      <div class="workshop-card" onclick="openDetail('w5'); trackEvent('Workshop', 'view_details', 'Pan-genomics')">
-        <div class="card-number">Module 05</div>
-        <h3 class="card-title">Comparative Genomics & Pan-genome Analysis</h3>
-        <p class="card-desc">Multiple genome alignment, core/accessory genome analysis, and phylogenomics with ANI/AAI metrics.</p>
-        <div class="card-tags">
-          <span class="tag">Pan-genomics</span>
-          <span class="tag">Phylogenomics</span>
-          <span class="tag">Advanced</span>
-        </div>
-        <button class="notify-btn" onclick="event.stopPropagation(); notifyMe('w5', 'Pan-genomics')" id="notify-w5">Notify Me When Live</button>
-        <div class="interest-count" id="count-w5">18 people interested</div>
+      <div class="workshop-card reveal reveal-delay-2" onclick="openDetail('functional_meta')">
+        <p class="card-number">05</p>
+        <h3 class="card-title">Functional Metagenomics</h3>
+        <p class="card-desc">Uncover what microbial communities do —<br />gene prediction, pathway reconstruction,<br />and metabolic profiling from metagenomic data.</p>
+        <div class="card-tags"><span class="tag">HUMAnN3</span><span class="tag">Prokka</span><span class="tag">KEGG</span><span class="tag">Python</span></div>
       </div>
-
-      <!-- Workshop 6 -->
-      <div class="workshop-card" onclick="openDetail('w6'); trackEvent('Workshop', 'view_details', 'Functional Metagenomics')">
-        <div class="card-number">Module 06</div>
-        <h3 class="card-title">Functional Metagenomics & Gene Mining</h3>
-        <p class="card-desc">ORF prediction, functional annotation with eggNOG/KEGG, AMR gene detection, and biosynthetic gene clusters.</p>
-        <div class="card-tags">
-          <span class="tag">Functional Annotation</span>
-          <span class="tag">AMR</span>
-          <span class="tag">Advanced</span>
-        </div>
-        <button class="notify-btn" onclick="event.stopPropagation(); notifyMe('w6', 'Functional Metagenomics')" id="notify-w6">Notify Me When Live</button>
-        <div class="interest-count" id="count-w6">25 people interested</div>
+      <div class="workshop-card reveal reveal-delay-3" onclick="openDetail('pangenomics')">
+        <p class="card-number">06</p>
+        <h3 class="card-title">Pan-genomics and Meta-Pangenomics</h3>
+        <p class="card-desc">Compare genomes across strains and communities.<br />Core vs. accessory genome dynamics,<br />and pangenome-scale metagenomic analysis.</p>
+        <div class="card-tags"><span class="tag">Roary</span><span class="tag">PGGB</span><span class="tag">Panaroo</span><span class="tag">R</span></div>
       </div>
     </div>
   </section>
 
-  <!-- QUIZ -->
-  <section id="quiz" class="reveal">
-    <div class="section-label">Self Assessment</div>
-    <div class="quiz-container">
-      <h2 class="quiz-headline">What is Your <em>Bioinformatics</em> Level?</h2>
-      <p class="quiz-intro">Take this 5-question quiz to discover which workshops are right for you.</p>
-      
-      <div id="quizStart">
-        <button class="btn-primary" onclick="startQuiz(); trackEvent('Quiz', 'start', 'Bioinformatics Assessment')" style="width: 100%; padding: 16px;">Start Quiz</button>
+  <section id="about">
+    <div class="about-left">
+      <div class="instructor-photo-wrap reveal">
+        <img src="cropped_circle_image.png" alt="Kartik Juyal" class="instructor-photo" />
       </div>
-      
-      <div id="quizQuestions" style="display: none;">
-        <!-- Question 1 -->
-        <div class="quiz-question active" data-question="1">
-          <div class="question-text">1. How comfortable are you with the command line?</div>
-          <div class="quiz-options">
-            <button class="quiz-option" onclick="selectAnswer(1, 0)">I've never used it</button>
-            <button class="quiz-option" onclick="selectAnswer(1, 1)">I can navigate directories and list files</button>
-            <button class="quiz-option" onclick="selectAnswer(1, 2)">I can write basic bash scripts</button>
-            <button class="quiz-option" onclick="selectAnswer(1, 3)">I'm proficient with pipes, loops, and text processing</button>
-          </div>
-        </div>
-        
-        <!-- Question 2 -->
-        <div class="quiz-question" data-question="2">
-          <div class="question-text">2. Which best describes your experience with sequence formats?</div>
-          <div class="quiz-options">
-            <button class="quiz-option" onclick="selectAnswer(2, 0)">I don't know what FASTA or GenBank formats are</button>
-            <button class="quiz-option" onclick="selectAnswer(2, 1)">I recognize them but haven't worked with them programmatically</button>
-            <button class="quiz-option" onclick="selectAnswer(2, 2)">I can parse and convert between formats using scripts</button>
-            <button class="quiz-option" onclick="selectAnswer(2, 3)">I regularly work with multiple sequence formats and databases</button>
-          </div>
-        </div>
-        
-        <!-- Question 3 -->
-        <div class="quiz-question" data-question="3">
-          <div class="question-text">3. Have you performed BLAST searches?</div>
-          <div class="quiz-options">
-            <button class="quiz-option" onclick="selectAnswer(3, 0)">No, never</button>
-            <button class="quiz-option" onclick="selectAnswer(3, 1)">Yes, using the NCBI web interface</button>
-            <button class="quiz-option" onclick="selectAnswer(3, 2)">Yes, I've run local BLAST from command line</button>
-            <button class="quiz-option" onclick="selectAnswer(3, 3)">I've built custom BLAST databases and automated searches</button>
-          </div>
-        </div>
-        
-        <!-- Question 4 -->
-        <div class="quiz-question" data-question="4">
-          <div class="question-text">4. What's your experience with R or Python for data analysis?</div>
-          <div class="quiz-options">
-            <button class="quiz-option" onclick="selectAnswer(4, 0)">I haven't used either</button>
-            <button class="quiz-option" onclick="selectAnswer(4, 1)">I've run existing scripts but don't write my own</button>
-            <button class="quiz-option" onclick="selectAnswer(4, 2)">I can write basic data analysis scripts</button>
-            <button class="quiz-option" onclick="selectAnswer(4, 3)">I build custom analysis pipelines and packages</button>
-          </div>
-        </div>
-        
-        <!-- Question 5 -->
-        <div class="quiz-question" data-question="5">
-          <div class="question-text">5. Have you worked with high-throughput sequencing data?</div>
-          <div class="quiz-options">
-            <button class="quiz-option" onclick="selectAnswer(5, 0)">No experience with NGS data</button>
-            <button class="quiz-option" onclick="selectAnswer(5, 1)">I've explored published datasets</button>
-            <button class="quiz-option" onclick="selectAnswer(5, 2)">I've analyzed my own RNA-Seq or genomic data</button>
-            <button class="quiz-option" onclick="selectAnswer(5, 3)">I regularly work with metagenomics or complex datasets</button>
-          </div>
-        </div>
-      </div>
-      
-      <div id="quizResult" class="quiz-result">
-        <div class="result-title" id="resultLevel"></div>
-        <div class="result-desc" id="resultDesc"></div>
-        <div class="result-recommendation" id="resultRec"></div>
-        <button class="btn-secondary" onclick="resetQuiz()">Retake Quiz</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- FUTURE TOPICS POLL -->
-  <section id="future-topics" class="reveal">
-    <div class="section-label">Shape the Future</div>
-    <div class="poll-container">
-      <h2 class="poll-headline">What Should We <em>Teach Next?</em></h2>
-      <p class="poll-intro">Vote for the topics you'd like to see in upcoming workshops. Your input directly influences our curriculum development.</p>
-      
-      <div class="poll-options">
-        <div class="poll-option" onclick="voteTopic('plm'); trackEvent('Poll', 'vote', 'Protein Language Models')" id="topic-plm">
-          <div class="poll-option-title">Protein Language Models in Genomics</div>
-          <div class="poll-option-desc">Using ESM, ProtTrans, and AlphaFold for protein analysis and prediction</div>
-        </div>
-        
-        <div class="poll-option" onclick="voteTopic('amp'); trackEvent('Poll', 'vote', 'AMP Mining')" id="topic-amp">
-          <div class="poll-option-title">Computational Peptide Discovery & AMP Mining</div>
-          <div class="poll-option-desc">Finding and characterizing antimicrobial peptides from genomes and metagenomes</div>
-        </div>
-        
-        <div class="poll-option" onclick="voteTopic('metabolic'); trackEvent('Poll', 'vote', 'Metabolic Reconstruction')" id="topic-metabolic">
-          <div class="poll-option-title">Metabolic Reconstruction from MAGs</div>
-          <div class="poll-option-desc">Pathway analysis, metabolic modeling, and functional predictions from genomic data</div>
-        </div>
-        
-        <div class="poll-option" onclick="voteTopic('variant'); trackEvent('Poll', 'vote', 'Variant Calling')" id="topic-variant">
-          <div class="poll-option-title">Variant Calling & Population Genomics</div>
-          <div class="poll-option-desc">SNP/indel detection, structural variants, and evolutionary analysis</div>
-        </div>
-        
-        <div class="poll-option" onclick="voteTopic('ml'); trackEvent('Poll', 'vote', 'ML Genomics')" id="topic-ml">
-          <div class="poll-option-title">Machine Learning for Genomics</div>
-          <div class="poll-option-desc">Applying ML/DL techniques to genomic prediction and classification problems</div>
-        </div>
-      </div>
-      
-      <div id="pollResults" class="poll-results">
-        <h3 style="font-family: var(--sans); font-size: 18px; margin-bottom: 24px; color: var(--text);">Current Results</h3>
-        <div id="pollBars"></div>
-        <p style="font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 20px; text-align: center;">Thanks for voting! Results update in real-time.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="reveal">
-    <div>
-      <div class="section-label">Instructor</div>
-      <div class="instructor-photo-wrap">
-        <img src="https://via.placeholder.com/100" alt="Instructor" class="instructor-photo">
-      </div>
-      <h2 class="about-headline">Built by someone who <em>does the work</em></h2>
-      <p class="about-bio">PhD researcher in marine microbiology and genomics. Published work on antimicrobial peptides, metagenome-assembled genomes, and microbial ecology. I teach what I actively use in my research.</p>
-      <p class="about-bio">These workshops aren't theoretical—they're distilled from hundreds of hours analyzing real datasets, troubleshooting pipelines, and optimizing workflows.</p>
+      <div class="section-label reveal">Instructor</div>
+      <h2 class="about-headline reveal reveal-delay-1">Science from the<br />ocean floor to<br />the <em>algorithm.</em></h2>
+      <p class="about-bio reveal reveal-delay-2">Kartik is a computational biologist and bioinformatics researcher based in Goa, India. Currently a Project Associate II and PhD candidate at the CSIR–National Institute of Oceanography, he leads research on marine sponge-associated microbial communities for drug discovery.</p>
+      <p class="about-bio reveal reveal-delay-3">A self-taught computational biologist, Kartik bridges wet-lab microbiology with data-driven genomic analysis. His work spans genome mining, metagenomics, and the identification of novel antimicrobial compounds — with published results in peer-reviewed journals.</p>
+      <p class="about-bio reveal reveal-delay-4">As an independent consultant, he supports small colleges and research laboratories with NGS data analysis, reproducible workflows, and student mentorship.</p>
     </div>
     <div class="about-right">
-      <div class="stat-row">
-        <span class="stat-label">Research Focus</span>
-        <span class="stat-value">Marine Genomics</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Publications</span>
-        <span class="stat-value">8+</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Genomes Analyzed</span>
-        <span class="stat-value">500+</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Teaching Experience</span>
-        <span class="stat-value">3 Years</span>
-      </div>
+      <div class="stat-row reveal"><span class="stat-label">Experience</span><div><span class="stat-value">5+</span><span class="stat-unit">years</span></div></div>
+      <div class="stat-row reveal reveal-delay-1"><span class="stat-label">Publications</span><div><span class="stat-value">3</span><span class="stat-unit">papers</span></div></div>
+      <div class="stat-row reveal reveal-delay-2"><span class="stat-label">Specialisation</span><div style="text-align:right"><span class="stat-value" style="font-size:18.9px;letter-spacing:0">Marine<br/>Microbiomes</span></div></div>
+      <div class="stat-row reveal reveal-delay-3"><span class="stat-label">Institution</span><div style="text-align:right"><span class="stat-value" style="font-size:14.7px;letter-spacing:0;line-height:1.4">CSIR–NIO<br/>Goa, India</span></div></div>
+      <div class="stat-row reveal reveal-delay-4"><span class="stat-label">Timezone overlap</span><div><span class="stat-value">4h</span><span class="stat-unit">PST / EST</span></div></div>
     </div>
   </section>
 
-  <!-- RESEARCH -->
-  <section id="research" class="reveal">
-    <div class="section-label">Selected Publications</div>
-    <div class="research-grid">
-      <div class="pub-item" onclick="window.open('https://example.com/pub1','_blank'); trackEvent('Research', 'click_publication', '2024 MAG Paper')">
-        <div class="pub-year">2024</div>
-        <div class="pub-content">
-          <div class="pub-title">High-Quality Metagenome-Assembled Genomes from Marine Sediments</div>
-          <div class="pub-authors">Author K., Co-author A., et al.</div>
-          <div class="pub-journal">Microbiology Spectrum</div>
-        </div>
-      </div>
-      
-      <div class="pub-item" onclick="window.open('https://example.com/pub2','_blank'); trackEvent('Research', 'click_publication', '2023 AMP Paper')">
-        <div class="pub-year">2023</div>
-        <div class="pub-content">
-          <div class="pub-title">Computational Discovery of Novel Antimicrobial Peptides in Marine Bacteria</div>
-          <div class="pub-authors">Author K., Co-author B., et al.</div>
-          <div class="pub-journal">Frontiers in Microbiology</div>
-        </div>
-      </div>
-      
-      <div class="pub-item" onclick="window.open('https://example.com/pub3','_blank'); trackEvent('Research', 'click_publication', '2022 Pangenome')">
-        <div class="pub-year">2022</div>
-        <div class="pub-content">
-          <div class="pub-title">Pan-genome Analysis Reveals Adaptive Mechanisms in Marine Streptomyces</div>
-          <div class="pub-authors">Author K., Co-author C., et al.</div>
-          <div class="pub-journal">Environmental Microbiology</div>
-        </div>
-      </div>
+  <section id="publications">
+    <div class="section-label reveal">Research</div>
+    <h2 class="pub-headline reveal reveal-delay-1">Published work in<br /><em>microbial genomics.</em></h2>
+    <div class="pub-list">
+      <a href="https://link.springer.com/article/10.1007/s00284-025-04262-6" target="_blank" class="pub-item reveal">
+        <span class="pub-year">2025</span>
+        <span class="pub-title">Antimicrobial Potential of Marine Sponge-Associated Bacillus velezensis and Stutzerimonas from the Indian Coast: Genome Mining and Metabolite Profiling</span>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a href="https://cdnsciencepub.com/doi/10.1139/gen-2024-0162" target="_blank" class="pub-item reveal reveal-delay-1">
+        <span class="pub-year">2025</span>
+        <span class="pub-title">Genome Assembly, Analysis, and Mining of Kocuria flava NIO_001: A Thiopeptide Antibiotic Synthesizing Bacterium Isolated from Marine Sponge</span>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a href="https://www.sciencedirect.com/science/chapter/editedvolume/abs/pii/B9780443267710000035" target="_blank" class="pub-item reveal reveal-delay-2">
+        <span class="pub-year">2026</span>
+        <span class="pub-title">Genomic Insights: An Information-Guided Approach to Marine Natural Product Discovery</span>
+        <span class="pub-arrow">↗</span>
+      </a>
     </div>
-  </section>
 
-  <!-- SATELLITES / TOOLS -->
-  <section id="satellites" class="reveal">
-    <div class="section-label">Open-Source Tools</div>
-    <div class="satellites-grid">
-      <div class="satellite-card" onclick="window.open('https://github.com/example/tool1','_blank'); trackEvent('Tools', 'click', 'AMP Finder')">
-        <div class="satellite-icon">🧬</div>
-        <div class="satellite-name">AMP Finder</div>
-        <div class="satellite-desc">Rapid antimicrobial peptide prediction from protein sequences using ML models</div>
-        <div class="tool-chips">
-          <span class="tool-chip">Python</span>
-          <span class="tool-chip">ML</span>
-        </div>
-      </div>
-      
-      <div class="satellite-card" onclick="window.open('https://github.com/example/tool2','_blank'); trackEvent('Tools', 'click', 'MAG QC')">
-        <div class="satellite-icon">📊</div>
-        <div class="satellite-name">MAG Quality Reporter</div>
-        <div class="satellite-desc">Automated quality assessment and visualization for metagenome-assembled genomes</div>
-        <div class="tool-chips">
-          <span class="tool-chip">R</span>
-          <span class="tool-chip">Shiny</span>
-        </div>
-      </div>
-      
-      <div class="satellite-card satellite-tbd">
-        <div class="satellite-icon">🔬</div>
-        <div class="satellite-name">PanGenome Viz</div>
-        <div class="satellite-desc">Interactive visualization tool for comparative genomics analysis (Coming Soon)</div>
-        <div class="tool-chips">
-          <span class="tool-chip">D3.js</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- Satellite Instructors -->
+    <div class="satellite-label reveal">Satellite Instructors</div>
+    <div class="satellite-grid">
 
-  <!-- NEWSLETTER -->
-  <section id="newsletter" class="reveal">
-    <div class="section-label">Stay Updated</div>
-    <div class="newsletter-content">
-      <h2 class="newsletter-headline">Join the <em>Genomics Discovery</em> List</h2>
-      <p class="newsletter-desc">Monthly tips on bioinformatics tools, new workshop announcements, research highlights, and curated genomics resources. No spam, unsubscribe anytime.</p>
-      
-      <form id="newsletterForm" class="newsletter-form">
-        <div class="form-group">
-          <label class="form-label">Email Address</label>
-          <input type="email" id="newsletterEmail" class="form-input" placeholder="your.email@institution.edu" required>
+      <!-- Instructor 1: Shlok Chitre -->
+      <div class="satellite-card reveal reveal-delay-1" id="satellite-shlok" onclick="toggleSatellite('shlok')">
+        <div class="satellite-photo-wrap">
+          <img src="shlok.png" alt="Shlok Chitre" class="satellite-photo" />
         </div>
+        <p class="satellite-name">Shlok Chitre</p>
+        <p class="satellite-expertise">Expertise in invertebrate transcriptomics and eukaryotic metagenomics</p>
         
-        <div class="form-group">
-          <label class="form-label">Your Primary Interest</label>
-          <select id="newsletterInterest" class="form-select" required>
-            <option value="">Select primary interest</option>
-            <option value="workshops">Upcoming Workshops</option>
-            <option value="tools">New Bioinformatics Tools</option>
-            <option value="research">Research Highlights</option>
-            <option value="all">All of the Above</option>
-          </select>
-        </div>
-        
-        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="trackEvent('Newsletter', 'submit', 'Signup')">Subscribe to Newsletter</button>
-      </form>
-      
-      <div id="newsletterSuccess" class="form-success">
-        <strong>Welcome aboard!</strong> Check your email to confirm your subscription.
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="reveal">
-    <div class="section-label">Get in Touch</div>
-    <div class="contact-grid">
-      <div>
-        <h2 class="about-headline" style="margin-bottom: 24px;">Let's <em>connect</em></h2>
-        <div id="interest-widget">
-          <div id="interest-question" class="interest-question">
-            <div class="interest-q-text">Interested in these workshops?</div>
-            <div class="interest-actions">
-              <button class="btn-primary" onclick="castVote('yes'); trackEvent('Interest', 'vote', 'Yes')">Yes, Notify Me</button>
-              <button class="btn-ghost" onclick="castVote('no'); trackEvent('Interest', 'vote', 'No')">Not Right Now</button>
-            </div>
+        <div class="satellite-dropdown">
+          <p class="satellite-intro">Research scholar with five years of marine biology experience, specializing in multi-omics approaches for bioprospecting and ecological studies of marine invertebrates.</p>
+          
+          <div class="satellite-skills">
+            <span class="satellite-skill">Transcriptomics</span>
+            <span class="satellite-skill">Metagenomics</span>
+            <span class="satellite-skill">Peptide Discovery</span>
+            <span class="satellite-skill">Field Ecology</span>
+            <span class="satellite-skill">Python/R</span>
+            <span class="satellite-skill">Bioinformatics</span>
           </div>
-          <div id="interest-result" class="interest-result">
-            <div id="interest-feedback" class="interest-feedback"></div>
-            <div class="interest-bar">
-              <div id="interest-bar" class="interest-bar-fill"></div>
-            </div>
-            <div class="interest-count">
-              <span id="interest-count-num" class="interest-count-num"></span> / 10 interested
-            </div>
-            <div class="interest-goal" id="interest-goal-msg"></div>
-            <button class="btn-small" onclick="resetVote()">Change Vote</button>
+          
+          <div class="satellite-links">
+            <a href="https://www.linkedin.com/in/shlok-chitre-115624155/" target="_blank" class="satellite-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              LinkedIn Profile
+            </a>
+            <a href="mailto:chitre.shlok@gmail.com" class="satellite-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              chitre.shlok@gmail.com
+            </a>
+            <a href="https://github.com/shlokchitre" target="_blank" class="satellite-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              GitHub Profile
+            </a>
           </div>
         </div>
       </div>
-      <div class="contact-info">
-        <p><strong>Email:</strong> <a href="mailto:kai@genomics.edu" onclick="trackEvent('Contact', 'click', 'Email')">kai@genomics.edu</a></p>
-        <p><strong>Twitter:</strong> <a href="https://twitter.com/kaigenomics" target="_blank" onclick="trackEvent('Contact', 'click', 'Twitter')">@kaigenomics</a></p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/kaigenomics" target="_blank" onclick="trackEvent('Contact', 'click', 'GitHub')">github.com/kaigenomics</a></p>
-        <p><strong>Location:</strong> Mapusa, Goa, India</p>
-        <div class="visitor-badge">
-          <span>Unique visitors: </span>
-          <span class="visitor-num" id="visitorCount">—</span>
+
+      <!-- Instructor 2: TBD -->
+      <div class="satellite-card satellite-tbd reveal reveal-delay-2">
+        <div class="satellite-photo-wrap">
+          <div class="satellite-photo-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span>Photo</span>
+          </div>
         </div>
+        <span class="satellite-badge">Coming Soon</span>
+        <p class="satellite-name">Instructor II</p>
+        <p class="satellite-expertise">Expertise area to be announced</p>
       </div>
+
+      <!-- Instructor 3: TBD -->
+      <div class="satellite-card satellite-tbd reveal reveal-delay-3">
+        <div class="satellite-photo-wrap">
+          <div class="satellite-photo-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span>Photo</span>
+          </div>
+        </div>
+        <span class="satellite-badge">Coming Soon</span>
+        <p class="satellite-name">Instructor III</p>
+        <p class="satellite-expertise">Expertise area to be announced</p>
+      </div>
+
     </div>
   </section>
+
+  <section id="contact">
+    <div class="section-label reveal">Get in Touch</div>
+    <h2 class="contact-headline reveal reveal-delay-1">Let's<br /><em>collaborate.</em></h2>
+    <p class="contact-sub reveal reveal-delay-2">For workshop inquiries, consulting, or research collaborations —<br />reach out and let's discuss how we can work together.</p>
+    <div class="contact-cta reveal reveal-delay-3">
+      <a href="mailto:kartik@example.com" class="btn-primary">Send Message</a>
+    </div>
+    <div class="contact-links reveal reveal-delay-4">
+      <a href="mailto:kartik@example.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        Email
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        LinkedIn
+      </a>
+      <a href="https://researchgate.net" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+        ResearchGate
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">KAI<span>.</span>GENOMICS</div>
+    <div class="footer-copy">&copy; 2026 Kai Genomics. All rights reserved.</div>
+    <div class="visitor-counter">
+      <svg class="counter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </svg>
+      <span>Visitors: <span class="visitor-count" id="visitorCount">Loading...</span></span>
+    </div>
+    <div class="footer-location">Goa, India</div>
+  </footer>
 
 </div>
 
-<!-- DETAIL PAGE (workshop details) -->
+<!-- ══ DETAIL PAGE ══ -->
 <div id="detail-page">
   <div class="detail-hero">
-    <div class="detail-badge" id="detailBadge">Coming Soon</div>
-    <h1 class="detail-title" id="detailTitle"></h1>
-    <p class="detail-subtitle" id="detailSubtitle"></p>
-    <div class="detail-meta">
-      <div class="meta-item">
-        <span class="meta-label">Duration</span>
-        <span class="meta-value" id="detailDuration"></span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Level</span>
-        <span class="meta-value" id="detailLevel"></span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Format</span>
-        <span class="meta-value" id="detailFormat"></span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Prerequisites</span>
-        <span class="meta-value" id="detailPrereqs"></span>
-      </div>
-    </div>
+    <div class="detail-hero-bg"></div>
+    <p class="detail-eyebrow" id="d-eyebrow"></p>
+    <h1 class="detail-title" id="d-title"></h1>
+    <div class="detail-meta" id="d-meta"></div>
   </div>
-  <div class="detail-content">
-    <div class="detail-section">
-      <h2 class="detail-section-title">What You'll <em>Learn</em></h2>
-      <ul class="detail-list" id="detailLearning"></ul>
+
+  <div class="detail-body">
+    <div class="detail-content">
+      <div class="detail-section-title">Overview</div>
+      <p class="detail-overview" id="d-overview"></p>
+
+      <!-- Prerequisites Section -->
+      <div class="prerequisites-section" id="prereq-section">
+        <div class="detail-section-title">Prerequisites</div>
+        <div class="prereq-list" id="d-prerequisites"></div>
+      </div>
+
+      <div class="detail-section-title">What You'll Learn</div>
+      <div class="module-list" id="d-modules"></div>
+
+      <div class="detail-section-title">Tools & Technologies</div>
+      <div class="tools-grid" id="d-tools"></div>
     </div>
-    <div class="detail-section">
-      <h2 class="detail-section-title">Topics <em>Covered</em></h2>
-      <ul class="detail-list" id="detailTopics"></ul>
-    </div>
-    <div class="detail-section">
-      <h2 class="detail-section-title">Who This Is <em>For</em></h2>
-      <p id="detailAudience"></p>
+
+    <div class="detail-register">
+      <div class="register-label">Register</div>
+      <h3 class="register-title">Express Interest</h3>
+      <p class="register-desc" id="d-register-desc"></p>
+
+      <!-- Interest Panel -->
+      <div class="interest-panel" id="panel-interest" style="display:none;">
+        <div id="interest-question">
+          <div class="interest-prompt">Interested in this workshop?</div>
+          <div class="interest-subprompt">Your vote helps us schedule</div>
+          <div class="interest-buttons">
+            <button class="interest-btn btn-yes" onclick="castVote('yes')">Yes, I'm In</button>
+            <button class="interest-btn btn-no" onclick="castVote('no')">Not Right Now</button>
+          </div>
+        </div>
+
+        <div class="interest-result" id="interest-result">
+          <div class="interest-feedback" id="interest-feedback-msg"></div>
+          <div class="interest-bar-wrap"><div class="interest-bar-fill" id="interest-bar"></div></div>
+          <div class="interest-count">
+            <span class="interest-count-num" id="interest-count-num">0</span>
+            <span>/ 10 votes</span>
+          </div>
+          <div class="interest-goal" id="interest-goal-msg"></div>
+          <button class="interest-reset" onclick="resetVote()">Change my vote</button>
+        </div>
+      </div>
+
+      <div class="form-placeholder">
+        <div class="form-placeholder-icon">📝</div>
+        <div class="form-placeholder-text">
+          <strong>Registration Form</strong>
+          Full workshop registration will open once sufficient interest is confirmed.
+        </div>
+      </div>
+
+      <p class="register-note">All workshops include course materials, datasets, and post-workshop support. Payment details provided upon registration.</p>
     </div>
   </div>
 </div>
 
 <script>
-/* ════ THEME TOGGLE ════ */
+const THEME_KEY = 'kai-theme';
+const VISITOR_KEY = 'kai-visitor-count';
+
+/* ════ THEME ════ */
+function applyTheme(theme) {
+  const isLight = theme === 'light';
+  document.documentElement.classList.toggle('theme-light', isLight);
+  const toggle = document.getElementById('themeToggle');
+  const label = document.getElementById('themeToggleLabel');
+  if (toggle) toggle.setAttribute('aria-pressed', String(isLight));
+  if (label) label.textContent = isLight ? 'Light' : 'Dark';
+}
+
 function initThemeToggle() {
   const toggle = document.getElementById('themeToggle');
-  const saved = localStorage.getItem('theme');
-  if (saved === 'light') document.documentElement.classList.add('theme-light');
-  
+  if (!toggle) return;
+  let saved = null;
+  try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
+  const initial = saved || (document.documentElement.classList.contains('theme-light') ? 'light' : 'dark');
+  applyTheme(initial);
   toggle.addEventListener('click', () => {
-    const isLight = document.documentElement.classList.toggle('theme-light');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    trackEvent('Settings', 'theme_toggle', isLight ? 'light' : 'dark');
+    const next = document.documentElement.classList.contains('theme-light') ? 'dark' : 'light';
+    applyTheme(next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
   });
 }
 
 /* ════ VISITOR COUNTER ════ */
 function initVisitorCounter() {
-  const COUNTER_KEY = 'kai_genomics_visitor_id';
-  let count = parseInt(localStorage.getItem('kai_genomics_total_visitors') || '0', 10);
-  
-  if (!localStorage.getItem(COUNTER_KEY)) {
-    localStorage.setItem(COUNTER_KEY, Date.now().toString());
-    count++;
-    localStorage.setItem('kai_genomics_total_visitors', count.toString());
+  let count = 0;
+  try {
+    const saved = localStorage.getItem(VISITOR_KEY);
+    const visited = localStorage.getItem('kai-visited');
+    
+    if (saved) {
+      count = parseInt(saved, 10) || 0;
+    }
+    
+    if (!visited) {
+      count++;
+      localStorage.setItem('kai-visited', 'true');
+      localStorage.setItem(VISITOR_KEY, count.toString());
+    }
+  } catch (e) {
+    count = Math.floor(Math.random() * 1000) + 500;
   }
   
-  document.getElementById('visitorCount').textContent = count;
+  const counterEl = document.getElementById('visitorCount');
+  if (counterEl) {
+    animateCounter(counterEl, count);
+  }
 }
 
-/* ════ WORKSHOP DETAILS ════ */
-const workshopData = {
-  w1: {
-    title: "Command Line Basics for Microbiologists",
-    subtitle: "Master the terminal and unlock the power of Unix-based bioinformatics tools",
-    badge: "Live",
-    duration: "3 weeks (6 hours total)",
-    level: "Beginner",
-    format: "Online, Live + Recorded",
-    prereqs: "None",
-    learning: [
-      "Navigate file systems and manage directories efficiently",
-      "Process large text files with grep, awk, and sed",
-      "Write bash scripts to automate repetitive tasks",
-      "Understand permissions, environment variables, and PATH",
-      "Chain commands using pipes and redirects"
+function animateCounter(element, target) {
+  let current = 0;
+  const increment = Math.ceil(target / 50);
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    element.textContent = current.toLocaleString();
+  }, 20);
+}
+
+/* ════ SATELLITE INSTRUCTOR TOGGLE ════ */
+function toggleSatellite(id) {
+  const card = document.getElementById('satellite-' + id);
+  if (!card || card.classList.contains('satellite-tbd')) return;
+  
+  const wasOpen = card.classList.contains('open');
+  
+  // Close all other satellite cards
+  document.querySelectorAll('.satellite-card').forEach(c => c.classList.remove('open'));
+  
+  // Toggle this one
+  if (!wasOpen) {
+    card.classList.add('open');
+  }
+}
+
+/* ════════════════════════════════════════════════════
+   WORKSHOP DATA WITH PREREQUISITES
+════════════════════════════════════════════════════ */
+const workshops = {
+  intro_bio: {
+    number:"01", title:"Introduction to\n<em>Bioinformatics</em>",
+    duration:"2 Days", level:"Beginner", format:"Remote / In-person",
+    overview:"A gentle but thorough entry point into the world of bioinformatics. This workshop equips complete beginners with the conceptual foundations and practical skills needed to navigate biological databases, work in the Linux command line, and run fundamental sequence analysis tasks — no prior coding experience required.",
+    prerequisites:[
+      "Basic understanding of molecular biology and genetics",
+      "Familiarity with DNA, RNA, and protein concepts",
+      "Access to a computer (Windows, Mac, or Linux)",
+      "No prior programming experience required"
     ],
-    topics: [
-      "Unix file system structure",
-      "Basic commands: ls, cd, pwd, mkdir, rm, cp, mv",
-      "Text processing: cat, less, head, tail, grep, sort, uniq",
-      "Pattern matching with regular expressions",
-      "Variables, loops, and conditionals in bash",
-      "SSH, remote server access, and data transfer"
+    modules:[
+      {name:"What is Bioinformatics?",desc:"The role of computation in modern biology. Overview of sequencing technologies, data types, and the bioinformatics workflow from raw data to discovery."},
+      {name:"Linux & Command Line Basics",desc:"Navigating the file system, writing and running shell commands, managing files, and setting up conda environments for reproducible analysis."},
+      {name:"Biological Databases & File Formats",desc:"Exploring NCBI, UniProt, and Ensembl. Understanding FASTA, FASTQ, GFF, and GenBank file formats and how to retrieve and parse them."},
+      {name:"Sequence Similarity & BLAST",desc:"Principles of pairwise alignment, BLAST algorithms, interpreting E-values and bit scores, and running local BLAST searches."},
+      {name:"Introduction to Python for Biology",desc:"Writing simple Python scripts to parse sequences, automate repetitive tasks, and interact with Biopython for sequence manipulation."},
     ],
-    audience: "Perfect for wet-lab researchers transitioning to computational work, or anyone who wants to stop clicking through GUI tools and start automating workflows."
+    tools:["Linux","Bash","NCBI","BLAST","Biopython","Python","conda","FastQC"],
+    registerDesc:"No prior bioinformatics or programming experience required. All tools are free and open-source. Suitable for undergraduates, postgraduates, and wet-lab researchers."
   },
-  w2: {
-    title: "Sequence Analysis & Database Searching",
-    subtitle: "From FASTA files to BLAST results: working with biological sequences",
-    badge: "Coming Soon",
-    duration: "2 weeks (4 hours total)",
-    level: "Beginner",
-    format: "Online, Live + Recorded",
-    prereqs: "Command Line Basics",
-    learning: [
-      "Understand and work with FASTA, GenBank, and FASTQ formats",
-      "Perform local and web-based BLAST searches",
-      "Interpret alignment scores, E-values, and bit scores",
-      "Build custom BLAST databases from your own sequences",
-      "Extract and manipulate sequences programmatically"
+  sanger: {
+    number:"02", title:"Sanger Sequencing\n<em>Analysis</em>",
+    duration:"1 Day", level:"Beginner", format:"Remote / In-person",
+    overview:"Despite the rise of next-generation sequencing, Sanger sequencing remains the gold standard for targeted sequence verification, colony screening, and 16S-based microbial identification. This focused workshop takes you from raw chromatogram files to confident, publication-ready sequence interpretations using free desktop and web tools.",
+    prerequisites:[
+      "Basic molecular biology knowledge",
+      "Understanding of DNA sequencing concepts",
+      "Completion of 'Introduction to Bioinformatics' workshop OR equivalent basic bioinformatics knowledge",
+      "Access to Windows or Mac computer"
     ],
-    topics: [
-      "Sequence file formats and conversions",
-      "NCBI databases and Entrez utilities",
-      "BLAST algorithm fundamentals",
-      "Local BLAST setup and optimization",
-      "Multiple sequence alignment with MUSCLE/ClustalW",
-      "Sequence retrieval and batch processing"
+    modules:[
+      {name:"Principles of Sanger Sequencing",desc:"Chain-termination chemistry, capillary electrophoresis, and how raw fluorescent signal becomes a chromatogram trace."},
+      {name:"Trace File Inspection & Quality",desc:"Opening and interpreting .ab1 files in Chromas and FinchTV. Identifying low-quality regions, mixed bases, and sequencing artefacts."},
+      {name:"Sequence Trimming & Editing",desc:"Manual and automated trimming of primer and low-quality ends. Using BioEdit for sequence alignment and editing."},
+      {name:"BLAST-Based Identification",desc:"Submitting sequences to NCBI BLAST, interpreting identity and coverage metrics, and selecting correct reference sequences."},
+      {name:"Multiple Sequence Alignment & Trees",desc:"Aligning multiple Sanger sequences with MUSCLE/Clustal. Building simple neighbour-joining trees for 16S-based microbial identification."},
     ],
-    audience: "Researchers who need to search, compare, and analyze biological sequences beyond simple web BLAST searches."
+    tools:["Chromas","FinchTV","BioEdit","NCBI BLAST","MUSCLE","Clustal","MEGA","Linux"],
+    registerDesc:"Ideal for microbiology students and lab researchers who receive Sanger data and want to confidently interpret and report their results."
   },
-  w3: {
-    title: "RNA-Seq Analysis Pipeline",
-    subtitle: "From raw reads to differentially expressed genes",
-    badge: "Coming Soon",
-    duration: "4 weeks (10 hours total)",
-    level: "Intermediate",
-    format: "Online, Live + Recorded",
-    prereqs: "Command Line + Some R Experience",
-    learning: [
-      "Assess sequencing quality and perform read trimming",
-      "Align reads to reference genomes with STAR/HISAT2",
-      "Quantify gene expression and normalize counts",
-      "Identify differentially expressed genes with DESeq2",
-      "Perform pathway enrichment and functional analysis"
+  bacterial_wgs: {
+    number:"03", title:"Introduction to Bacterial\n<em>WGS and Mining</em>",
+    duration:"3 Days", level:"Beginner–Intermediate", format:"Remote / In-person",
+    overview:"This hands-on workshop walks you through the complete journey of bacterial whole-genome sequencing — from quality-controlled raw reads to an annotated, mined genome ready for publication. Using real bacterial genomes from published CSIR-NIO research, you will assemble, annotate, and screen for biosynthetic gene clusters and secondary metabolite potential.",
+    prerequisites:[
+      "Completion of 'Introduction to Bioinformatics' workshop OR equivalent experience",
+      "Comfortable working with Linux command line",
+      "Basic understanding of conda/package management",
+      "Knowledge of DNA sequencing and genome concepts",
+      "Access to computer with at least 8GB RAM"
     ],
-    topics: [
-      "FASTQ format and quality scores",
-      "Quality control with FastQC and MultiQC",
-      "Read alignment strategies and parameters",
-      "Count matrices and normalization methods",
-      "Statistical testing for differential expression",
-      "Visualization: volcano plots, heatmaps, PCA"
+    modules:[
+      {name:"NGS Read QC & Preprocessing",desc:"Assessing Illumina read quality with FastQC and MultiQC. Adapter trimming and quality filtering with Trimmomatic and fastp."},
+      {name:"De Novo Genome Assembly",desc:"Assembly with SPAdes. Understanding assembly graphs, evaluating N50 and completeness metrics using QUAST and CheckM."},
+      {name:"Genome Annotation",desc:"Structural and functional annotation using Prokka. Interpreting GFF and GenBank output files for downstream analysis."},
+      {name:"Biosynthetic Gene Cluster Mining",desc:"Running antiSMASH to detect BGCs. Interpreting cluster predictions, NRPS/PKS domain architecture, and known compound homologs."},
+      {name:"Case Study: Kocuria flava NIO_001",desc:"Walkthrough of published genome mining from a marine sponge-associated bacterium leading to thiopeptide antibiotic identification."},
     ],
-    audience: "Researchers with RNA-Seq data who want to move beyond outsourcing analysis and understand the complete pipeline."
+    tools:["FastQC","Trimmomatic","SPAdes","QUAST","CheckM","Prokka","antiSMASH","Linux","Bash","Biopython"],
+    registerDesc:"Uses real bacterial genomes from published CSIR-NIO research. Draws directly on the instructor's own peer-reviewed work — hands-on from day one."
   },
-  w4: {
-    title: "Shotgun Metagenomics & MAG Assembly",
-    subtitle: "Reconstruct genomes from complex microbial communities",
-    badge: "Coming Soon",
-    duration: "5 weeks (12 hours total)",
-    level: "Advanced",
-    format: "Online, Live + Recorded",
-    prereqs: "Command Line + Sequence Analysis",
-    learning: [
-      "Profile taxonomic composition with Kraken2/Bracken",
-      "Assemble metagenomes using MEGAHIT/metaSPAdes",
-      "Bin contigs into MAGs with MetaBAT2/MaxBin",
-      "Assess MAG quality using CheckM",
-      "Refine and dereplicate genome bins"
+  amplicon: {
+    number:"04", title:"Amplicon\n<em>Metagenomics</em>",
+    duration:"3 Days", level:"Beginner–Intermediate", format:"Remote / In-person",
+    overview:"This workshop takes you from raw 16S rRNA amplicon sequencing reads to fully interpreted microbial community profiles. You will work hands-on with real environmental datasets — covering quality filtering, denoising, taxonomic classification, diversity analysis, and ecological visualisation using industry-standard tools.",
+    prerequisites:[
+      "Completion of 'Introduction to Bioinformatics' workshop",
+      "Proficiency with Linux command line and conda",
+      "Basic R programming knowledge recommended",
+      "Understanding of microbial ecology concepts",
+      "Familiarity with 16S rRNA gene structure"
     ],
-    topics: [
-      "Metagenomics experimental design",
-      "Read preprocessing and host removal",
-      "Assembly strategies for complex communities",
-      "Binning algorithms and parameters",
-      "Completeness and contamination metrics",
-      "Taxonomic assignment of MAGs"
+    modules:[
+      {name:"Introduction to Amplicon Sequencing",desc:"Principles of 16S rRNA gene targeting, primer design, Illumina paired-end sequencing, and experimental considerations."},
+      {name:"Quality Control & Denoising",desc:"FASTQ quality inspection, adapter trimming, and ASV/OTU generation using DADA2 and QIIME2 workflows."},
+      {name:"Taxonomic Classification",desc:"Assigning taxonomy to ASVs using SILVA and Greengenes2 reference databases. Filtering and validating results."},
+      {name:"Alpha & Beta Diversity",desc:"Calculating Shannon, Simpson, Faith's PD, Bray-Curtis dissimilarity. Statistical testing with PERMANOVA."},
+      {name:"Visualisation & Interpretation",desc:"Generating publication-quality bar charts, ordination plots, and heatmaps in R using ggplot2 and phyloseq."},
     ],
-    audience: "Microbial ecologists and microbiome researchers working with environmental or host-associated communities."
+    tools:["QIIME2","DADA2","phyloseq","ggplot2","R","SILVA","Linux","Bash","FastQC"],
+    registerDesc:"Fill out the form to secure your spot. Includes course materials, real datasets, and post-workshop Q&A access."
   },
-  w5: {
-    title: "Comparative Genomics & Pan-genome Analysis",
-    subtitle: "Understand evolutionary relationships through whole-genome comparisons",
-    badge: "Coming Soon",
-    duration: "4 weeks (10 hours total)",
-    level: "Advanced",
-    format: "Online, Live + Recorded",
-    prereqs: "Sequence Analysis + Some Genomics Background",
-    learning: [
-      "Perform whole-genome alignments with MUMmer/Mauve",
-      "Calculate ANI and AAI for genome similarity",
-      "Define core and accessory genomes with Roary",
-      "Build phylogenomic trees from concatenated alignments",
-      "Visualize pan-genome structures and evolution"
+  functional_meta: {
+    number:"05", title:"Functional\n<em>Metagenomics</em>",
+    duration:"4 Days", level:"Intermediate", format:"Remote",
+    overview:"Go beyond who is there and discover what microbial communities are doing. This workshop focuses on the functional dimension of metagenomics — from gene prediction and annotation through to metabolic pathway reconstruction and community-level functional profiling — using whole-metagenome shotgun sequencing data from complex environmental samples.",
+    prerequisites:[
+      "Completion of 'Amplicon Metagenomics' workshop OR equivalent experience",
+      "Strong Linux command line skills",
+      "Experience with genome assembly and annotation",
+      "Proficiency in either Python or R",
+      "Access to computer with 16GB+ RAM (32GB recommended)",
+      "Understanding of metabolic pathways and gene ontologies"
     ],
-    topics: [
-      "Genome annotation and gene prediction",
-      "Orthology detection methods",
-      "Pan-genome concepts: core, accessory, unique genes",
-      "Phylogenomics vs. single-gene phylogenies",
-      "Horizontal gene transfer detection",
-      "Functional enrichment in accessory genomes"
+    modules:[
+      {name:"Shotgun Library Concepts & QC",desc:"Whole-metagenome shotgun sequencing principles, host depletion strategies, read quality control, and preprocessing pipelines."},
+      {name:"Taxonomic & Functional Profiling",desc:"Community composition with Kraken2 and MetaPhlAn. Functional gene abundance profiling using HUMAnN3 and UniRef databases."},
+      {name:"Assembly & Gene Prediction",desc:"Co-assembly with MEGAHIT. Open reading frame prediction, gene catalogue construction, and functional annotation with Prokka."},
+      {name:"Metabolic Pathway Reconstruction",desc:"Mapping annotated genes to KEGG, COG, and MetaCyc databases. Identifying enriched pathways and community metabolic potential."},
+      {name:"Comparative Functional Analysis",desc:"Statistical comparison of functional profiles across samples. Visualising functional differences with R and Python."},
     ],
-    audience: "Researchers studying microbial evolution, strain diversity, or comparative bacterial genomics."
+    tools:["MEGAHIT","Kraken2","MetaPhlAn","HUMAnN3","Prokka","KEGG","Python","R","Linux","Bash"],
+    registerDesc:"Ideal for researchers working with environmental or clinical metagenomic data who want to move from taxonomic to functional insights."
   },
-  w6: {
-    title: "Functional Metagenomics & Gene Mining",
-    subtitle: "Discover biosynthetic potential and functional genes in metagenomes",
-    badge: "Coming Soon",
-    duration: "4 weeks (10 hours total)",
-    level: "Advanced",
-    format: "Online, Live + Recorded",
-    prereqs: "Metagenomics or Genomics Experience",
-    learning: [
-      "Predict open reading frames with Prodigal",
-      "Annotate proteins using eggNOG-mapper and KEGG",
-      "Detect antimicrobial resistance genes with RGI",
-      "Identify biosynthetic gene clusters with antiSMASH",
-      "Mine for antimicrobial peptides and novel enzymes"
+  pangenomics: {
+    number:"06", title:"Pan-genomics &\n<em>Meta-Pangenomics</em>",
+    duration:"3 Days", level:"Intermediate–Advanced", format:"Remote / In-person",
+    overview:"Unlock the full genetic repertoire of bacterial species and microbial communities. This workshop moves beyond single-genome analysis to explore the collective gene pool of multiple strains (pangenomics) and extends these principles to metagenomic datasets (meta-pangenomics) — revealing the evolutionary flexibility, accessory functions, and ecological adaptations encoded across populations.",
+    prerequisites:[
+      "Completion of 'Bacterial WGS and Mining' workshop",
+      "Experience with genome assembly and annotation",
+      "Strong command of Linux and Bash scripting",
+      "Proficiency in Python and R",
+      "Familiarity with phylogenetic concepts",
+      "Understanding of population genetics principles"
     ],
-    topics: [
-      "Gene calling in fragmented assemblies",
-      "Functional databases: COG, KEGG, Pfam, TIGRFAM",
-      "Pathway reconstruction and metabolic modeling",
-      "AMR gene databases: CARD, ResFinder",
-      "BGC prediction and dereplication",
-      "Peptide structure prediction"
+    modules:[
+      {name:"Pangenomics Fundamentals",desc:"Core, accessory, and unique genome fractions. The Heap's law model of open vs. closed pangenomes. Ecological and evolutionary implications."},
+      {name:"Pangenome Construction",desc:"Building pangenomes from multiple assembled genomes using Roary, Panaroo, and PGGB. Handling fragmented assemblies and contamination."},
+      {name:"Core & Accessory Genome Analysis",desc:"Identifying conserved housekeeping genes vs. niche-adaptive accessory genes. Functional annotation of the accessory genome with eggNOG-mapper."},
+      {name:"Phylogenomics from Pangenomes",desc:"Building phylogenetic trees from core gene alignments. ANI-based species delineation and population structure analysis with IQ-TREE and FastANI."},
+      {name:"Introduction to Meta-Pangenomics",desc:"Mapping metagenomic reads to pangenome graphs. Strain-level resolution in complex communities using PanPhlAn and MIDAS. Case study from marine microbiome data."},
     ],
-    audience: "Researchers interested in drug discovery, natural products, or functional characterization of microbial communities."
+    tools:["Roary","Panaroo","PGGB","eggNOG-mapper","IQ-TREE","FastANI","PanPhlAn","MIDAS","Python","R","Linux"],
+    registerDesc:"Builds on genome assembly and metagenomics skills. Ideal for researchers studying microbial population genomics, evolution, or complex environmental communities."
   }
 };
 
-let _currentVoteId = 'general';
-const GOAL = 10;
-const VOTE_KEY = (id) => `kai_vote_${id}`;
-const COUNT_KEY = (id) => `kai_count_${id}`;
-
+/* ════ OPEN / CLOSE ════ */
 function openDetail(id) {
-  const data = workshopData[id];
-  if (!data) return;
+  const w = workshops[id];
+  if (!w) return;
+
+  document.getElementById('d-eyebrow').textContent = `Workshop ${w.number}  ·  ${w.duration}  ·  ${w.level}`;
+  document.getElementById('d-title').innerHTML = w.title.replace('\n', '<br/>');
+  document.getElementById('d-meta').innerHTML = `
+    <div><div class="meta-key">Duration</div><div class="meta-val">${w.duration}</div></div>
+    <div><div class="meta-key">Level</div><div class="meta-val">${w.level}</div></div>
+    <div><div class="meta-key">Format</div><div class="meta-val">${w.format}</div></div>`;
+  document.getElementById('d-overview').textContent = w.overview;
   
-  document.getElementById('detailTitle').textContent = data.title;
-  document.getElementById('detailSubtitle').textContent = data.subtitle;
-  document.getElementById('detailBadge').textContent = data.badge;
-  document.getElementById('detailDuration').textContent = data.duration;
-  document.getElementById('detailLevel').textContent = data.level;
-  document.getElementById('detailFormat').textContent = data.format;
-  document.getElementById('detailPrereqs').textContent = data.prereqs;
-  document.getElementById('detailAudience').textContent = data.audience;
+  // Render prerequisites
+  document.getElementById('d-prerequisites').innerHTML = w.prerequisites.map(p =>
+    `<div class="prereq-item">
+      <svg class="prereq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <div class="prereq-text">${p}</div>
+    </div>`
+  ).join('');
   
-  const learningList = document.getElementById('detailLearning');
-  learningList.innerHTML = '';
-  data.learning.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    learningList.appendChild(li);
-  });
-  
-  const topicsList = document.getElementById('detailTopics');
-  topicsList.innerHTML = '';
-  data.topics.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    topicsList.appendChild(li);
-  });
-  
+  document.getElementById('d-modules').innerHTML = w.modules.map((m,i) =>
+    `<div class="module-item"><span class="module-num">0${i+1}</span><div><div class="module-name">${m.name}</div><div class="module-desc">${m.desc}</div></div></div>`
+  ).join('');
+  document.getElementById('d-tools').innerHTML = w.tools.map(t => `<span class="tool-chip">${t}</span>`).join('');
+  document.getElementById('d-register-desc').textContent = w.registerDesc;
+
+  // All workshops use the interest vote widget
+  const panelInterest = document.getElementById('panel-interest');
+  panelInterest.style.display = 'block';
+  renderInterestPanel(id);
+
+  // Transition
   document.body.classList.add('detail-open');
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  const dp = document.getElementById('detail-page');
+  dp.style.opacity = '0';
+  dp.style.transform = 'translateY(28px)';
+  dp.style.display = 'block';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    dp.style.transition = 'opacity .5s ease, transform .5s ease';
+    dp.style.opacity = '1';
+    dp.style.transform = 'translateY(0)';
+  }));
+  document.title = `Workshop ${w.number} — Kai Genomics`;
 }
 
 function closeDetail() {
   document.body.classList.remove('detail-open');
+  document.getElementById('detail-page').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  document.title = 'Kai Genomics';
 }
 
-/* ════ GRANULAR INTEREST TRACKING ════ */
-function notifyMe(workshopId, workshopName) {
-  const btn = document.getElementById(`notify-${workshopId}`);
-  const countEl = document.getElementById(`count-${workshopId}`);
-  
-  const key = `notify_${workshopId}`;
-  const countKey = `count_${workshopId}`;
-  
-  if (localStorage.getItem(key)) {
-    alert('You\'re already signed up for notifications!');
-    return;
-  }
-  
-  // Store notification preference
-  localStorage.setItem(key, 'true');
-  
-  // Increment interest count
-  let count = parseInt(localStorage.getItem(countKey) || '0', 10);
-  count++;
-  localStorage.setItem(countKey, count.toString());
-  
-  // Update UI
-  btn.textContent = '✓ Notification Set';
-  btn.classList.add('notified');
-  countEl.textContent = `${count} people interested`;
-  
-  // Track event
-  trackEvent('Interest', 'notify_workshop', workshopName);
-  
-  alert(`Great! We'll notify you when "${workshopName}" goes live.`);
-}
+/* ════ INTEREST VOTE LOGIC ════ */
+const VOTE_KEY   = id => `kai_vote_${id}`;
+const COUNT_KEY  = id => `kai_yes_${id}`;
+const GOAL = 10;
+let _currentVoteId = null;
 
-// Initialize interest counts on page load
-document.addEventListener('DOMContentLoaded', () => {
-  ['w1', 'w2', 'w3', 'w4', 'w5', 'w6'].forEach(id => {
-    const countKey = `count_${id}`;
-    const notifyKey = `notify_${id}`;
-    const count = parseInt(localStorage.getItem(countKey) || '0', 10);
-    const countEl = document.getElementById(`count-${id}`);
-    const btn = document.getElementById(`notify-${id}`);
-    
-    if (count > 0) {
-      countEl.textContent = `${count} people interested`;
-    }
-    
-    if (localStorage.getItem(notifyKey)) {
-      btn.textContent = '✓ Notification Set';
-      btn.classList.add('notified');
-    }
-  });
-});
-
-/* ════ LEAD MAGNET FORM ════ */
-document.getElementById('leadMagnetForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  
-  const formData = {
-    email: document.getElementById('leadEmail').value,
-    role: document.getElementById('leadRole').value,
-    goal: document.getElementById('leadGoal').value,
-    background: document.getElementById('leadBackground').value,
-    interests: []
-  };
-  
-  // Collect checked interests
-  ['marine', 'clinical', 'drug', 'metagenomics', 'structural'].forEach(interest => {
-    if (document.getElementById(`interest-${interest}`).checked) {
-      formData.interests.push(interest);
-    }
-  });
-  
-  // Store in localStorage (in production, send to backend)
-  localStorage.setItem('lead_magnet_data', JSON.stringify(formData));
-  
-  // Hide form, show success
-  document.getElementById('leadMagnetForm').style.display = 'none';
-  document.getElementById('leadMagnetSuccess').classList.add('visible');
-  
-  // Track conversion
-  trackEvent('Lead Magnet', 'download', 'Cheat Sheet');
-  
-  console.log('Lead Magnet Data:', formData);
-});
-
-/* ════ QUIZ ════ */
-let quizScore = 0;
-let currentQuestion = 1;
-
-function startQuiz() {
-  document.getElementById('quizStart').style.display = 'none';
-  document.getElementById('quizQuestions').style.display = 'block';
-  quizScore = 0;
-  currentQuestion = 1;
-}
-
-function selectAnswer(questionNum, points) {
-  quizScore += points;
-  
-  // Hide current question
-  document.querySelector(`.quiz-question[data-question="${questionNum}"]`).classList.remove('active');
-  
-  if (questionNum < 5) {
-    // Show next question
-    currentQuestion = questionNum + 1;
-    document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
-  } else {
-    // Show result
-    showQuizResult();
-  }
-}
-
-function showQuizResult() {
-  document.getElementById('quizQuestions').style.display = 'none';
-  const resultDiv = document.getElementById('quizResult');
-  resultDiv.classList.add('visible');
-  
-  let level, desc, rec;
-  
-  if (quizScore <= 3) {
-    level = "Beginner";
-    desc = "You're just starting your bioinformatics journey. That's great! Everyone starts somewhere.";
-    rec = "Recommended workshops: Start with Module 01 (Command Line Basics) and Module 02 (Sequence Analysis).";
-  } else if (quizScore <= 7) {
-    level = "Intermediate";
-    desc = "You have foundational skills and are ready to tackle more complex analyses.";
-    rec = "Recommended workshops: Module 03 (RNA-Seq Analysis) would be perfect for you. Consider Module 01 if you want to strengthen command line skills.";
-  } else if (quizScore <= 11) {
-    level = "Advanced";
-    desc = "You're proficient with bioinformatics tools and ready for specialized training.";
-    rec = "Recommended workshops: Jump into Module 04 (Metagenomics), Module 05 (Pan-genomics), or Module 06 (Functional Metagenomics).";
-  } else {
-    level = "Expert";
-    desc = "You're highly experienced! Consider these workshops for specialized techniques or to fill knowledge gaps.";
-    rec = "Recommended workshops: Module 06 (Functional Metagenomics) for cutting-edge gene mining, or specific modules to round out your expertise.";
-  }
-  
-  document.getElementById('resultLevel').textContent = level;
-  document.getElementById('resultDesc').textContent = desc;
-  document.getElementById('resultRec').textContent = rec;
-  
-  // Track quiz completion
-  trackEvent('Quiz', 'complete', `Score: ${quizScore} - Level: ${level}`);
-}
-
-function resetQuiz() {
-  document.getElementById('quizResult').classList.remove('visible');
-  document.getElementById('quizStart').style.display = 'block';
-  document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
-  document.querySelector('.quiz-question[data-question="1"]').classList.add('active');
-}
-
-/* ════ FUTURE TOPICS POLL ════ */
-const pollTopics = {
-  'plm': 'Protein Language Models',
-  'amp': 'AMP Mining',
-  'metabolic': 'Metabolic Reconstruction',
-  'variant': 'Variant Calling',
-  'ml': 'ML for Genomics'
-};
-
-function voteTopic(topicId) {
-  const voteKey = 'poll_vote';
-  const existingVote = localStorage.getItem(voteKey);
-  
-  if (existingVote) {
-    alert('You\'ve already voted! You can only vote once.');
-    return;
-  }
-  
-  // Record vote
-  localStorage.setItem(voteKey, topicId);
-  
-  // Update vote count
-  const countKey = `poll_count_${topicId}`;
-  let count = parseInt(localStorage.getItem(countKey) || '0', 10);
-  count++;
-  localStorage.setItem(countKey, count.toString());
-  
-  // Update UI
-  document.getElementById(`topic-${topicId}`).classList.add('selected');
-  showPollResults();
-}
-
-function showPollResults() {
-  const resultsDiv = document.getElementById('pollResults');
-  resultsDiv.classList.add('visible');
-  
-  const barsContainer = document.getElementById('pollBars');
-  barsContainer.innerHTML = '';
-  
-  // Calculate total votes
-  let totalVotes = 0;
-  Object.keys(pollTopics).forEach(id => {
-    totalVotes += parseInt(localStorage.getItem(`poll_count_${id}`) || '0', 10);
-  });
-  
-  // Create bars
-  Object.keys(pollTopics).forEach(id => {
-    const count = parseInt(localStorage.getItem(`poll_count_${id}`) || '0', 10);
-    const percentage = totalVotes > 0 ? (count / totalVotes) * 100 : 0;
-    
-    const container = document.createElement('div');
-    container.className = 'poll-bar-container';
-    
-    const label = document.createElement('div');
-    label.className = 'poll-bar-label';
-    label.innerHTML = `<span>${pollTopics[id]}</span><span>${count} votes (${percentage.toFixed(1)}%)</span>`;
-    
-    const bg = document.createElement('div');
-    bg.className = 'poll-bar-bg';
-    
-    const fill = document.createElement('div');
-    fill.className = 'poll-bar-fill';
-    fill.style.width = percentage + '%';
-    
-    bg.appendChild(fill);
-    container.appendChild(label);
-    container.appendChild(bg);
-    barsContainer.appendChild(container);
-  });
-}
-
-// Initialize poll results on page load
-document.addEventListener('DOMContentLoaded', () => {
-  const existingVote = localStorage.getItem('poll_vote');
-  if (existingVote) {
-    document.getElementById(`topic-${existingVote}`).classList.add('selected');
-    showPollResults();
-  }
-});
-
-/* ════ NEWSLETTER FORM ════ */
-document.getElementById('newsletterForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  
-  const formData = {
-    email: document.getElementById('newsletterEmail').value,
-    interest: document.getElementById('newsletterInterest').value,
-    timestamp: new Date().toISOString()
-  };
-  
-  // Store in localStorage (in production, send to backend)
-  localStorage.setItem('newsletter_subscription', JSON.stringify(formData));
-  
-  // Hide form, show success
-  document.getElementById('newsletterForm').style.display = 'none';
-  document.getElementById('newsletterSuccess').classList.add('visible');
-  
-  // Track conversion
-  trackEvent('Newsletter', 'subscribe', formData.interest);
-  
-  console.log('Newsletter Subscription:', formData);
-});
-
-/* ════ GENERAL INTEREST VOTE ════ */
-function checkExistingVote() {
-  const existingVote = localStorage.getItem(VOTE_KEY(_currentVoteId));
+function renderInterestPanel(workshopId) {
+  _currentVoteId = workshopId;
   const question = document.getElementById('interest-question');
-  const result = document.getElementById('interest-result');
-  
+  const result   = document.getElementById('interest-result');
+
+  let existingVote = null;
+  let yesCount = 0;
+  try {
+    existingVote = localStorage.getItem(VOTE_KEY(workshopId));
+    yesCount     = parseInt(localStorage.getItem(COUNT_KEY(workshopId)) || '0', 10);
+  } catch(e) {}
+
   if (existingVote) {
-    let yesCount = 0;
-    try {
-      yesCount = parseInt(localStorage.getItem(COUNT_KEY(_currentVoteId)) || '0', 10);
-    } catch(e) {}
     question.style.display = 'none';
     showResult(existingVote, yesCount, false);
   } else {
@@ -1379,7 +1006,7 @@ function resetVote() {
 function showResult(vote, yesCount, animate) {
   const result  = document.getElementById('interest-result');
   const bar     = document.getElementById('interest-bar');
-  const feedMsg = document.getElementById('interest-feedback');
+  const feedMsg = document.getElementById('interest-feedback-msg');
   const countEl = document.getElementById('interest-count-num');
   const goalMsg = document.getElementById('interest-goal-msg');
 
@@ -1424,7 +1051,7 @@ if (window.matchMedia('(pointer: fine)').matches) {
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
   (function loop(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
-  document.querySelectorAll('a,button,.workshop-card,.pub-item,.tool-chip,.satellite-card:not(.satellite-tbd),.poll-option,.quiz-option').forEach(el=>{
+  document.querySelectorAll('a,button,.workshop-card,.pub-item,.tool-chip,.satellite-card:not(.satellite-tbd)').forEach(el=>{
     el.addEventListener('mouseenter',()=>{ cursor.style.width='14px'; cursor.style.height='14px'; ring.style.width='50px'; ring.style.height='50px'; });
     el.addEventListener('mouseleave',()=>{ cursor.style.width='8px'; cursor.style.height='8px'; ring.style.width='32px'; ring.style.height='32px'; });
   });
@@ -1457,7 +1084,6 @@ const obs=new IntersectionObserver(entries=>{
 
 initThemeToggle();
 initVisitorCounter();
-checkExistingVote();
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 </script>
