@@ -666,12 +666,19 @@
         </div>
       </div>
 
-      <div class="form-placeholder">
+      <div class="form-placeholder" id="form-placeholder">
         <div class="form-placeholder-icon">📝</div>
         <div class="form-placeholder-text">
           <strong>Registration Form</strong>
           Full workshop registration will open once sufficient interest is confirmed.
         </div>
+      </div>
+
+      <div id="form-google" style="display:none;">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLScJbt1O9hQzKwYAUIhMcWYZK0bhxsNG4w20OggnDPdTQWisgg/viewform?embedded=true"
+          width="100%" height="680" frameborder="0" marginheight="0" marginwidth="0"
+          style="border:none;display:block;">Loading…</iframe>
       </div>
 
       <p class="register-note">All workshops include course materials, datasets, and post-workshop support. Payment details provided upon registration.</p>
@@ -927,6 +934,17 @@ function openDetail(id) {
   const panelInterest = document.getElementById('panel-interest');
   panelInterest.style.display = 'block';
   renderInterestPanel(id);
+
+  // Show Google Form for live bacterial_wgs workshop; placeholder for others
+  const formGoogle = document.getElementById('form-google');
+  const formPlaceholder = document.getElementById('form-placeholder');
+  if (id === 'bacterial_wgs') {
+    formPlaceholder.style.display = 'none';
+    formGoogle.style.display = 'block';
+  } else {
+    formPlaceholder.style.display = 'block';
+    formGoogle.style.display = 'none';
+  }
 
   // Transition
   document.body.classList.add('detail-open');
