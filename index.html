@@ -244,6 +244,25 @@
   .interest-reset { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); background:none; border:none; cursor:pointer; transition:color .3s; padding:0; text-decoration:underline; text-decoration-color:var(--border); }
   .interest-reset:hover { color:var(--accent); text-decoration-color:var(--accent); }
 
+  /* ════ METAGENOMICS LENS ════ */
+  .lens-toggle-wrap { position:fixed; top:80px; right:40px; z-index:150; display:none; }
+  body.detail-open.show-lens-toggle .lens-toggle-wrap { display:block; }
+  .lens-toggle { display:flex; align-items:center; gap:10px; background:rgba(12,12,16,.85); backdrop-filter:blur(10px); border:1px solid var(--border); border-radius:999px; padding:10px 16px; color:var(--muted); font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:all .3s ease; }
+  html.theme-light .lens-toggle { background:rgba(255,255,255,.85); }
+  .lens-toggle:hover { border-color:var(--accent); color:var(--text); transform:translateY(-2px); }
+  .lens-toggle-icon { width:18px; height:18px; flex:none; transition:transform .3s ease; }
+  .lens-toggle.active { border-color:var(--accent); background:rgba(184,245,200,.08); color:var(--accent); }
+  .lens-toggle.active .lens-toggle-icon { transform:scale(1.15); }
+  
+  .microbe-icon { position:fixed; width:24px; height:24px; opacity:0; pointer-events:none; z-index:5; transition:opacity .6s ease, transform .6s ease; }
+  .microbe-icon.visible { opacity:.3; }
+  .microbe-icon.fade-out { opacity:0; transform:scale(.7); }
+  
+  .lens-canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9997; display:none; }
+  body.lens-active .lens-canvas { display:block; }
+  body.lens-active .cursor { display:none !important; }
+  body.lens-active .cursor-ring { display:none !important; }
+
   @keyframes scrollMove { 0%{transform:translateY(0);opacity:.9} 50%{transform:translateY(10px);opacity:1} 100%{transform:translateY(0);opacity:.9} }
   body, nav, section, footer, .workshop-card, .pub-item, .detail-hero, .detail-content, .detail-register, .btn-primary, .btn-ghost, .theme-toggle, .contact-link, .tag, .tool-chip { transition-property:background-color,color,border-color,box-shadow,transform; transition-duration:.35s; transition-timing-function:ease; }
   @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
@@ -257,6 +276,7 @@
     .nav-links{display:none}
     .theme-toggle{padding:6px 10px;gap:6px}
     .theme-toggle-label{display:none}
+    .lens-toggle-wrap{top:70px;right:24px}
     #hero{padding:0 24px 60px}
     section{padding:80px 24px}
     .hero-title{font-size:clamp(36px,8vw,60px)}
@@ -303,6 +323,20 @@
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Metagenomics Lens Toggle -->
+<div class="lens-toggle-wrap">
+  <button class="lens-toggle" id="lensToggle" onclick="toggleLens()">
+    <svg class="lens-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <span>Metagenomics Lens</span>
+  </button>
+</div>
+
+<!-- Lens Canvas for magnifying effect -->
+<canvas class="lens-canvas" id="lensCanvas"></canvas>
 
 <nav>
   <a href="#" class="nav-logo" id="navLogo">KAI<span>.</span>GENOMICS</a>
@@ -583,6 +617,7 @@
 <script>
 const THEME_KEY = 'kai-theme';
 const VISITOR_KEY = 'kai-visitor-count';
+const LENS_KEY = 'kai-lens-active';
 
 function applyTheme(theme) {
   const isLight = theme === 'light';
@@ -734,7 +769,10 @@ const workshops = {
   }
 };
 
+let _currentWorkshopId = null;
+
 function openDetail(id) {
+  _currentWorkshopId = id;
   const w = workshops[id];
   if (!w) return;
   document.getElementById('d-eyebrow').textContent = `Workshop ${w.number}  ·  ${w.duration}  ·  ${w.level}`;
@@ -759,6 +797,21 @@ function openDetail(id) {
   if (id === 'bacterial_wgs') { formPlaceholder.style.display = 'none'; formGoogle.style.display = 'block'; }
   else { formPlaceholder.style.display = 'block'; formGoogle.style.display = 'none'; }
   document.body.classList.add('detail-open');
+  
+  // Show lens toggle for amplicon metagenomics
+  if (id === 'amplicon') {
+    document.body.classList.add('show-lens-toggle');
+    // Restore lens state if it was active
+    try {
+      if (localStorage.getItem(LENS_KEY) === 'true') {
+        activateLens();
+      }
+    } catch(e) {}
+  } else {
+    document.body.classList.remove('show-lens-toggle');
+    deactivateLens();
+  }
+  
   window.scrollTo({ top: 0, behavior: 'instant' });
   const dp = document.getElementById('detail-page');
   dp.style.opacity = '0'; dp.style.transform = 'translateY(28px)'; dp.style.display = 'block';
@@ -771,7 +824,9 @@ function openDetail(id) {
 
 function closeDetail() {
   document.body.classList.remove('detail-open');
+  document.body.classList.remove('show-lens-toggle');
   document.getElementById('detail-page').style.display = 'none';
+  deactivateLens();
   window.scrollTo({ top: 0, behavior: 'instant' });
   document.title = 'Kai Genomics';
 }
@@ -831,6 +886,238 @@ document.getElementById('navLogo').addEventListener('click', e => {
   if (document.body.classList.contains('detail-open')) { e.preventDefault(); closeDetail(); }
 });
 
+/* ════ METAGENOMICS LENS FUNCTIONALITY ════ */
+let lensActive = false;
+let microbeIcons = [];
+const MICROBE_SVG_TEMPLATES = [
+  // Coccus (circle)
+  `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" fill="rgba(184,245,200,0.1)"/>
+    <circle cx="12" cy="12" r="5" fill="rgba(184,245,200,0.15)"/>
+  </svg>`,
+  // Bacillus (rod)
+  `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="6" y="8" width="12" height="8" rx="4" stroke="currentColor" stroke-width="1.5" fill="rgba(184,245,200,0.1)"/>
+    <line x1="12" y1="8" x2="12" y2="16" stroke="rgba(184,245,200,0.3)" stroke-width="1"/>
+  </svg>`,
+  // Spirillum (spiral)
+  `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 12 Q8 6, 12 12 T 20 12" stroke="currentColor" stroke-width="1.5" fill="none"/>
+    <circle cx="4" cy="12" r="2" fill="rgba(184,245,200,0.2)"/>
+    <circle cx="20" cy="12" r="2" fill="rgba(184,245,200,0.2)"/>
+  </svg>`,
+  // Diplococcus (pair)
+  `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="9" cy="12" r="6" stroke="currentColor" stroke-width="1.5" fill="rgba(184,245,200,0.1)"/>
+    <circle cx="15" cy="12" r="6" stroke="currentColor" stroke-width="1.5" fill="rgba(184,245,200,0.1)"/>
+  </svg>`
+];
+
+function toggleLens() {
+  lensActive = !lensActive;
+  try { localStorage.setItem(LENS_KEY, lensActive.toString()); } catch(e) {}
+  
+  if (lensActive) {
+    activateLens();
+  } else {
+    deactivateLens();
+  }
+}
+
+function activateLens() {
+  lensActive = true;
+  document.body.classList.add('lens-active');
+  document.getElementById('lensToggle').classList.add('active');
+  
+  // Hide microbe icons
+  microbeIcons.forEach(icon => icon.classList.add('fade-out'));
+  setTimeout(() => microbeIcons.forEach(icon => icon.remove()), 600);
+  microbeIcons = [];
+  
+  // Start lens rendering
+  initLensCanvas();
+}
+
+function deactivateLens() {
+  lensActive = false;
+  document.body.classList.remove('lens-active');
+  document.getElementById('lensToggle').classList.remove('active');
+  
+  // Show microbe icons
+  spawnMicrobeIcons();
+}
+
+function spawnMicrobeIcons() {
+  // Clear existing icons
+  microbeIcons.forEach(icon => icon.remove());
+  microbeIcons = [];
+  
+  // Only spawn if on amplicon page and lens is off
+  if (_currentWorkshopId !== 'amplicon' || lensActive) return;
+  
+  // Create 8-12 microbe icons scattered around
+  const count = 8 + Math.floor(Math.random() * 5);
+  for (let i = 0; i < count; i++) {
+    const icon = document.createElement('div');
+    icon.className = 'microbe-icon';
+    icon.innerHTML = MICROBE_SVG_TEMPLATES[Math.floor(Math.random() * MICROBE_SVG_TEMPLATES.length)];
+    
+    // Random position (avoid center and edges)
+    icon.style.left = (15 + Math.random() * 70) + '%';
+    icon.style.top = (20 + Math.random() * 60) + '%';
+    icon.style.color = `hsl(${140 + Math.random() * 40}, 70%, ${50 + Math.random() * 20}%)`;
+    
+    document.body.appendChild(icon);
+    microbeIcons.push(icon);
+    
+    // Fade in
+    setTimeout(() => icon.classList.add('visible'), i * 100);
+  }
+}
+
+/* ════ LENS CANVAS RENDERING ════ */
+let lensCanvas, lensCtx;
+let lensX = 0, lensY = 0;
+const LENS_RADIUS = 120;
+const BACTERIA_TYPES = [
+  { name: 'Bacillus', color: '#7de8b0', shape: 'rod' },
+  { name: 'Coccus', color: '#b8f5c8', shape: 'circle' },
+  { name: 'Spirillum', color: '#5dd9a5', shape: 'spiral' },
+  { name: 'Vibrio', color: '#9cf3c4', shape: 'curved' },
+  { name: 'Streptococcus', color: '#a2edb5', shape: 'chain' }
+];
+
+let bacteriaField = [];
+
+function initLensCanvas() {
+  lensCanvas = document.getElementById('lensCanvas');
+  lensCtx = lensCanvas.getContext('2d');
+  
+  lensCanvas.width = window.innerWidth;
+  lensCanvas.height = window.innerHeight;
+  
+  // Generate bacteria field (invisible until lens reveals them)
+  bacteriaField = [];
+  const density = 0.5; // bacteria per 100px²
+  const totalArea = window.innerWidth * window.innerHeight;
+  const bacteriaCount = Math.floor((totalArea / 10000) * density);
+  
+  for (let i = 0; i < bacteriaCount; i++) {
+    bacteriaField.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      type: BACTERIA_TYPES[Math.floor(Math.random() * BACTERIA_TYPES.length)],
+      size: 3 + Math.random() * 5,
+      angle: Math.random() * Math.PI * 2,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+  
+  // Mouse tracking
+  document.addEventListener('mousemove', handleLensMove);
+  window.addEventListener('resize', resizeLensCanvas);
+  
+  renderLens();
+}
+
+function handleLensMove(e) {
+  if (!lensActive) return;
+  lensX = e.clientX;
+  lensY = e.clientY;
+}
+
+function resizeLensCanvas() {
+  if (!lensCanvas) return;
+  lensCanvas.width = window.innerWidth;
+  lensCanvas.height = window.innerHeight;
+}
+
+function renderLens() {
+  if (!lensActive || !lensCtx) return;
+  
+  lensCtx.clearRect(0, 0, lensCanvas.width, lensCanvas.height);
+  
+  // Draw lens circle border
+  lensCtx.save();
+  lensCtx.beginPath();
+  lensCtx.arc(lensX, lensY, LENS_RADIUS, 0, Math.PI * 2);
+  lensCtx.strokeStyle = 'rgba(184, 245, 200, 0.6)';
+  lensCtx.lineWidth = 2;
+  lensCtx.stroke();
+  
+  // Clip to lens area
+  lensCtx.clip();
+  
+  // Draw bacteria inside lens
+  bacteriaField.forEach(bacteria => {
+    const dx = bacteria.x - lensX;
+    const dy = bacteria.y - lensY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    
+    if (dist < LENS_RADIUS) {
+      lensCtx.save();
+      lensCtx.translate(bacteria.x, bacteria.y);
+      lensCtx.rotate(bacteria.angle);
+      
+      lensCtx.fillStyle = bacteria.type.color;
+      lensCtx.strokeStyle = bacteria.type.color;
+      lensCtx.lineWidth = 1;
+      
+      switch (bacteria.type.shape) {
+        case 'rod':
+          lensCtx.fillRect(-bacteria.size * 1.5, -bacteria.size / 2, bacteria.size * 3, bacteria.size);
+          break;
+        case 'circle':
+          lensCtx.beginPath();
+          lensCtx.arc(0, 0, bacteria.size, 0, Math.PI * 2);
+          lensCtx.fill();
+          break;
+        case 'spiral':
+          lensCtx.beginPath();
+          for (let t = 0; t < Math.PI * 4; t += 0.2) {
+            const r = bacteria.size * (1 + t / (Math.PI * 4));
+            const x = r * Math.cos(t);
+            const y = r * Math.sin(t);
+            if (t === 0) lensCtx.moveTo(x, y);
+            else lensCtx.lineTo(x, y);
+          }
+          lensCtx.stroke();
+          break;
+        case 'curved':
+          lensCtx.beginPath();
+          lensCtx.arc(0, 0, bacteria.size * 1.5, 0, Math.PI);
+          lensCtx.stroke();
+          break;
+        case 'chain':
+          for (let i = 0; i < 3; i++) {
+            lensCtx.beginPath();
+            lensCtx.arc(i * bacteria.size * 1.5, 0, bacteria.size * 0.7, 0, Math.PI * 2);
+            lensCtx.fill();
+          }
+          break;
+      }
+      
+      lensCtx.restore();
+    }
+  });
+  
+  // Draw lens count
+  const visibleCount = bacteriaField.filter(b => {
+    const dx = b.x - lensX;
+    const dy = b.y - lensY;
+    return Math.sqrt(dx * dx + dy * dy) < LENS_RADIUS;
+  }).length;
+  
+  lensCtx.fillStyle = 'rgba(184, 245, 200, 0.9)';
+  lensCtx.font = '11px "DM Mono", monospace';
+  lensCtx.textAlign = 'center';
+  lensCtx.fillText(`${visibleCount} bacteria detected`, lensX, lensY - LENS_RADIUS - 10);
+  
+  lensCtx.restore();
+  
+  requestAnimationFrame(renderLens);
+}
+
 /* ════ CURSOR ════ */
 if (window.matchMedia('(pointer: fine)').matches) {
   const cursor = document.getElementById('cursor');
@@ -844,13 +1131,7 @@ if (window.matchMedia('(pointer: fine)').matches) {
   });
 }
 
-/* ════ DNA CANVAS — FIXED ════
-   Two root causes fixed:
-   1. Canvas had no CSS width/height so offsetWidth/offsetHeight returned ~0.
-      Fix: CSS sets width:100%;height:100% so the element fills the hero.
-   2. Resize now reads the hero element's true dimensions after layout.
-   3. Strands spread evenly across the full width (was clustered in 15–85%).
-*/
+/* ════ DNA CANVAS ════ */
 const canvas = document.getElementById('dnaCanvas');
 const ctx    = canvas.getContext('2d');
 let W = 0, H = 0, t = 0;
@@ -861,19 +1142,17 @@ function resizeCanvas() {
   H = canvas.height = hero.offsetHeight;
 }
 
-// Run after first paint so the hero has its proper height
 window.addEventListener('load',   resizeCanvas);
 window.addEventListener('resize', resizeCanvas);
-// Also run immediately via rAF as a fallback
 requestAnimationFrame(resizeCanvas);
 
 (function drawDNA() {
   ctx.clearRect(0, 0, W, H);
 
-  const strandCount = 5;                          // spread across full width
+  const strandCount = 5;
   for (let s = 0; s < strandCount; s++) {
-    const xB   = W * ((s + 0.5) / strandCount);  // evenly spaced 10%, 30%, 50%, 70%, 90%
-    const amp  = 55 + (s % 3) * 20;              // amplitude varies 55 – 95 px
+    const xB   = W * ((s + 0.5) / strandCount);
+    const amp  = 55 + (s % 3) * 20;
     const freq = 0.007 + (s % 2) * 0.001;
     const spd  = 0.35 + s * 0.11;
     const ph   = (s * Math.PI * 2) / strandCount;
