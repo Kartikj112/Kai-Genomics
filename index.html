@@ -30,7 +30,6 @@
   }
   body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; overflow-x: hidden; cursor: none; transition: background-color .35s ease, color .35s ease; }
 
-  /* Cursor - hide on mobile */
   .cursor, .cursor-ring { display: none; }
   @media (pointer: fine) {
     .cursor { width:8px;height:8px;background:var(--accent);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference;display:block; }
@@ -38,7 +37,6 @@
     body { cursor: none; }
   }
 
-  /* NAV */
   nav { position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:20px 40px; transition:background-color .35s ease,color .35s ease,border-color .35s ease; }
   nav::before { content:'';position:absolute;inset:0;background:linear-gradient(to bottom,var(--nav-fade) 0%,transparent 100%);pointer-events:none; }
   .nav-logo { font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--text);text-decoration:none;position:relative;z-index:1;cursor:pointer; }
@@ -55,7 +53,6 @@
   .nav-back { display:none;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;position:relative;z-index:1;transition:color .3s;align-items:center;gap:8px; }
   .nav-back:hover { color:var(--accent); }
 
-  /* Page system */
   #main-page { transition:opacity .5s ease,background-color .35s ease,color .35s ease; }
   #detail-page { display:none;opacity:0;transition:opacity .5s ease,transform .5s ease,background-color .35s ease,color .35s ease;min-height:100vh; }
   body.detail-open #main-page { display:none; }
@@ -63,10 +60,11 @@
   body.detail-open .nav-main-links { display:none; }
   body.detail-open .nav-back { display:flex; }
 
-  /* HERO */
+  /* HERO — canvas sized to 100%×100% of the positioned parent */
   #hero { min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 80px;position:relative;overflow:hidden; }
-  .dna-canvas { position:absolute;inset:0;z-index:0; }
-  .hero-eyebrow { font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp 1s .3s forwards; }
+  .dna-canvas { position:absolute;top:0;left:0;width:100%;height:100%;z-index:0; }
+
+  .hero-eyebrow { font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp 1s .3s forwards;position:relative;z-index:1; }
   .hero-title { font-family:var(--display);font-size:clamp(44px,9vw,120px);font-weight:300;line-height:.92;letter-spacing:-.02em;max-width:900px;opacity:0;animation:fadeUp 1.1s .5s forwards;position:relative;z-index:1; }
   .hero-title em { font-style:italic;color:var(--accent); }
   .hero-sub { font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.05em;margin-top:32px;max-width:460px;line-height:1.8;opacity:0;animation:fadeUp 1.1s .8s forwards;position:relative;z-index:1; }
@@ -75,18 +73,15 @@
   .scroll-icon { width:20px;height:32px;border:1px solid var(--muted);border-radius:999px;position:relative;display:inline-flex;align-items:flex-start;justify-content:center;padding-top:5px;overflow:hidden; }
   .scroll-icon::after { content:'';width:4px;height:8px;border-radius:999px;background:var(--accent);animation:scrollMove 1.8s ease-in-out infinite; }
 
-  /* Buttons */
   .btn-primary { background:var(--accent);color:#050507;font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;text-decoration:none;transition:background .3s,transform .2s,color .35s ease;display:inline-block; }
   .btn-primary:hover { background:var(--accent2);transform:translateY(-2px); }
   .btn-ghost { font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);transition:color .3s,border-color .3s;display:inline-block;cursor:pointer; }
   .btn-ghost:hover { color:var(--text);border-color:rgba(255,255,255,.3); }
 
-  /* Sections */
   section { padding:100px 40px;position:relative; }
   .section-label { font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:48px;display:flex;align-items:center;gap:14px; }
   .section-label::before { content:'';width:20px;height:1px;background:var(--accent); }
 
-  /* WORKSHOPS */
   #workshops { background:var(--surface); }
   .workshops-headline { font-family:var(--display);font-size:clamp(36px,6vw,72px);font-weight:300;line-height:1.05;letter-spacing:-.02em;max-width:700px;margin-bottom:64px; }
   .workshops-headline em { font-style:italic;color:var(--accent); }
@@ -105,7 +100,6 @@
   .tag { font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);padding:4px 10px;color:var(--muted);transition:border-color .3s,color .3s; }
   .workshop-card:hover .tag { border-color:rgba(184,245,200,.25);color:var(--accent); }
 
-  /* ABOUT */
   #about { display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start; }
   .instructor-photo-wrap { margin-bottom:40px;position:relative;display:inline-block; }
   .instructor-photo { width:100px;height:100px;border-radius:50%;object-fit:cover;display:block;border:1px solid var(--border);transition:border-color .35s ease; }
@@ -121,7 +115,6 @@
   .stat-value { font-family:var(--display);font-size:32px;font-weight:300;letter-spacing:-.02em;color:var(--accent); }
   .stat-unit { font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:8px; }
 
-  /* PUBLICATIONS */
   #publications { background:var(--surface); }
   .pub-headline { font-family:var(--display);font-size:clamp(32px,5vw,64px);font-weight:300;letter-spacing:-.02em;line-height:1.05;margin-bottom:56px;max-width:600px; }
   .pub-headline em { font-style:italic;color:var(--accent); }
@@ -133,7 +126,6 @@
   .pub-arrow { font-family:var(--mono);font-size:16px;color:var(--muted);transition:color .3s,transform .3s;display:inline-block; }
   .pub-item:hover .pub-arrow { color:var(--accent);transform:translate(4px,-4px); }
 
-  /* SATELLITE INSTRUCTORS */
   .satellite-label { font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin:80px 0 40px;display:flex;align-items:center;gap:14px; }
   .satellite-label::before { content:'';width:20px;height:1px;background:var(--accent); }
   .satellite-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px; }
@@ -150,7 +142,6 @@
   .satellite-tbd { opacity:.45;cursor:default; }
   .satellite-tbd:hover { background:var(--bg);border-color:var(--border);box-shadow:none; }
 
-  /* Satellite Instructor Dropdown */
   .satellite-dropdown { max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.23,1,.32,1),opacity .3s,margin-top .4s;opacity:0;margin-top:0; }
   .satellite-card.open .satellite-dropdown { max-height:600px;opacity:1;margin-top:24px; }
   .satellite-intro { font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--muted);margin-bottom:20px;padding-top:16px;border-top:1px solid var(--border); }
@@ -161,7 +152,6 @@
   .satellite-link:hover { color:var(--accent); }
   .satellite-link svg { width:14px;height:14px;flex:none; }
 
-  /* CONTACT */
   #contact { text-align:center;padding:120px 40px;position:relative;overflow:hidden; }
   .contact-links { margin-top:36px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;position:relative;z-index:1; }
   .contact-link { display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--text);font-family:var(--mono);font-size:11px;letter-spacing:.08em;transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .2s ease;cursor:pointer; }
@@ -173,20 +163,16 @@
   .contact-sub { font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.05em;line-height:1.8;margin-bottom:48px;position:relative;z-index:1; }
   .contact-cta { display:inline-flex;flex-wrap:wrap;gap:16px;position:relative;z-index:1; }
 
-  /* FOOTER */
   footer { border-top:1px solid var(--border);padding:32px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px; }
   .footer-logo { font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.15em;text-transform:uppercase; }
   .footer-logo span { color:var(--accent); }
   .footer-copy,.footer-location { font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em; }
 
-  /* Visitor Counter */
   .visitor-counter { display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted); }
   .visitor-count { color:var(--accent);font-weight:500; }
   .counter-icon { width:16px;height:16px;color:var(--accent);opacity:.6; }
 
-  /* ═══ DETAIL PAGE ═══ */
   #detail-page { background:var(--bg); }
-
   .detail-hero { min-height:50vh;display:flex;flex-direction:column;justify-content:flex-end;padding:140px 40px 64px;position:relative;overflow:hidden;border-bottom:1px solid var(--border); }
   .detail-hero-bg { position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 70% 40%,rgba(184,245,200,.04) 0%,transparent 60%); }
   .detail-eyebrow { font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;position:relative;z-index:1; }
@@ -197,13 +183,11 @@
   .meta-val { font-family:var(--display);font-size:22px;font-weight:400;letter-spacing:-.01em; }
 
   .detail-body { display:grid;grid-template-columns:1fr 380px;gap:1px;background:var(--border); }
-
   .detail-content { padding:64px 40px;background:var(--bg); }
   .detail-section-title { font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;align-items:center;gap:14px; }
   .detail-section-title::before { content:'';width:20px;height:1px;background:var(--accent); }
   .detail-overview { font-family:var(--mono);font-size:13px;line-height:2;color:var(--muted);margin-bottom:56px; }
 
-  /* Prerequisites Section */
   .prerequisites-section { margin-bottom:56px; }
   .prereq-list { display:flex;flex-direction:column;gap:1px;background:var(--border);margin-top:20px; }
   .prereq-item { background:var(--bg);padding:20px 24px;display:flex;align-items:start;gap:16px; }
@@ -221,7 +205,6 @@
   .tool-chip { font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);padding:7px 14px;color:var(--muted);transition:border-color .3s,color .3s; }
   .tool-chip:hover { border-color:rgba(184,245,200,.3);color:var(--accent); }
 
-  /* REGISTER SIDEBAR */
   .detail-register { background:var(--surface);padding:48px 36px;position:sticky;top:88px;align-self:start; }
   .register-label { font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;align-items:center;gap:12px; }
   .register-label::before { content:'';width:16px;height:1px;background:var(--accent); }
@@ -233,93 +216,42 @@
   .form-placeholder-text { font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.9; }
   .form-placeholder-text strong { display:block;color:var(--accent);font-size:12px;letter-spacing:.1em;margin-bottom:10px; }
   .form-placeholder-text code { color:var(--accent);background:rgba(184,245,200,.08);padding:2px 6px; }
-
   .register-note { font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.8;letter-spacing:.04em; }
 
-  /* ── Interest Vote Widget ── */
   .interest-panel { margin-bottom:20px; }
-  .interest-prompt {
-    font-family:var(--display); font-size:26px; font-weight:300;
-    line-height:1.15; letter-spacing:-.01em; margin-bottom:8px;
-  }
-  .interest-subprompt {
-    font-family:var(--mono); font-size:10px; letter-spacing:.14em;
-    text-transform:uppercase; color:var(--muted); margin-bottom:28px;
-  }
+  .interest-prompt { font-family:var(--display); font-size:26px; font-weight:300; line-height:1.15; letter-spacing:-.01em; margin-bottom:8px; }
+  .interest-subprompt { font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:28px; }
   .interest-buttons { display:flex; gap:10px; margin-bottom:0; }
-  .interest-btn {
-    flex:1; font-family:var(--mono); font-size:11px; letter-spacing:.2em;
-    text-transform:uppercase; padding:14px 0; border:1px solid var(--border);
-    background:none; color:var(--muted); cursor:pointer;
-    transition:background .25s, color .25s, border-color .25s, transform .2s;
-    position:relative; overflow:hidden;
-  }
-  .interest-btn::after {
-    content:''; position:absolute; inset:0;
-    background:var(--accent); opacity:0;
-    transition:opacity .25s;
-  }
+  .interest-btn { flex:1; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; padding:14px 0; border:1px solid var(--border); background:none; color:var(--muted); cursor:pointer; transition:background .25s, color .25s, border-color .25s, transform .2s; position:relative; overflow:hidden; }
+  .interest-btn::after { content:''; position:absolute; inset:0; background:var(--accent); opacity:0; transition:opacity .25s; }
   .interest-btn:hover { color:var(--text); border-color:var(--accent); transform:translateY(-2px); }
   .interest-btn.btn-yes:hover { border-color:var(--accent); }
   .interest-btn.btn-no:hover  { border-color:rgba(255,100,100,.5); color:rgba(255,100,100,.8); }
-
-  /* Result state */
   .interest-result { display:none; }
   .interest-result.visible { display:block; }
-  .interest-feedback {
-    font-family:var(--mono); font-size:10px; letter-spacing:.14em;
-    text-transform:uppercase; color:var(--accent); margin-bottom:20px;
-    display:flex; align-items:center; gap:8px;
-  }
+  .interest-feedback { font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; display:flex; align-items:center; gap:8px; }
   .interest-feedback::before { content:''; width:14px; height:1px; background:var(--accent); flex:none; }
   .interest-feedback.voted-no { color:var(--muted); }
   .interest-feedback.voted-no::before { background:var(--muted); }
-  .interest-bar-wrap {
-    background:var(--border); height:2px; width:100%;
-    margin-bottom:14px; position:relative; overflow:hidden;
-  }
-  .interest-bar-fill {
-    height:100%; background:var(--accent);
-    transition:width .9s cubic-bezier(.23,1,.32,1);
-    width:0;
-  }
+  .interest-bar-wrap { background:var(--border); height:2px; width:100%; margin-bottom:14px; position:relative; overflow:hidden; }
+  .interest-bar-fill { height:100%; background:var(--accent); transition:width .9s cubic-bezier(.23,1,.32,1); width:0; }
   .interest-bar-fill.voted-no { background:var(--muted); }
-  .interest-count {
-    font-family:var(--mono); font-size:10px; letter-spacing:.1em;
-    text-transform:uppercase; color:var(--muted); margin-bottom:12px;
-    display:flex; align-items:baseline; gap:6px;
-  }
-  .interest-count-num {
-    font-family:var(--display); font-size:26px; color:var(--accent); font-weight:400;
-  }
+  .interest-count { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; align-items:baseline; gap:6px; }
+  .interest-count-num { font-family:var(--display); font-size:26px; color:var(--accent); font-weight:400; }
   .interest-count-num.voted-no { color:var(--muted); }
-  .interest-goal {
-    font-family:var(--mono); font-size:11px; line-height:1.8;
-    color:var(--muted); letter-spacing:.04em; margin-bottom:16px;
-  }
+  .interest-goal { font-family:var(--mono); font-size:11px; line-height:1.8; color:var(--muted); letter-spacing:.04em; margin-bottom:16px; }
   .interest-goal strong { color:var(--accent); }
-  .interest-reset {
-    font-family:var(--mono); font-size:10px; letter-spacing:.1em;
-    text-transform:uppercase; color:var(--muted);
-    background:none; border:none; cursor:pointer;
-    transition:color .3s; padding:0; text-decoration:underline;
-    text-decoration-color:var(--border);
-  }
+  .interest-reset { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); background:none; border:none; cursor:pointer; transition:color .3s; padding:0; text-decoration:underline; text-decoration-color:var(--border); }
   .interest-reset:hover { color:var(--accent); text-decoration-color:var(--accent); }
 
-  /* THEME & MOTION */
   @keyframes scrollMove { 0%{transform:translateY(0);opacity:.9} 50%{transform:translateY(10px);opacity:1} 100%{transform:translateY(0);opacity:.9} }
   body, nav, section, footer, .workshop-card, .pub-item, .detail-hero, .detail-content, .detail-register, .btn-primary, .btn-ghost, .theme-toggle, .contact-link, .tag, .tool-chip { transition-property:background-color,color,border-color,box-shadow,transform; transition-duration:.35s; transition-timing-function:ease; }
-
-  /* ANIMATIONS */
   @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes lineSlide { 0%{left:-100%} 50%{left:100%} 100%{left:100%} }
   .reveal { opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.23,1,.32,1),transform .9s cubic-bezier(.23,1,.32,1); }
   .reveal.visible { opacity:1;transform:translateY(0); }
   .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}
   .reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}
 
-  /* ═══ MOBILE RESPONSIVE ═══ */
   @media(max-width:900px){
     nav{padding:16px 24px}
     .nav-links{display:none}
@@ -345,7 +277,6 @@
     .detail-meta{gap:32px}
     .satellite-grid{grid-template-columns:1fr;gap:16px}
   }
-
   @media(max-width:600px){
     .workshops-headline{font-size:clamp(28px,7vw,44px)}
     .about-headline{font-size:clamp(28px,7vw,44px)}
@@ -364,9 +295,7 @@
     const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     const theme = saved || (prefersLight ? 'light' : 'dark');
     document.documentElement.classList.toggle('theme-light', theme === 'light');
-  } catch (e) {
-    document.documentElement.classList.remove('theme-light');
-  }
+  } catch (e) { document.documentElement.classList.remove('theme-light'); }
 })();
 </script>
 </head>
@@ -374,8 +303,6 @@
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
-
 
 <nav>
   <a href="#" class="nav-logo" id="navLogo">KAI<span>.</span>GENOMICS</a>
@@ -395,7 +322,6 @@
   </button>
 </nav>
 
-<!-- ══ MAIN PAGE ══ -->
 <div id="main-page">
 
   <section id="hero">
@@ -496,21 +422,16 @@
       </a>
     </div>
 
-    <!-- Satellite Instructors -->
     <div class="satellite-label reveal">Satellite Instructors</div>
     <div class="satellite-grid">
-
-      <!-- Instructor 1: Shlok Chitre -->
       <div class="satellite-card reveal reveal-delay-1" id="satellite-shlok" onclick="toggleSatellite('shlok')">
         <div class="satellite-photo-wrap">
           <img src="shlok.png" alt="Shlok Chitre" class="satellite-photo" />
         </div>
         <p class="satellite-name">Shlok Chitre</p>
         <p class="satellite-expertise">Expertise in invertebrate transcriptomics and eukaryotic metagenomics</p>
-        
         <div class="satellite-dropdown">
           <p class="satellite-intro">Research scholar with five years of marine biology experience, specializing in multi-omics approaches for bioprospecting and ecological studies of marine invertebrates.</p>
-          
           <div class="satellite-skills">
             <span class="satellite-skill">Transcriptomics</span>
             <span class="satellite-skill">Metagenomics</span>
@@ -519,7 +440,6 @@
             <span class="satellite-skill">Python/R</span>
             <span class="satellite-skill">Bioinformatics</span>
           </div>
-          
           <div class="satellite-links">
             <a href="https://www.linkedin.com/in/shlok-chitre-115624155/" target="_blank" class="satellite-link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
@@ -536,15 +456,10 @@
           </div>
         </div>
       </div>
-
-      <!-- Instructor 2: TBD -->
       <div class="satellite-card satellite-tbd reveal reveal-delay-2">
         <div class="satellite-photo-wrap">
           <div class="satellite-photo-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-              <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
             <span>Photo</span>
           </div>
         </div>
@@ -552,15 +467,10 @@
         <p class="satellite-name">Instructor II</p>
         <p class="satellite-expertise">Expertise area to be announced</p>
       </div>
-
-      <!-- Instructor 3: TBD -->
       <div class="satellite-card satellite-tbd reveal reveal-delay-3">
         <div class="satellite-photo-wrap">
           <div class="satellite-photo-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-              <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
             <span>Photo</span>
           </div>
         </div>
@@ -568,7 +478,6 @@
         <p class="satellite-name">Instructor III</p>
         <p class="satellite-expertise">Expertise area to be announced</p>
       </div>
-
     </div>
   </section>
 
@@ -612,7 +521,6 @@
 
 </div>
 
-<!-- ══ DETAIL PAGE ══ -->
 <div id="detail-page">
   <div class="detail-hero">
     <div class="detail-hero-bg"></div>
@@ -620,31 +528,23 @@
     <h1 class="detail-title" id="d-title"></h1>
     <div class="detail-meta" id="d-meta"></div>
   </div>
-
   <div class="detail-body">
     <div class="detail-content">
       <div class="detail-section-title">Overview</div>
       <p class="detail-overview" id="d-overview"></p>
-
-      <!-- Prerequisites Section -->
       <div class="prerequisites-section" id="prereq-section">
         <div class="detail-section-title">Prerequisites</div>
         <div class="prereq-list" id="d-prerequisites"></div>
       </div>
-
       <div class="detail-section-title">What You'll Learn</div>
       <div class="module-list" id="d-modules"></div>
-
       <div class="detail-section-title">Tools & Technologies</div>
       <div class="tools-grid" id="d-tools"></div>
     </div>
-
     <div class="detail-register">
       <div class="register-label">Register</div>
       <h3 class="register-title">Express Interest</h3>
       <p class="register-desc" id="d-register-desc"></p>
-
-      <!-- Interest Panel -->
       <div class="interest-panel" id="panel-interest" style="display:none;">
         <div id="interest-question">
           <div class="interest-prompt">Interested in this workshop?</div>
@@ -654,7 +554,6 @@
             <button class="interest-btn btn-no" onclick="castVote('no')">Not Right Now</button>
           </div>
         </div>
-
         <div class="interest-result" id="interest-result">
           <div class="interest-feedback" id="interest-feedback-msg"></div>
           <div class="interest-bar-wrap"><div class="interest-bar-fill" id="interest-bar"></div></div>
@@ -666,7 +565,6 @@
           <button class="interest-reset" onclick="resetVote()">Change my vote</button>
         </div>
       </div>
-
       <div class="form-placeholder" id="form-placeholder">
         <div class="form-placeholder-icon">📝</div>
         <div class="form-placeholder-text">
@@ -674,14 +572,9 @@
           Full workshop registration will open once sufficient interest is confirmed.
         </div>
       </div>
-
       <div id="form-google" style="display:none;">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLScJbt1O9hQzKwYAUIhMcWYZK0bhxsNG4w20OggnDPdTQWisgg/viewform?embedded=true"
-          width="100%" height="680" frameborder="0" marginheight="0" marginwidth="0"
-          style="border:none;display:block;">Loading…</iframe>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScJbt1O9hQzKwYAUIhMcWYZK0bhxsNG4w20OggnDPdTQWisgg/viewform?embedded=true" width="100%" height="680" frameborder="0" marginheight="0" marginwidth="0" style="border:none;display:block;">Loading…</iframe>
       </div>
-
       <p class="register-note">All workshops include course materials, datasets, and post-workshop support. Payment details provided upon registration.</p>
     </div>
   </div>
@@ -691,7 +584,6 @@
 const THEME_KEY = 'kai-theme';
 const VISITOR_KEY = 'kai-visitor-count';
 
-/* ════ THEME ════ */
 function applyTheme(theme) {
   const isLight = theme === 'light';
   document.documentElement.classList.toggle('theme-light', isLight);
@@ -715,30 +607,20 @@ function initThemeToggle() {
   });
 }
 
-/* ════ VISITOR COUNTER ════ */
 function initVisitorCounter() {
   let count = 0;
   try {
     const saved = localStorage.getItem(VISITOR_KEY);
     const visited = localStorage.getItem('kai-visited');
-    
-    if (saved) {
-      count = parseInt(saved, 10) || 0;
-    }
-    
+    if (saved) count = parseInt(saved, 10) || 0;
     if (!visited) {
       count++;
       localStorage.setItem('kai-visited', 'true');
       localStorage.setItem(VISITOR_KEY, count.toString());
     }
-  } catch (e) {
-    count = Math.floor(Math.random() * 1000) + 500;
-  }
-  
+  } catch (e) { count = Math.floor(Math.random() * 1000) + 500; }
   const counterEl = document.getElementById('visitorCount');
-  if (counterEl) {
-    animateCounter(counterEl, count);
-  }
+  if (counterEl) animateCounter(counterEl, count);
 }
 
 function animateCounter(element, target) {
@@ -746,44 +628,25 @@ function animateCounter(element, target) {
   const increment = Math.ceil(target / 50);
   const timer = setInterval(() => {
     current += increment;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
+    if (current >= target) { current = target; clearInterval(timer); }
     element.textContent = current.toLocaleString();
   }, 20);
 }
 
-/* ════ SATELLITE INSTRUCTOR TOGGLE ════ */
 function toggleSatellite(id) {
   const card = document.getElementById('satellite-' + id);
   if (!card || card.classList.contains('satellite-tbd')) return;
-  
   const wasOpen = card.classList.contains('open');
-  
-  // Close all other satellite cards
   document.querySelectorAll('.satellite-card').forEach(c => c.classList.remove('open'));
-  
-  // Toggle this one
-  if (!wasOpen) {
-    card.classList.add('open');
-  }
+  if (!wasOpen) card.classList.add('open');
 }
 
-/* ════════════════════════════════════════════════════
-   WORKSHOP DATA WITH PREREQUISITES
-════════════════════════════════════════════════════ */
 const workshops = {
   intro_bio: {
     number:"01", title:"Introduction to\n<em>Bioinformatics</em>",
     duration:"2 Days", level:"Beginner", format:"Remote / In-person",
     overview:"A gentle but thorough entry point into the world of bioinformatics. This workshop equips complete beginners with the conceptual foundations and practical skills needed to navigate biological databases, work in the Linux command line, and run fundamental sequence analysis tasks — no prior coding experience required.",
-    prerequisites:[
-      "Basic understanding of molecular biology and genetics",
-      "Familiarity with DNA, RNA, and protein concepts",
-      "Access to a computer (Windows, Mac, or Linux)",
-      "No prior programming experience required"
-    ],
+    prerequisites:["Basic understanding of molecular biology and genetics","Familiarity with DNA, RNA, and protein concepts","Access to a computer (Windows, Mac, or Linux)","No prior programming experience required"],
     modules:[
       {name:"What is Bioinformatics?",desc:"The role of computation in modern biology. Overview of sequencing technologies, data types, and the bioinformatics workflow from raw data to discovery."},
       {name:"Linux & Command Line Basics",desc:"Navigating the file system, writing and running shell commands, managing files, and setting up conda environments for reproducible analysis."},
@@ -798,12 +661,7 @@ const workshops = {
     number:"02", title:"Sanger Sequencing\n<em>Analysis</em>",
     duration:"1 Day", level:"Beginner", format:"Remote / In-person",
     overview:"Despite the rise of next-generation sequencing, Sanger sequencing remains the gold standard for targeted sequence verification, colony screening, and 16S-based microbial identification. This focused workshop takes you from raw chromatogram files to confident, publication-ready sequence interpretations using free desktop and web tools.",
-    prerequisites:[
-      "Basic molecular biology knowledge",
-      "Understanding of DNA sequencing concepts",
-      "Completion of 'Introduction to Bioinformatics' workshop OR equivalent basic bioinformatics knowledge",
-      "Access to Windows or Mac computer"
-    ],
+    prerequisites:["Basic molecular biology knowledge","Understanding of DNA sequencing concepts","Completion of 'Introduction to Bioinformatics' workshop OR equivalent basic bioinformatics knowledge","Access to Windows or Mac computer"],
     modules:[
       {name:"Principles of Sanger Sequencing",desc:"Chain-termination chemistry, capillary electrophoresis, and how raw fluorescent signal becomes a chromatogram trace."},
       {name:"Trace File Inspection & Quality",desc:"Opening and interpreting .ab1 files in Chromas and FinchTV. Identifying low-quality regions, mixed bases, and sequencing artefacts."},
@@ -818,13 +676,7 @@ const workshops = {
     number:"03", title:"Introduction to Bacterial\n<em>WGS and Mining</em>",
     duration:"3 Days", level:"Beginner–Intermediate", format:"Remote / In-person",
     overview:"This hands-on workshop walks you through the complete journey of bacterial whole-genome sequencing — from quality-controlled raw reads to an annotated, mined genome ready for publication. Using real bacterial genomes from published CSIR-NIO research, you will assemble, annotate, and screen for biosynthetic gene clusters and secondary metabolite potential.",
-    prerequisites:[
-      "Completion of 'Introduction to Bioinformatics' workshop OR equivalent experience",
-      "Comfortable working with Linux command line",
-      "Basic understanding of conda/package management",
-      "Knowledge of DNA sequencing and genome concepts",
-      "Access to computer with at least 8GB RAM"
-    ],
+    prerequisites:["Completion of 'Introduction to Bioinformatics' workshop OR equivalent experience","Comfortable working with Linux command line","Basic understanding of conda/package management","Knowledge of DNA sequencing and genome concepts","Access to computer with at least 8GB RAM"],
     modules:[
       {name:"NGS Read QC & Preprocessing",desc:"Assessing Illumina read quality with FastQC and MultiQC. Adapter trimming and quality filtering with Trimmomatic and fastp."},
       {name:"De Novo Genome Assembly",desc:"Assembly with SPAdes. Understanding assembly graphs, evaluating N50 and completeness metrics using QUAST and CheckM."},
@@ -839,13 +691,7 @@ const workshops = {
     number:"04", title:"Amplicon\n<em>Metagenomics</em>",
     duration:"3 Days", level:"Beginner–Intermediate", format:"Remote / In-person",
     overview:"This workshop takes you from raw 16S rRNA amplicon sequencing reads to fully interpreted microbial community profiles. You will work hands-on with real environmental datasets — covering quality filtering, denoising, taxonomic classification, diversity analysis, and ecological visualisation using industry-standard tools.",
-    prerequisites:[
-      "Completion of 'Introduction to Bioinformatics' workshop",
-      "Proficiency with Linux command line and conda",
-      "Basic R programming knowledge recommended",
-      "Understanding of microbial ecology concepts",
-      "Familiarity with 16S rRNA gene structure"
-    ],
+    prerequisites:["Completion of 'Introduction to Bioinformatics' workshop","Proficiency with Linux command line and conda","Basic R programming knowledge recommended","Understanding of microbial ecology concepts","Familiarity with 16S rRNA gene structure"],
     modules:[
       {name:"Introduction to Amplicon Sequencing",desc:"Principles of 16S rRNA gene targeting, primer design, Illumina paired-end sequencing, and experimental considerations."},
       {name:"Quality Control & Denoising",desc:"FASTQ quality inspection, adapter trimming, and ASV/OTU generation using DADA2 and QIIME2 workflows."},
@@ -860,14 +706,7 @@ const workshops = {
     number:"05", title:"Functional\n<em>Metagenomics</em>",
     duration:"4 Days", level:"Intermediate", format:"Remote",
     overview:"Go beyond who is there and discover what microbial communities are doing. This workshop focuses on the functional dimension of metagenomics — from gene prediction and annotation through to metabolic pathway reconstruction and community-level functional profiling — using whole-metagenome shotgun sequencing data from complex environmental samples.",
-    prerequisites:[
-      "Completion of 'Amplicon Metagenomics' workshop OR equivalent experience",
-      "Strong Linux command line skills",
-      "Experience with genome assembly and annotation",
-      "Proficiency in either Python or R",
-      "Access to computer with 16GB+ RAM (32GB recommended)",
-      "Understanding of metabolic pathways and gene ontologies"
-    ],
+    prerequisites:["Completion of 'Amplicon Metagenomics' workshop OR equivalent experience","Strong Linux command line skills","Experience with genome assembly and annotation","Proficiency in either Python or R","Access to computer with 16GB+ RAM (32GB recommended)","Understanding of metabolic pathways and gene ontologies"],
     modules:[
       {name:"Shotgun Library Concepts & QC",desc:"Whole-metagenome shotgun sequencing principles, host depletion strategies, read quality control, and preprocessing pipelines."},
       {name:"Taxonomic & Functional Profiling",desc:"Community composition with Kraken2 and MetaPhlAn. Functional gene abundance profiling using HUMAnN3 and UniRef databases."},
@@ -882,14 +721,7 @@ const workshops = {
     number:"06", title:"Pan-genomics &\n<em>Meta-Pangenomics</em>",
     duration:"3 Days", level:"Intermediate–Advanced", format:"Remote / In-person",
     overview:"Unlock the full genetic repertoire of bacterial species and microbial communities. This workshop moves beyond single-genome analysis to explore the collective gene pool of multiple strains (pangenomics) and extends these principles to metagenomic datasets (meta-pangenomics) — revealing the evolutionary flexibility, accessory functions, and ecological adaptations encoded across populations.",
-    prerequisites:[
-      "Completion of 'Bacterial WGS and Mining' workshop",
-      "Experience with genome assembly and annotation",
-      "Strong command of Linux and Bash scripting",
-      "Proficiency in Python and R",
-      "Familiarity with phylogenetic concepts",
-      "Understanding of population genetics principles"
-    ],
+    prerequisites:["Completion of 'Bacterial WGS and Mining' workshop","Experience with genome assembly and annotation","Strong command of Linux and Bash scripting","Proficiency in Python and R","Familiarity with phylogenetic concepts","Understanding of population genetics principles"],
     modules:[
       {name:"Pangenomics Fundamentals",desc:"Core, accessory, and unique genome fractions. The Heap's law model of open vs. closed pangenomes. Ecological and evolutionary implications."},
       {name:"Pangenome Construction",desc:"Building pangenomes from multiple assembled genomes using Roary, Panaroo, and PGGB. Handling fragmented assemblies and contamination."},
@@ -902,11 +734,9 @@ const workshops = {
   }
 };
 
-/* ════ OPEN / CLOSE ════ */
 function openDetail(id) {
   const w = workshops[id];
   if (!w) return;
-
   document.getElementById('d-eyebrow').textContent = `Workshop ${w.number}  ·  ${w.duration}  ·  ${w.level}`;
   document.getElementById('d-title').innerHTML = w.title.replace('\n', '<br/>');
   document.getElementById('d-meta').innerHTML = `
@@ -914,50 +744,27 @@ function openDetail(id) {
     <div><div class="meta-key">Level</div><div class="meta-val">${w.level}</div></div>
     <div><div class="meta-key">Format</div><div class="meta-val">${w.format}</div></div>`;
   document.getElementById('d-overview').textContent = w.overview;
-  
-  // Render prerequisites
   document.getElementById('d-prerequisites').innerHTML = w.prerequisites.map(p =>
-    `<div class="prereq-item">
-      <svg class="prereq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="20 6 9 17 4 12"></polyline>
-      </svg>
-      <div class="prereq-text">${p}</div>
-    </div>`
+    `<div class="prereq-item"><svg class="prereq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg><div class="prereq-text">${p}</div></div>`
   ).join('');
-  
   document.getElementById('d-modules').innerHTML = w.modules.map((m,i) =>
     `<div class="module-item"><span class="module-num">0${i+1}</span><div><div class="module-name">${m.name}</div><div class="module-desc">${m.desc}</div></div></div>`
   ).join('');
   document.getElementById('d-tools').innerHTML = w.tools.map(t => `<span class="tool-chip">${t}</span>`).join('');
   document.getElementById('d-register-desc').textContent = w.registerDesc;
-
-  // All workshops use the interest vote widget
-  const panelInterest = document.getElementById('panel-interest');
-  panelInterest.style.display = 'block';
+  document.getElementById('panel-interest').style.display = 'block';
   renderInterestPanel(id);
-
-  // Show Google Form for live bacterial_wgs workshop; placeholder for others
   const formGoogle = document.getElementById('form-google');
   const formPlaceholder = document.getElementById('form-placeholder');
-  if (id === 'bacterial_wgs') {
-    formPlaceholder.style.display = 'none';
-    formGoogle.style.display = 'block';
-  } else {
-    formPlaceholder.style.display = 'block';
-    formGoogle.style.display = 'none';
-  }
-
-  // Transition
+  if (id === 'bacterial_wgs') { formPlaceholder.style.display = 'none'; formGoogle.style.display = 'block'; }
+  else { formPlaceholder.style.display = 'block'; formGoogle.style.display = 'none'; }
   document.body.classList.add('detail-open');
   window.scrollTo({ top: 0, behavior: 'instant' });
   const dp = document.getElementById('detail-page');
-  dp.style.opacity = '0';
-  dp.style.transform = 'translateY(28px)';
-  dp.style.display = 'block';
+  dp.style.opacity = '0'; dp.style.transform = 'translateY(28px)'; dp.style.display = 'block';
   requestAnimationFrame(() => requestAnimationFrame(() => {
     dp.style.transition = 'opacity .5s ease, transform .5s ease';
-    dp.style.opacity = '1';
-    dp.style.transform = 'translateY(0)';
+    dp.style.opacity = '1'; dp.style.transform = 'translateY(0)';
   }));
   document.title = `Workshop ${w.number} — Kai Genomics`;
 }
@@ -969,9 +776,8 @@ function closeDetail() {
   document.title = 'Kai Genomics';
 }
 
-/* ════ INTEREST VOTE LOGIC ════ */
-const VOTE_KEY   = id => `kai_vote_${id}`;
-const COUNT_KEY  = id => `kai_yes_${id}`;
+const VOTE_KEY  = id => `kai_vote_${id}`;
+const COUNT_KEY = id => `kai_yes_${id}`;
 const GOAL = 10;
 let _currentVoteId = null;
 
@@ -979,84 +785,46 @@ function renderInterestPanel(workshopId) {
   _currentVoteId = workshopId;
   const question = document.getElementById('interest-question');
   const result   = document.getElementById('interest-result');
-
-  let existingVote = null;
-  let yesCount = 0;
-  try {
-    existingVote = localStorage.getItem(VOTE_KEY(workshopId));
-    yesCount     = parseInt(localStorage.getItem(COUNT_KEY(workshopId)) || '0', 10);
-  } catch(e) {}
-
-  if (existingVote) {
-    question.style.display = 'none';
-    showResult(existingVote, yesCount, false);
-  } else {
-    question.style.display = 'block';
-    result.classList.remove('visible');
-  }
+  let existingVote = null, yesCount = 0;
+  try { existingVote = localStorage.getItem(VOTE_KEY(workshopId)); yesCount = parseInt(localStorage.getItem(COUNT_KEY(workshopId)) || '0', 10); } catch(e) {}
+  if (existingVote) { question.style.display = 'none'; showResult(existingVote, yesCount, false); }
+  else { question.style.display = 'block'; result.classList.remove('visible'); }
 }
 
 function castVote(vote) {
-  const id = _currentVoteId;
-  if (!id) return;
-
+  const id = _currentVoteId; if (!id) return;
   let yesCount = 0;
-  try {
-    yesCount = parseInt(localStorage.getItem(COUNT_KEY(id)) || '0', 10);
-    if (vote === 'yes') yesCount = Math.min(yesCount + 1, GOAL);
-    localStorage.setItem(COUNT_KEY(id), String(yesCount));
-    localStorage.setItem(VOTE_KEY(id), vote);
-  } catch(e) {}
-
+  try { yesCount = parseInt(localStorage.getItem(COUNT_KEY(id)) || '0', 10); if (vote === 'yes') yesCount = Math.min(yesCount + 1, GOAL); localStorage.setItem(COUNT_KEY(id), String(yesCount)); localStorage.setItem(VOTE_KEY(id), vote); } catch(e) {}
   document.getElementById('interest-question').style.display = 'none';
   showResult(vote, yesCount, true);
 }
 
 function resetVote() {
-  const id = _currentVoteId;
-  if (!id) return;
+  const id = _currentVoteId; if (!id) return;
   try { localStorage.removeItem(VOTE_KEY(id)); } catch(e) {}
   document.getElementById('interest-result').classList.remove('visible');
-  setTimeout(() => {
-    document.getElementById('interest-question').style.display = 'block';
-  }, 200);
+  setTimeout(() => { document.getElementById('interest-question').style.display = 'block'; }, 200);
 }
 
 function showResult(vote, yesCount, animate) {
-  const result  = document.getElementById('interest-result');
-  const bar     = document.getElementById('interest-bar');
+  const result = document.getElementById('interest-result');
+  const bar = document.getElementById('interest-bar');
   const feedMsg = document.getElementById('interest-feedback-msg');
   const countEl = document.getElementById('interest-count-num');
   const goalMsg = document.getElementById('interest-goal-msg');
-
   const isYes = vote === 'yes';
-  const pct   = Math.min((yesCount / GOAL) * 100, 100);
+  const pct = Math.min((yesCount / GOAL) * 100, 100);
   const remaining = Math.max(GOAL - yesCount, 0);
-
   feedMsg.textContent = isYes ? 'Thanks — your interest is noted.' : 'Got it. Maybe another time.';
-  feedMsg.className   = 'interest-feedback' + (isYes ? '' : ' voted-no');
-
+  feedMsg.className = 'interest-feedback' + (isYes ? '' : ' voted-no');
   countEl.textContent = yesCount;
-  countEl.className   = 'interest-count-num' + (isYes ? '' : ' voted-no');
-
+  countEl.className = 'interest-count-num' + (isYes ? '' : ' voted-no');
   bar.className = 'interest-bar-fill' + (isYes ? '' : ' voted-no');
-
-  if (yesCount >= GOAL) {
-    goalMsg.innerHTML = '<strong>We hit 10!</strong> This workshop is being scheduled. Watch this space.';
-  } else {
-    goalMsg.innerHTML = `<strong>${remaining} more yes</strong> vote${remaining === 1 ? '' : 's'} needed before I schedule this workshop.`;
-  }
-
+  goalMsg.innerHTML = yesCount >= GOAL ? '<strong>We hit 10!</strong> This workshop is being scheduled. Watch this space.' : `<strong>${remaining} more yes</strong> vote${remaining === 1 ? '' : 's'} needed before I schedule this workshop.`;
   result.classList.add('visible');
   bar.style.width = '0%';
-
-  if (animate) {
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      bar.style.width = pct + '%';
-    }));
-  } else {
-    setTimeout(() => { bar.style.width = pct + '%'; }, 120);
-  }
+  if (animate) requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = pct + '%'; }));
+  else setTimeout(() => { bar.style.width = pct + '%'; }, 120);
 }
 
 document.getElementById('navLogo').addEventListener('click', e => {
@@ -1076,35 +844,71 @@ if (window.matchMedia('(pointer: fine)').matches) {
   });
 }
 
-/* ════ DNA CANVAS ════ */
-const canvas=document.getElementById('dnaCanvas'), ctx=canvas.getContext('2d');
-let W,H,t=0;
-function resize(){ W=canvas.width=canvas.offsetWidth; H=canvas.height=canvas.offsetHeight; }
-window.addEventListener('resize',resize); resize();
-(function draw(){
-  ctx.clearRect(0,0,W,H);
-  for(let s=0;s<3;s++){
-    const xB=W*(.15+s*.35),amp=60+s*20,freq=.008,spd=.4+s*.15,ph=(s*Math.PI*2)/3;
-    for(let y=0;y<H;y+=2){
-      const x1=xB+Math.sin(y*freq+t*spd+ph)*amp, x2=xB+Math.sin(y*freq+t*spd+ph+Math.PI)*amp;
-      const al=.06+.03*Math.abs(Math.sin(y*freq+t*spd));
-      ctx.beginPath(); ctx.arc(x1,y,1,0,Math.PI*2); ctx.fillStyle=`rgba(184,245,200,${al})`; ctx.fill();
-      ctx.beginPath(); ctx.arc(x2,y,1,0,Math.PI*2); ctx.fillStyle=`rgba(184,245,200,${al*.6})`; ctx.fill();
-      if(y%30<2){ ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2,y); ctx.strokeStyle=`rgba(184,245,200,${al*1.5})`; ctx.lineWidth=.5; ctx.stroke(); }
+/* ════ DNA CANVAS — FIXED ════
+   Two root causes fixed:
+   1. Canvas had no CSS width/height so offsetWidth/offsetHeight returned ~0.
+      Fix: CSS sets width:100%;height:100% so the element fills the hero.
+   2. Resize now reads the hero element's true dimensions after layout.
+   3. Strands spread evenly across the full width (was clustered in 15–85%).
+*/
+const canvas = document.getElementById('dnaCanvas');
+const ctx    = canvas.getContext('2d');
+let W = 0, H = 0, t = 0;
+
+function resizeCanvas() {
+  const hero = document.getElementById('hero');
+  W = canvas.width  = hero.offsetWidth;
+  H = canvas.height = hero.offsetHeight;
+}
+
+// Run after first paint so the hero has its proper height
+window.addEventListener('load',   resizeCanvas);
+window.addEventListener('resize', resizeCanvas);
+// Also run immediately via rAF as a fallback
+requestAnimationFrame(resizeCanvas);
+
+(function drawDNA() {
+  ctx.clearRect(0, 0, W, H);
+
+  const strandCount = 5;                          // spread across full width
+  for (let s = 0; s < strandCount; s++) {
+    const xB   = W * ((s + 0.5) / strandCount);  // evenly spaced 10%, 30%, 50%, 70%, 90%
+    const amp  = 55 + (s % 3) * 20;              // amplitude varies 55 – 95 px
+    const freq = 0.007 + (s % 2) * 0.001;
+    const spd  = 0.35 + s * 0.11;
+    const ph   = (s * Math.PI * 2) / strandCount;
+
+    for (let y = 0; y < H; y += 2) {
+      const x1 = xB + Math.sin(y * freq + t * spd + ph) * amp;
+      const x2 = xB + Math.sin(y * freq + t * spd + ph + Math.PI) * amp;
+      const al  = 0.055 + 0.03 * Math.abs(Math.sin(y * freq + t * spd));
+
+      ctx.beginPath(); ctx.arc(x1, y, 1, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(184,245,200,${al})`; ctx.fill();
+
+      ctx.beginPath(); ctx.arc(x2, y, 1, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(184,245,200,${al * 0.6})`; ctx.fill();
+
+      if (y % 30 < 2) {
+        ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y);
+        ctx.strokeStyle = `rgba(184,245,200,${al * 1.5})`;
+        ctx.lineWidth = 0.5; ctx.stroke();
+      }
     }
   }
-  t+=.02; requestAnimationFrame(draw);
+
+  t += 0.02;
+  requestAnimationFrame(drawDNA);
 })();
 
 /* ════ SCROLL REVEALS ════ */
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
 
 initThemeToggle();
 initVisitorCounter();
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
