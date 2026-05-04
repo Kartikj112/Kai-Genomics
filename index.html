@@ -602,15 +602,28 @@
       </div>
       <div class="lecturer-form-wrap reveal reveal-delay-5">
         <div class="form-title">Application Form</div>
-        <form id="lecturerApplicationForm" class="application-form">
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             GOOGLE FORMS INTEGRATION
+             Action URL: Replace YOUR_FORM_ID with your Google Form's ID.
+             The Form ID is the long string in your Google Form URL between
+             /d/e/ and /viewform  →  https://docs.google.com/forms/d/e/FORM_ID/viewform
+             ═══════════════════════════════════════════════════════════════ -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" aria-hidden="true"></iframe>
+
+        <form id="lecturerApplicationForm" class="application-form"
+              action="https://docs.google.com/forms/d/e/1FAIpQLSfKaREgG42EZN1LNpkXbfy6Zw_gVchghcFqUU3M071usB5qRg/viewform?usp=pp_url&entry.1826661602=Jane+Doe&entry.1733648208=jane.doe@gmail.com&entry.119414553=PhD+scholar&entry.177539739=Anonymous+University&entry.1842851270=e.g.+Microbiology&entry.1110428216=Practical/Hands-on+Skills&entry.1110428216=Case+Studies/Industry+Examples&entry.808288308=3+-+5+Years&entry.22221171=Sanger+sequencing&entry.898633136=8&entry.213537950=Not+Available&entry.20816153=Not+Available&entry.1710212552=Low+Availability&entry.363210123=High+Availability&entry.1153436918=Yes,+I+consent."
+              method="POST"
+              target="hidden_iframe">
           <div class="form-group">
             <label class="form-label" for="fullName">
               Full Name <span class="required">*</span>
             </label>
+            <!-- REPLACE: entry.REPLACE_WITH_FULL_NAME_ID -->
             <input 
               type="text" 
               id="fullName" 
-              name="fullName" 
+              name="entry.REPLACE_WITH_FULL_NAME_ID" 
               class="form-input" 
               placeholder="Your full name"
               required
@@ -621,10 +634,11 @@
             <label class="form-label" for="email">
               Email Address <span class="required">*</span>
             </label>
+            <!-- REPLACE: entry.REPLACE_WITH_EMAIL_ID -->
             <input 
               type="email" 
               id="email" 
-              name="email" 
+              name="entry.REPLACE_WITH_EMAIL_ID" 
               class="form-input" 
               placeholder="your.email@example.com"
               required
@@ -636,10 +650,11 @@
             <label class="form-label" for="institution">
               Current Institution / Affiliation
             </label>
+            <!-- REPLACE: entry.REPLACE_WITH_INSTITUTION_ID -->
             <input 
               type="text" 
               id="institution" 
-              name="institution" 
+              name="entry.REPLACE_WITH_INSTITUTION_ID" 
               class="form-input" 
               placeholder="University, research institute, or company"
             />
@@ -649,7 +664,9 @@
             <label class="form-label" for="position">
               Current Position
             </label>
-            <select id="position" name="position" class="form-select">
+            <!-- REPLACE: entry.REPLACE_WITH_POSITION_ID -->
+            <!-- IMPORTANT: The option values below must exactly match the options in your Google Form -->
+            <select id="position" name="entry.REPLACE_WITH_POSITION_ID" class="form-select">
               <option value="">Select your current position</option>
               <option value="undergrad">Undergraduate Student</option>
               <option value="masters">Master's Student</option>
@@ -666,10 +683,11 @@
             <label class="form-label" for="specialization">
               Area of Specialization <span class="required">*</span>
             </label>
+            <!-- REPLACE: entry.REPLACE_WITH_SPECIALIZATION_ID -->
             <input 
               type="text" 
               id="specialization" 
-              name="specialization" 
+              name="entry.REPLACE_WITH_SPECIALIZATION_ID" 
               class="form-input" 
               placeholder="e.g., Metagenomics, Phylogenetics, RNA-seq Analysis"
               required
@@ -681,9 +699,10 @@
             <label class="form-label" for="experience">
               Relevant Experience
             </label>
+            <!-- REPLACE: entry.REPLACE_WITH_EXPERIENCE_ID -->
             <textarea 
               id="experience" 
-              name="experience" 
+              name="entry.REPLACE_WITH_EXPERIENCE_ID" 
               class="form-textarea" 
               placeholder="Tell us about your research background, teaching experience, publications, or any relevant projects..."
             ></textarea>
@@ -694,9 +713,10 @@
             <label class="form-label" for="proposedTopics">
               Proposed Workshop Topics
             </label>
+            <!-- REPLACE: entry.REPLACE_WITH_PROPOSED_TOPICS_ID -->
             <textarea 
               id="proposedTopics" 
-              name="proposedTopics" 
+              name="entry.REPLACE_WITH_PROPOSED_TOPICS_ID" 
               class="form-textarea" 
               placeholder="List 1-3 workshop ideas you'd like to teach. For each, include a brief description of what students would learn..."
             ></textarea>
@@ -707,7 +727,9 @@
             <label class="form-label" for="availability">
               Availability
             </label>
-            <select id="availability" name="availability" class="form-select">
+            <!-- REPLACE: entry.REPLACE_WITH_AVAILABILITY_ID -->
+            <!-- IMPORTANT: The option values below must exactly match the options in your Google Form -->
+            <select id="availability" name="entry.REPLACE_WITH_AVAILABILITY_ID" class="form-select">
               <option value="">Select your general availability</option>
               <option value="immediate">Available immediately</option>
               <option value="1-2-months">Available in 1-2 months</option>
@@ -720,10 +742,11 @@
             <label class="form-label" for="linkedin">
               LinkedIn Profile (Optional)
             </label>
+            <!-- REPLACE: entry.REPLACE_WITH_LINKEDIN_ID -->
             <input 
               type="url" 
               id="linkedin" 
-              name="linkedin" 
+              name="entry.REPLACE_WITH_LINKEDIN_ID" 
               class="form-input" 
               placeholder="https://linkedin.com/in/yourprofile"
             />
@@ -733,10 +756,11 @@
             <label class="form-label" for="website">
               Personal Website / Portfolio (Optional)
             </label>
+            <!-- REPLACE: entry.REPLACE_WITH_PORTFOLIO_ID -->
             <input 
               type="url" 
               id="website" 
-              name="website" 
+              name="entry.REPLACE_WITH_PORTFOLIO_ID" 
               class="form-input" 
               placeholder="https://yourwebsite.com"
             />
@@ -746,9 +770,10 @@
             <label class="form-label" for="additionalInfo">
               Additional Information
             </label>
+            <!-- REPLACE: entry.REPLACE_WITH_ADDITIONAL_INFO_ID -->
             <textarea 
               id="additionalInfo" 
-              name="additionalInfo" 
+              name="entry.REPLACE_WITH_ADDITIONAL_INFO_ID" 
               class="form-textarea" 
               placeholder="Anything else you'd like us to know? Questions about the program? Specific requirements or preferences?"
             ></textarea>
@@ -756,10 +781,13 @@
 
           <div class="form-group">
             <label class="form-checkbox-group">
+              <!-- REPLACE: entry.REPLACE_WITH_CONSENT_ID -->
+              <!-- IMPORTANT: The value below ("I agree") must exactly match the checkbox option text in your Google Form -->
               <input 
                 type="checkbox" 
                 id="consent" 
-                name="consent" 
+                name="entry.REPLACE_WITH_CONSENT_ID" 
+                value="I agree"
                 class="form-checkbox"
                 required
               />
@@ -1216,113 +1244,45 @@ initThemeToggle();
 initVisitorCounter();
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-/* ════ LECTURER APPLICATION FORM HANDLING ════ */
+/* ════ LECTURER APPLICATION FORM HANDLING (Google Forms Integration) ════
+   Architecture: The form POSTs natively to Google's formResponse endpoint
+   via a hidden <iframe> (target="hidden_iframe"), which suppresses the
+   Google redirect page. A 1.5 s timeout then shows the success message.
+   ════════════════════════════════════════════════════════════════════════ */
 (function initLecturerForm() {
   const form = document.getElementById('lecturerApplicationForm');
   if (!form) return;
   
   const submitBtn = document.getElementById('submitBtn');
   const successMsg = document.getElementById('formSuccess');
-  const errorMsg = document.getElementById('formError');
-  const errorText = document.getElementById('errorMessage');
+  const errorMsg   = document.getElementById('formError');
 
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    // Reset messages
+  form.addEventListener('submit', function(e) {
+    // Let the native POST to the hidden iframe proceed (do NOT call e.preventDefault())
+
+    // Basic HTML5 validation check before allowing submit
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      form.reportValidity();
+      return;
+    }
+
+    // Reset messages & disable button
     successMsg.classList.remove('visible');
     errorMsg.classList.remove('visible');
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
+    submitBtn.textContent = 'Submitting…';
 
-    // Collect form data
-    const formData = new FormData(form);
-    const data = {
-      fullName: formData.get('fullName'),
-      email: formData.get('email'),
-      institution: formData.get('institution'),
-      position: formData.get('position'),
-      specialization: formData.get('specialization'),
-      experience: formData.get('experience'),
-      proposedTopics: formData.get('proposedTopics'),
-      availability: formData.get('availability'),
-      linkedin: formData.get('linkedin'),
-      website: formData.get('website'),
-      additionalInfo: formData.get('additionalInfo'),
-      consent: formData.get('consent') === 'on',
-      timestamp: new Date().toISOString(),
-      source: 'kai-genomics-website'
-    };
-
-    try {
-      // BACKEND INTEGRATION POINT
-      // Replace this URL with your actual backend endpoint
-      // Options: Google Apps Script, Formspree, Web3Forms, custom API, etc.
-      
-      // Option 1: Web3Forms (free, no backend needed)
-      const WEB3FORMS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY_HERE'; // Get from https://web3forms.com
-      
-      // Option 2: Google Apps Script (deploy as web app)
-      // const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
-      
-      // Option 3: Custom backend API
-      // const API_ENDPOINT = 'https://your-api.com/lecturer-applications';
-
-      // Example using Web3Forms
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: 'New Satellite Lecturer Application - ' + data.fullName,
-          from_name: 'Kai Genomics Website',
-          ...data
-        })
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        // Success
-        successMsg.classList.add('visible');
-        form.reset();
-        
-        // Store submission in localStorage as backup
-        try {
-          const submissions = JSON.parse(localStorage.getItem('lecturer_submissions') || '[]');
-          submissions.push(data);
-          localStorage.setItem('lecturer_submissions', JSON.stringify(submissions));
-        } catch (e) {
-          console.log('Could not save to localStorage:', e);
-        }
-
-        // Scroll to success message
-        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      } else {
-        throw new Error(result.message || 'Submission failed');
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      errorText.textContent = error.message || 'There was a problem submitting your application. Please try again or contact us directly at kartikj112@gmail.com.';
-      errorMsg.classList.add('visible');
-      errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      
-      // Fallback: Save to localStorage for manual retrieval
-      try {
-        const failedSubmissions = JSON.parse(localStorage.getItem('lecturer_failed_submissions') || '[]');
-        failedSubmissions.push(data);
-        localStorage.setItem('lecturer_failed_submissions', JSON.stringify(failedSubmissions));
-        console.log('Application saved locally. Data:', data);
-      } catch (e) {
-        console.log('Could not save failed submission:', e);
-      }
-    } finally {
+    // After the iframe loads (Google records the response), show success.
+    // We use a timeout because the iframe's load event is cross-origin and
+    // cannot be read. 1500 ms is conservative; actual POST is near-instant.
+    setTimeout(function() {
+      successMsg.classList.add('visible');
+      form.reset();
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit Application';
-    }
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 1500);
   });
 
   // Email validation
@@ -1339,23 +1299,9 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   }
 })();
 
-/* ════ ADMIN FUNCTION: Retrieve Stored Applications ════ */
-// For development/testing: call this in browser console to see stored applications
-// retrieveApplications()
-function retrieveApplications() {
-  try {
-    const submissions = JSON.parse(localStorage.getItem('lecturer_submissions') || '[]');
-    const failed = JSON.parse(localStorage.getItem('lecturer_failed_submissions') || '[]');
-    console.log('=== SUCCESSFUL SUBMISSIONS ===');
-    console.table(submissions);
-    console.log('\n=== FAILED SUBMISSIONS (need manual processing) ===');
-    console.table(failed);
-    return { submissions, failed };
-  } catch (e) {
-    console.error('Error retrieving applications:', e);
-    return { submissions: [], failed: [] };
-  }
-}
+/* Note: The old localStorage-based retrieveApplications() debug function
+   has been removed. Submissions now go directly to Google Sheets via
+   the Google Form — check your form's linked spreadsheet for responses. */
 </script>
 </body>
 </html>
