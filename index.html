@@ -979,14 +979,15 @@ const workshops = {
   intro_bio: {
     number:"01", title:"Introduction to\n<em>Bioinformatics</em>",
     duration:"2 Days", level:"Beginner", format:"Remote / In-person",
-    overview:"A gentle but thorough entry point into the world of bioinformatics. This workshop equips complete beginners with the conceptual foundations and practical skills needed to navigate biological databases, work in the Linux command line, and run fundamental sequence analysis tasks — no prior coding experience required.",
+    overview:"This workshop focuses on understanding bioinformatics concepts using intuitive examples and visual tools—no prior coding experience required.",
     prerequisites:["Basic understanding of molecular biology and genetics","Familiarity with DNA, RNA, and protein concepts","Access to a computer (Windows, Mac, or Linux)","No prior programming experience required"],
     modules:[
-      {name:"What is Bioinformatics?",desc:"The role of computation in modern biology. Overview of sequencing technologies, data types, and the bioinformatics workflow from raw data to discovery."},
-      {name:"Linux & Command Line Basics",desc:"Navigating the file system, writing and running shell commands, managing files, and setting up conda environments for reproducible analysis."},
-      {name:"Biological Databases & File Formats",desc:"Exploring NCBI, UniProt, and Ensembl. Understanding FASTA, FASTQ, GFF, and GenBank file formats and how to retrieve and parse them."},
-      {name:"Sequence Similarity & BLAST",desc:"Principles of pairwise alignment, BLAST algorithms, interpreting E-values and bit scores, and running local BLAST searches."},
-      {name:"Introduction to Python for Biology",desc:"Writing simple Python scripts to parse sequences, automate repetitive tasks, and interact with Biopython for sequence manipulation."},
+      {name:"What is Bioinformatics?",desc:"The role of computation in modern biology, including how DNA, RNA, and protein data are generated and how bioinformatics turns raw data into biological insight."},
+      {name:"Biological Data & File Formats",desc:"Understanding how biological information is stored using formats like FASTA and FASTQ, and how these formats organize sequences and associated data."},
+      {name:"Biological Databases",desc:"Exploring major databases like NCBI and UniProt, and learning how to search, retrieve, and interpret biological data."},
+      {name:"Sequence Comparison",desc:"Learning how DNA and protein sequences are compared to identify similarities, infer function, and understand evolutionary relationships."},
+      {name:"Protein Structure & Function",desc:"Understanding how proteins fold into 3D structures and how their shape determines their biological role and function."},
+      {name:"From Data to Discovery",desc:"Connecting all concepts into a simple workflow where biological data is analyzed and interpreted to generate meaningful scientific insights."},
     ],
     tools:["Linux","Bash","NCBI","BLAST","Biopython","Python","conda","FastQC"],
     registerDesc:"No prior bioinformatics or programming experience required. All tools are free and open-source. Suitable for undergraduates, postgraduates, and wet-lab researchers."
