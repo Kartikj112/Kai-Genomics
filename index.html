@@ -451,7 +451,7 @@
       <div class="stat-row reveal reveal-delay-1"><span class="stat-label">Publications</span><div><span class="stat-value">3</span><span class="stat-unit">papers</span></div></div>
       <div class="stat-row reveal reveal-delay-2"><span class="stat-label">Specialisation</span><div style="text-align:right"><span class="stat-value" style="font-size:18.9px;letter-spacing:0">Marine<br/>Microbiomes</span></div></div>
       <div class="stat-row reveal reveal-delay-3"><span class="stat-label">Institution</span><div style="text-align:right"><span class="stat-value" style="font-size:14.7px;letter-spacing:0;line-height:1.4">CSIR–NIO<br/>Goa, India</span></div></div>
-      <div class="stat-row reveal reveal-delay-4"><span class="stat-label">Timezone overlap</span><div><span class="stat-value">4h</span><span class="stat-unit">PST / EST</span></div></div>
+      <div class="stat-row reveal reveal-delay-4"><span class="stat-label">Timezone</span><div><span class="stat-value">IST</span><span class="stat-unit">UTC +5:30</span></div></div>
     </div>
   </section>
 
@@ -907,7 +907,7 @@
         </div>
       </div>
       <div id="form-google" style="display:none;">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScJbt1O9hQzKwYAUIhMcWYZK0bhxsNG4w20OggnDPdTQWisgg/viewform?embedded=true" width="100%" height="680" frameborder="0" marginheight="0" marginwidth="0" style="border:none;display:block;">Loading…</iframe>
+        <iframe id="form-google-iframe" src="" width="100%" height="680" frameborder="0" marginheight="0" marginwidth="0" style="border:none;display:block;">Loading…</iframe>
       </div>
       <p class="register-note">All workshops include course materials, datasets, and post-workshop support. Payment details provided upon registration.</p>
     </div>
@@ -1090,8 +1090,19 @@ function openDetail(id) {
   renderInterestPanel(id);
   const formGoogle = document.getElementById('form-google');
   const formPlaceholder = document.getElementById('form-placeholder');
-  if (id === 'bacterial_wgs') { formPlaceholder.style.display = 'none'; formGoogle.style.display = 'block'; }
-  else { formPlaceholder.style.display = 'block'; formGoogle.style.display = 'none'; }
+  const formIframe = document.getElementById('form-google-iframe');
+  const formUrls = {
+    intro_bio: 'https://docs.google.com/forms/d/e/1FAIpQLSdBIkRHXa6CQytavrtTegIRa4DJd0t3hS_IAS4JlskDc_A_0Q/viewform?embedded=true',
+    bacterial_wgs: 'https://docs.google.com/forms/d/e/1FAIpQLScJbt1O9hQzKwYAUIhMcWYZK0bhxsNG4w20OggnDPdTQWisgg/viewform?embedded=true'
+  };
+  if (formUrls[id]) {
+    formIframe.src = formUrls[id];
+    formPlaceholder.style.display = 'none';
+    formGoogle.style.display = 'block';
+  } else {
+    formPlaceholder.style.display = 'block';
+    formGoogle.style.display = 'none';
+  }
   document.body.classList.add('detail-open');
   window.scrollTo({ top: 0, behavior: 'instant' });
   const dp = document.getElementById('detail-page');
