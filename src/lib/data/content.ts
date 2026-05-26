@@ -26,8 +26,8 @@ export const publications: Publication[] = [
 export const satelliteInstructors: SatelliteInstructor[] = [
   {
     id: 'shlok',
-    name: 'Shlok Chitre',
-    expertise: 'Expertise in invertebrate transcriptomics and eukaryotic metagenomics',
+    name: 'Instructor I',
+    expertise: 'Expertise area to be announced',
     photoSrc: '/shlok.png',
     intro:
       'Research scholar with five years of marine biology experience, specializing in multi-omics approaches for bioprospecting and ecological studies of marine invertebrates.',
