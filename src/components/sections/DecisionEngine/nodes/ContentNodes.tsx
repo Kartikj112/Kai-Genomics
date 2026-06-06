@@ -75,7 +75,7 @@ export function RecNodeRenderer({ node, onContinue }: RecProps) {
         {node.pts.map((p, i) => <ArrowPoint key={i} text={p} />)}
       </div>
 
-      <Pills tools={node.tools} />
+      {node.tools && <Pills tools={node.tools} />}
 
       <button className="btn-p" onClick={onContinue}>
         {node.act ?? 'Continue →'}
