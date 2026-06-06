@@ -5,7 +5,7 @@ import { getTree, getStartNode } from '@/lib/engines/loader';
 import { ENGINE_MODULES } from '@/lib/engines/registry';
 
 interface Props {
-  params: { module: string };
+  params: Promise<{ module: string }>;
 }
 
 export function generateStaticParams() {
@@ -15,7 +15,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const mod = ENGINE_MODULES.find(m => m.id === params.module);
+  const { module } = await params;
+  const mod = ENGINE_MODULES.find(m => m.id === module);
   if (!mod) return { title: 'KAI Decision Engine' };
   return {
     title: `${mod.title} — KAI Decision Engine`,
@@ -23,20 +24,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function ModulePage({ params }: Props) {
-  const mod = ENGINE_MODULES.find(m => m.id === params.module);
+export default async function ModulePage({ params }: Props) {
+  const { module } = await params;
+  const mod = ENGINE_MODULES.find(m => m.id === module);
 
-  // Redirect coming-soon modules back to hub
   if (!mod || mod.status !== 'live') notFound();
 
-  const tree  = getTree(params.module);
-  const start = getStartNode(params.module);
-
+  const tree  = getTree(module);
+  const start = getStartNode(module);
   if (!tree || !start) notFound();
 
   return (
     <main className="engine-page-wrap">
-      {/* Module header */}
       <div className="module-page-header">
         <a href="/engine" className="module-back-link">← Decision Engine</a>
         <div className="module-page-meta">
@@ -46,9 +45,8 @@ export default function ModulePage({ params }: Props) {
           )}
         </div>
       </div>
-
       <EngineRunner
-        moduleId={params.module}
+        moduleId={module}
         tree={tree}
         startNode={start}
       />
