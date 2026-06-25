@@ -47,6 +47,7 @@ export default async function ModulePage({ params }: Props) {
       </div>
       <EngineRunner
         moduleId={module}
+        moduleTitle={mod.title}
         tree={tree}
         startNode={start}
       />

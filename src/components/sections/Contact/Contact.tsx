@@ -1,7 +1,7 @@
 const contactLinks = [
   {
     label: 'Email',
-    href: 'mailto:kartikjuyal66@gmail.com',
+    href: 'mailto:rudragenomics@gmail.com',
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -90,11 +90,11 @@ export function Contact() {
       <div
         className="reveal reveal-delay-2"
         style={{
-          display: 'inline-flex', flexWrap: 'wrap', gap: 16,
+          display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 16,
           position: 'relative', zIndex: 1, marginBottom: 36,
         }}
       >
-        <a href="mailto:kartikjuyal66@gmail.com" className="btn-primary">
+        <a href="mailto:rudragenomics@gmail.com" className="btn-primary">
           Get In Touch
         </a>
         <a href="#lecturer-application" className="btn-ghost">

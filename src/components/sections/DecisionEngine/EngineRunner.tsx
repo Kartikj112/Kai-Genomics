@@ -9,16 +9,18 @@ import { MultiSelectNodeRenderer } from './nodes/MultiSelectNode';
 import { ChecklistNodeRenderer, TimelineNodeRenderer, MatrixNodeRenderer } from './nodes/SpecialNodes';
 import { CalcNodeRenderer }        from './nodes/CalcNode';
 import { WgsSummaryNode }          from './nodes/WgsSummaryNode';
+import { WorkflowSummary }         from './nodes/WorkflowSummary';
 
 interface Props {
   moduleId: string;
+  moduleTitle: string;
   tree: DecisionTree;
   startNode: string;
 }
 
 const TRANSITION_MS = 220;
 
-export function EngineRunner({ moduleId, tree, startNode }: Props) {
+export function EngineRunner({ moduleId, moduleTitle, tree, startNode }: Props) {
   const router = useRouter();
 
   const [state, setState] = useState<EngineState>({
@@ -42,6 +44,17 @@ export function EngineRunner({ moduleId, tree, startNode }: Props) {
     }, TRANSITION_MS);
   }, []);
 
+  // ── Route a finished module to its workflow reward ─────
+  const goToSummary = useCallback((extra?: Partial<EngineState>) => {
+    transition({
+      ...state,
+      ...extra,
+      nid: '__summary__',
+      hist: [...state.hist, state.nid],
+      msel: [],
+    });
+  }, [state, transition]);
+
   // ── Navigate forward via option select ────────────────
   const selectOpt = useCallback((optId: string) => {
     const node = tree[state.nid];
@@ -50,7 +63,9 @@ export function EngineRunner({ moduleId, tree, startNode }: Props) {
     if (!opt) return;
 
     if (opt.next === '__hub__') {
-      router.push('/engine');
+      goToSummary({
+        ans: { ...state.ans, [state.nid]: { id: opt.id, label: opt.label, badge: opt.badge, sub: opt.sub } },
+      });
       return;
     }
 
@@ -61,12 +76,12 @@ export function EngineRunner({ moduleId, tree, startNode }: Props) {
       ans:  { ...state.ans, [state.nid]: { id: opt.id, label: opt.label, badge: opt.badge, sub: opt.sub } },
       msel: [],
     });
-  }, [state, tree, transition, router]);
+  }, [state, tree, transition, goToSummary, router]);
 
   // ── Continue from info/rec/block nodes ────────────────
   const cont = useCallback((nextId: string) => {
     if (nextId === '__hub__') {
-      router.push('/engine');
+      goToSummary();
       return;
     }
     transition({
@@ -75,7 +90,7 @@ export function EngineRunner({ moduleId, tree, startNode }: Props) {
       hist: [...state.hist, state.nid],
       msel: [],
     });
-  }, [state, transition, router]);
+  }, [state, transition, goToSummary]);
 
   // ── Reset to a node (block nodes) ────────────────────
   const resetTo = useCallback((nodeId: string) => {
@@ -107,7 +122,9 @@ export function EngineRunner({ moduleId, tree, startNode }: Props) {
     const selectedOpts: MsOption[] = node.opts.filter(o => state.msel.includes(o.id));
 
     if (node.next === '__hub__') {
-      router.push('/engine');
+      goToSummary({
+        ans: { ...state.ans, [state.nid]: { selected: state.msel, options: selectedOpts } },
+      });
       return;
     }
 
@@ -118,10 +135,28 @@ export function EngineRunner({ moduleId, tree, startNode }: Props) {
       ans:  { ...state.ans, [state.nid]: { selected: state.msel, options: selectedOpts } },
       msel: [],
     });
-  }, [state, tree, transition, router]);
+  }, [state, tree, transition, goToSummary, router]);
 
   // ── Checklist continue ────────────────────────────────
   const contFromChecklist = useCallback((nextId: string) => cont(nextId), [cont]);
+
+  // ── Final workflow reward (synthetic terminal state) ──
+  if (state.nid === '__summary__') {
+    return (
+      <div className="engine-runner">
+        <div className="engine-content" style={{ opacity: 1 }}>
+          <WorkflowSummary
+            moduleId={moduleId}
+            moduleTitle={moduleTitle}
+            tree={tree}
+            state={state}
+            onRestart={() => resetTo(startNode)}
+            onHub={() => router.push('/engine')}
+          />
+        </div>
+      </div>
+    );
+  }
 
   const node: TreeNode = tree[state.nid];
   if (!node) return <p style={{ color: 'var(--err)' }}>Unknown node: {state.nid}</p>;
@@ -189,10 +224,21 @@ export function EngineRunner({ moduleId, tree, startNode }: Props) {
           <MatrixNodeRenderer node={node} onContinue={() => cont(node.next)} />
         )}
         {node.type === 'summary' && moduleId === 'wgs' && (
-          <WgsSummaryNode state={state} onRestart={() => resetTo(startNode)} />
+          <WgsSummaryNode
+            state={state}
+            onRestart={() => resetTo(startNode)}
+            onHub={() => router.push('/engine')}
+          />
         )}
         {node.type === 'summary' && moduleId !== 'wgs' && (
-          <GenericSummary onRestart={() => resetTo(startNode)} onHub={() => router.push('/engine')} />
+          <WorkflowSummary
+            moduleId={moduleId}
+            moduleTitle={moduleTitle}
+            tree={tree}
+            state={state}
+            onRestart={() => resetTo(startNode)}
+            onHub={() => router.push('/engine')}
+          />
         )}
       </div>
 
@@ -203,20 +249,5 @@ export function EngineRunner({ moduleId, tree, startNode }: Props) {
         </div>
       )}
     </div>
-  );
-}
-
-function GenericSummary({ onRestart, onHub }: { onRestart: () => void; onHub: () => void }) {
-  return (
-    <>
-      <div className="cat-tag cat-tag--default">COMPLETE</div>
-      <h1 className="node-title">Analysis Complete</h1>
-      <p className="body-text">
-        You have completed this decision engine module. Return to the hub to explore other modules,
-        or restart this module with a different set of inputs.
-      </p>
-      <button className="btn-p" style={{ marginBottom: 12 }} onClick={onHub}>← Return to Decision Engine Hub</button>
-      <button className="btn-ghost" onClick={onRestart}>↺ Restart this module</button>
-    </>
   );
 }

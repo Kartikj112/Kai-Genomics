@@ -861,3 +861,23 @@ button, a, input, textarea, select {
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* The pill/text CTAs get an emphasis cue instead of a boxy outline —
+   no stray rectangle around links like "Meet the Instructor". */
+.btn-primary:focus-visible {
+  outline: none;
+  background: var(--accent2);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.btn-ghost:focus-visible {
+  outline: none;
+  color: var(--text);
+  border-color: var(--accent);
+}
+.nav-logo:focus-visible,
+.engine-header-logo:focus-visible {
+  outline: none;
+  color: var(--accent);
+}
+/* Never show a focus ring for mouse activation. */
+:focus:not(:focus-visible) { outline: none; }

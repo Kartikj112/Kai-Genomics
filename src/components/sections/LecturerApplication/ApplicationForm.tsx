@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 const FORM_ACTION =
   'https://docs.google.com/forms/d/e/1FAIpQLSfKaREgG42EZN1LNpkXbfy6Zw_gVchghcFqUU3M071usB5qRg/formResponse'
 
-const FALLBACK_EMAIL = 'kartikjuyal66@gmail.com'
+const FALLBACK_EMAIL = 'rudragenomics@gmail.com'
 
 export function ApplicationForm() {
   const [submitting, setSubmitting] = useState(false)

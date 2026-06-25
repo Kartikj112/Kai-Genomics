@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import type { SatelliteInstructor } from '@/lib/types'
 
@@ -42,6 +42,28 @@ interface SatelliteCardProps {
 export function SatelliteCard({ instructor, revealDelay = 1 }: SatelliteCardProps) {
   const [open, setOpen] = useState(false)
   const [imgFailed, setImgFailed] = useState(false)
+  const [revealed, setRevealed] = useState(false)
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  // Self-managed reveal. The global scroll-reveal mutates classList outside
+  // React, which a re-render (e.g. on click) would wipe — making the card
+  // vanish. Owning the reveal in React state keeps it stable across renders.
+  useEffect(() => {
+    const el = cardRef.current
+    if (!el) return
+    if (typeof IntersectionObserver === 'undefined') { setRevealed(true); return }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setRevealed(true)
+          io.disconnect()
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   const toggle = () => {
     if (instructor.isTbd) return
@@ -52,11 +74,17 @@ export function SatelliteCard({ instructor, revealDelay = 1 }: SatelliteCardProp
 
   return (
     <div
-      className={`satellite-card${instructor.isTbd ? ' satellite-tbd' : ''}${open ? ' open' : ''} reveal reveal-delay-${revealDelay}`}
+      ref={cardRef}
+      className={`satellite-card${instructor.isTbd ? ' satellite-tbd' : ''}${open ? ' open' : ''}`}
       onClick={toggle}
       role={instructor.isTbd ? undefined : 'button'}
       tabIndex={instructor.isTbd ? undefined : 0}
       aria-expanded={instructor.isTbd ? undefined : open}
+      style={{
+        opacity: revealed ? 1 : 0,
+        transform: revealed ? 'translateY(0)' : 'translateY(40px)',
+        transition: `opacity 0.9s cubic-bezier(0.23,1,0.32,1) ${revealDelay * 0.1}s, transform 0.9s cubic-bezier(0.23,1,0.32,1) ${revealDelay * 0.1}s`,
+      }}
       onKeyDown={(e) => {
         if (!instructor.isTbd && (e.key === 'Enter' || e.key === ' ')) {
           e.preventDefault()

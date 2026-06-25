@@ -895,3 +895,50 @@
 @media (prefers-reduced-motion: reduce) {
   .module-card { animation: none !important; }
 }
+
+/* ── Workflow reward: action buttons ─────────────────────── */
+.ws-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+.ws-actions--ghost {
+  margin-top: 14px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-color);
+}
+.ws-actions .btn-p { flex: 1; min-width: 160px; text-align: center; }
+
+/* ── Print: isolate the workflow into a clean document ───── */
+@media print {
+  .engine-header,
+  .cursor,
+  .cursor-ring,
+  .back-wrap,
+  .ws-actions,
+  .prog-bar,
+  .prog-row,
+  #prog-wrap,
+  .module-page-header,
+  .aurora-field { display: none !important; }
+
+  html, body { background: #ffffff !important; }
+  .engine-page-wrap { max-width: 100% !important; padding: 0 24px !important; }
+
+  .workflow-summary,
+  .workflow-summary * {
+    color: #111 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .workflow-summary .node-title.italic,
+  .workflow-summary .tag-v,
+  .workflow-summary .pt-arr { color: #1f8a5b !important; }
+  .workflow-summary .pill,
+  .workflow-summary .sum-tag,
+  .workflow-summary .wf-s,
+  .workflow-summary .cl-i { border-color: #ccc !important; }
+  .workflow-summary { break-inside: avoid; }
+  .wf-s, .cl-i, .pt { break-inside: avoid; }
+}
