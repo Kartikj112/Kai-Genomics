@@ -11,9 +11,13 @@
   --border-color:rgba(255, 255, 255, 0.07);
   --text:        #f0ede8;
   --muted:       rgba(240, 237, 232, 0.4);
-  --accent:      #b8f5c8;
-  --accent2:     #7de8b0;
-  --hover:       #111116;
+  --accent:      #C05A5D;
+  --accent2:     #A63D40;
+  --accent-soft: rgba(192, 90, 93, 0.12);
+  --err:         #E05050;
+  --warn:        #F0C060;
+  --ok:          #3FA46A;
+  --hover:       #141013;
   --nav-fade:    rgba(5, 5, 7, 0.92);
 
   --font-display: 'Cormorant Garamond';
@@ -30,9 +34,13 @@
   --border-color:rgba(15, 23, 42, 0.10);
   --text:        #111827;
   --muted:       rgba(17, 24, 39, 0.62);
-  --accent:      #1f8a5b;
-  --accent2:     #2aa86b;
-  --hover:       #f0ebe2;
+  --accent:      #A63D40;
+  --accent2:     #8E2F38;
+  --accent-soft: rgba(166, 61, 64, 0.10);
+  --err:         #C2362B;
+  --warn:        #B7791F;
+  --ok:          #2F8F57;
+  --hover:       #efe7e2;
   --nav-fade:    rgba(245, 242, 235, 0.92);
 }
 
@@ -295,7 +303,7 @@ button, a, input, textarea, select {
 }
 
 .workshop-card:hover .tag {
-  border-color: rgba(184, 245, 200, 0.25);
+  border-color: rgba(192, 90, 93, 0.25);
   color: var(--accent);
 }
 
@@ -325,7 +333,7 @@ button, a, input, textarea, select {
 }
 
 .tool-chip:hover {
-  border-color: rgba(184, 245, 200, 0.3);
+  border-color: rgba(192, 90, 93, 0.3);
   color: var(--accent);
 }
 
@@ -376,7 +384,7 @@ button, a, input, textarea, select {
 
 .satellite-card:hover {
   background: var(--hover);
-  border-color: rgba(184, 245, 200, 0.2);
+  border-color: rgba(192, 90, 93, 0.2);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
@@ -440,7 +448,7 @@ button, a, input, textarea, select {
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
-  border-color: rgba(184, 245, 200, 0.4);
+  border-color: rgba(192, 90, 93, 0.4);
   background: var(--hover);
 }
 
@@ -881,3 +889,16 @@ button, a, input, textarea, select {
 }
 /* Never show a focus ring for mouse activation. */
 :focus:not(:focus-visible) { outline: none; }
+
+/* ════════════════════════════════════════════════════════
+   KAI LABS — shell components
+   ════════════════════════════════════════════════════════ */
+.initiative-badge:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+.feature-card:focus-visible {
+  outline: none;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}

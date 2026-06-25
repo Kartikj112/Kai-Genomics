@@ -8,22 +8,22 @@ interface Props {
 }
 
 const CAT_COLORS: Record<string, string> = {
-  'GENOMICS':      'rgba(184,245,200,0.1)',
-  'SEQUENCING':    'rgba(184,245,200,0.1)',
-  'ASSEMBLY':      'rgba(125,232,176,0.08)',
-  'METAGENOMICS':  'rgba(125,232,176,0.08)',
+  'GENOMICS':      'rgba(192, 90, 93,0.1)',
+  'SEQUENCING':    'rgba(192, 90, 93,0.1)',
+  'ASSEMBLY':      'rgba(166, 61, 64,0.08)',
+  'METAGENOMICS':  'rgba(166, 61, 64,0.08)',
   'FUNCTIONAL':    'rgba(240,192,96,0.06)',
   'STATISTICS':    'rgba(240,192,96,0.06)',
-  'DRUG DISCOVERY':'rgba(184,245,200,0.12)',
-  'PUBLICATION':   'rgba(125,232,176,0.08)',
-  'STRATEGY':      'rgba(184,245,200,0.1)',
-  'PLANNING':      'rgba(125,232,176,0.06)',
+  'DRUG DISCOVERY':'rgba(192, 90, 93,0.12)',
+  'PUBLICATION':   'rgba(166, 61, 64,0.08)',
+  'STRATEGY':      'rgba(192, 90, 93,0.1)',
+  'PLANNING':      'rgba(166, 61, 64,0.06)',
   'CAREER':        'rgba(240,192,96,0.06)',
-  'NANOPORE':      'rgba(125,232,176,0.08)',
-  'SUBMISSION':    'rgba(125,232,176,0.06)',
-  'TAXONOMY':      'rgba(184,245,200,0.1)',
-  'COMPUTING':     'rgba(125,232,176,0.06)',
-  'AMPLICON':      'rgba(125,232,176,0.06)',
+  'NANOPORE':      'rgba(166, 61, 64,0.08)',
+  'SUBMISSION':    'rgba(166, 61, 64,0.06)',
+  'TAXONOMY':      'rgba(192, 90, 93,0.1)',
+  'COMPUTING':     'rgba(166, 61, 64,0.06)',
+  'AMPLICON':      'rgba(166, 61, 64,0.06)',
 };
 
 export function EngineHub({ modules }: Props) {
@@ -70,7 +70,7 @@ export function EngineHub({ modules }: Props) {
       <div className="hub-section-label">Available Now</div>
       <div className="module-grid">
         {live.map(m => (
-          <Link key={m.id} href={`/engine/${m.id}`} className="module-card" style={{ '--card-bg': CAT_COLORS[m.cat] ?? 'rgba(184,245,200,0.07)' } as React.CSSProperties}>
+          <Link key={m.id} href={`/engine/${m.id}`} className="module-card" style={{ '--card-bg': CAT_COLORS[m.cat] ?? 'rgba(192, 90, 93,0.07)' } as React.CSSProperties}>
             <div className="mc-top">
               <span className="mc-cat">{m.cat}</span>
               {m.badge && <span className="mc-badge">{m.badge}</span>}

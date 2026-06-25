@@ -42,19 +42,19 @@ export function DnaCanvas() {
 
           ctx!.beginPath()
           ctx!.arc(x1, y, 1, 0, Math.PI * 2)
-          ctx!.fillStyle = `rgba(184,245,200,${al})`
+          ctx!.fillStyle = `rgba(192, 90, 93,${al})`
           ctx!.fill()
 
           ctx!.beginPath()
           ctx!.arc(x2, y, 1, 0, Math.PI * 2)
-          ctx!.fillStyle = `rgba(184,245,200,${al * 0.6})`
+          ctx!.fillStyle = `rgba(192, 90, 93,${al * 0.6})`
           ctx!.fill()
 
           if (y % 30 < 2) {
             ctx!.beginPath()
             ctx!.moveTo(x1, y)
             ctx!.lineTo(x2, y)
-            ctx!.strokeStyle = `rgba(184,245,200,${al * 1.5})`
+            ctx!.strokeStyle = `rgba(192, 90, 93,${al * 1.5})`
             ctx!.lineWidth = 0.5
             ctx!.stroke()
           }

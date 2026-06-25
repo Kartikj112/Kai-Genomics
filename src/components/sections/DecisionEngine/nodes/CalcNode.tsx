@@ -102,7 +102,7 @@ export function CalcNodeRenderer({ node, state, onContinue }: Props) {
       <SecLabel>Minimum Coverage by Objective</SecLabel>
       <div className="tbl" style={{ marginBottom: 24 }}>
         {Object.entries(GOAL_COV).map(([k, v]) => (
-          <div key={k} className="tbl-r" style={k === gid ? { background: 'rgba(184,245,200,.05)' } : {}}>
+          <div key={k} className="tbl-r" style={k === gid ? { background: 'rgba(192, 90, 93,.05)' } : {}}>
             <div className={`tbl-v${k === gid ? ' c-g' : ''}`} style={{ fontSize: 11, minWidth: 140 }}>
               {v.label}{k === gid ? ' ◀' : ''}
             </div>
@@ -125,7 +125,7 @@ export function CalcNodeRenderer({ node, state, onContinue }: Props) {
       {/* Calculator */}
       <SecLabel>Coverage Calculator</SecLabel>
       {gc.note && (
-        <div className="caution-box" style={{ borderColor: 'rgba(184,245,200,.15)', background: 'rgba(184,245,200,.04)', color: 'var(--muted)', marginBottom: 16 }}>
+        <div className="caution-box" style={{ borderColor: 'rgba(192, 90, 93,.15)', background: 'rgba(192, 90, 93,.04)', color: 'var(--muted)', marginBottom: 16 }}>
           ↗ Pre-filled for your goal — {gc.note}
         </div>
       )}

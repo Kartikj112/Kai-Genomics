@@ -131,7 +131,7 @@ export function Contact() {
             onMouseEnter={e => {
               const el = e.currentTarget
               el.style.transform    = 'translateY(-1px)'
-              el.style.borderColor  = 'rgba(184,245,200,.25)'
+              el.style.borderColor  = 'rgba(192, 90, 93,.25)'
               el.style.background   = 'var(--hover)'
             }}
             onMouseLeave={e => {

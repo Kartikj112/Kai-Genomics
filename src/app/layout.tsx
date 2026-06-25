@@ -29,18 +29,21 @@ const syne = Syne({
 
 // ── Metadata ─────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Kai Genomics',
+  title: {
+    default: 'Kai Labs — A Scientific Ecosystem',
+    template: '%s',
+  },
   description:
-    'Expert-led workshops in microbial genomics, metagenomics, and bioinformatics — from sequencing to discovery.',
+    'A scientific ecosystem for computational biology, genomics, AI, and community-driven learning. Home of Kai Genomics and Kai Exchange.',
   keywords: [
-    'bioinformatics', 'genomics', 'metagenomics', 'microbial genomics',
-    'computational biology', 'antimicrobial peptides', 'marine biotechnology',
-    'NGS analysis', 'workshops', 'online courses',
+    'computational biology', 'bioinformatics', 'genomics', 'metagenomics',
+    'scientific community', 'workshops', 'AI', 'antimicrobial peptides',
+    'natural product discovery', 'Kai Labs', 'Kai Genomics', 'Kai Exchange',
   ],
   authors: [{ name: 'Kartik Juyal' }],
   openGraph: {
-    title: 'Kai Genomics',
-    description: 'Expert-led workshops in microbial genomics, metagenomics, and bioinformatics.',
+    title: 'Kai Labs — A Scientific Ecosystem',
+    description: 'Computational biology, genomics, AI, and community-driven learning. Research. Learn. Build.',
     type: 'website',
   },
 }

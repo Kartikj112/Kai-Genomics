@@ -35,7 +35,7 @@ export function WorkshopDetail({ workshop }: WorkshopDetailProps) {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(ellipse at 70% 40%, rgba(184,245,200,.04) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse at 70% 40%, rgba(192, 90, 93,.04) 0%, transparent 60%)',
             zIndex: 0,
           }}
         />
@@ -195,8 +195,8 @@ export function WorkshopDetail({ workshop }: WorkshopDetailProps) {
 
           {/* Registration placeholder */}
           <div style={{
-            border: '1px dashed rgba(184,245,200,.2)',
-            background: 'rgba(184,245,200,.02)',
+            border: '1px dashed rgba(192, 90, 93,.2)',
+            background: 'rgba(192, 90, 93,.02)',
             padding: '40px 28px',
             textAlign: 'center',
             marginBottom: 20,
@@ -212,7 +212,7 @@ export function WorkshopDetail({ workshop }: WorkshopDetailProps) {
                 Registration Coming Soon
               </strong>
               Use code{' '}
-              <code style={{ color: 'var(--accent)', background: 'rgba(184,245,200,.08)', padding: '2px 6px' }}>
+              <code style={{ color: 'var(--accent)', background: 'rgba(192, 90, 93,.08)', padding: '2px 6px' }}>
                 EARLYBIRD
               </code>{' '}
               for 20% off your first workshop.

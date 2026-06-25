@@ -1,4 +1,5 @@
 import { DnaCanvas } from './DnaCanvas'
+import { InitiativeBadge } from '@/components/labs/InitiativeBadge'
 
 export function Hero() {
   return (
@@ -15,6 +16,14 @@ export function Hero() {
       }}
     >
       <DnaCanvas />
+
+      {/* Sub-brand badge */}
+      <div
+        className="animate-fade-up"
+        style={{ marginBottom: 20, animationDelay: '0.2s', position: 'relative', zIndex: 1 }}
+      >
+        <InitiativeBadge />
+      </div>
 
       {/* Eyebrow */}
       <p

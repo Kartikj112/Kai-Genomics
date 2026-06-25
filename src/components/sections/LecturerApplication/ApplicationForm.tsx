@@ -78,7 +78,7 @@ export function ApplicationForm() {
 
   const focusStyle = {
     onFocus: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      e.target.style.borderColor = 'rgba(184,245,200,.4)'
+      e.target.style.borderColor = 'rgba(192, 90, 93,.4)'
       e.target.style.background  = 'var(--hover)'
     },
     onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -300,8 +300,8 @@ export function ApplicationForm() {
         {success && (
           <div style={{
             padding: '20px 24px', borderRadius: 4,
-            background: 'rgba(184,245,200,.08)',
-            border: '1px solid rgba(184,245,200,.2)',
+            background: 'rgba(192, 90, 93,.08)',
+            border: '1px solid rgba(192, 90, 93,.2)',
             fontFamily: 'var(--font-mono), DM Mono, monospace',
             fontSize: 12, lineHeight: 1.8, color: 'var(--accent)',
           }}>

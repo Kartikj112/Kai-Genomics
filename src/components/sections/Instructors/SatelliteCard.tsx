@@ -99,7 +99,7 @@ export function SatelliteCard({ instructor, revealDelay = 1 }: SatelliteCardProp
           fontFamily: 'var(--font-mono), DM Mono, monospace',
           fontSize: 9, letterSpacing: '0.12em',
           textTransform: 'uppercase', color: 'var(--accent)',
-          border: '1px solid rgba(184,245,200,.2)', padding: '4px 8px',
+          border: '1px solid rgba(192, 90, 93,.2)', padding: '4px 8px',
         }}>
           {instructor.badge}
         </span>
@@ -125,7 +125,7 @@ export function SatelliteCard({ instructor, revealDelay = 1 }: SatelliteCardProp
             width: '100%', height: '100%',
             display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center',
-            background: 'rgba(184,245,200,.03)',
+            background: 'rgba(192, 90, 93,.03)',
             gap: 8, color: 'var(--muted)',
           }}>
             <PersonIcon />
@@ -183,7 +183,7 @@ export function SatelliteCard({ instructor, revealDelay = 1 }: SatelliteCardProp
                   fontSize: 9, letterSpacing: '0.1em',
                   textTransform: 'uppercase', border: '1px solid var(--border-color)',
                   padding: '4px 8px', color: 'var(--accent)',
-                  background: 'rgba(184,245,200,.03)',
+                  background: 'rgba(192, 90, 93,.03)',
                 }}>
                   {skill}
                 </span>

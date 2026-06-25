@@ -40,7 +40,7 @@ export function About() {
               position: 'absolute',
               inset: -5,
               borderRadius: '50%',
-              border: '1px solid rgba(184,245,200,.18)',
+              border: '1px solid rgba(192, 90, 93,.18)',
               pointerEvents: 'none',
               display: 'block',
             }}
